@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/phone open v4.wav-2c4c5eb3269d1fd7b0b9df0361b3f074.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/phone open v4.wav"
+dest_files=[ "res://.import/phone open v4.wav-2c4c5eb3269d1fd7b0b9df0361b3f074.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/menu browse.wav-b8b1f5a8682b3e0bb8f67b4d44e56ce9.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/menu browse.wav"
+dest_files=[ "res://.import/menu browse.wav-b8b1f5a8682b3e0bb8f67b4d44e56ce9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

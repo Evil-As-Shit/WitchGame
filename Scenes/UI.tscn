@@ -1,0 +1,489 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Main/UI.gd" type="Script" id=3]
+[ext_resource path="res://Assets/ui/Fonts/dpcomic.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/ui/inventory.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ui/nullicon.png" type="Texture" id=6]
+[ext_resource path="res://Assets/ui/npc2avatar.png" type="Texture" id=7]
+[ext_resource path="res://Assets/ui/phone ui.png" type="Texture" id=9]
+[ext_resource path="res://Assets/ui/npc1avatar.png" type="Texture" id=10]
+[ext_resource path="res://Assets/ui/such ui very wow.png" type="Texture" id=11]
+[ext_resource path="res://Assets/ui/witchavatar.png" type="Texture" id=12]
+[ext_resource path="res://Assets/ui/witchavatar2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/sfx/blip.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/ui/nextindicator.png" type="Texture" id=15]
+[ext_resource path="res://Assets/ui/Fonts/Boo City.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://Assets/ui/phone select.png" type="Texture" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 4 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "witch_stare",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "witch_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 5, 5 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 5, 5 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 15 )
+region = Rect2( 5, 0, 5, 5 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "Rest",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "Next",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 16 )
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1080.0
+margin_bottom = 720.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" type="Sprite" parent="Control"]
+position = Vector2( 89.5687, 35.0143 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+script = ExtResource( 2 )
+
+[node name="slot_1" type="Sprite" parent="Control/Inventory"]
+position = Vector2( -13.0147, 0 )
+
+[node name="slot_2" type="Sprite" parent="Control/Inventory"]
+
+[node name="slot_3" type="Sprite" parent="Control/Inventory"]
+position = Vector2( 13.0011, 0 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control"]
+margin_left = 385.0
+margin_top = 500.0
+margin_right = 848.0
+margin_bottom = 628.0
+texture = ExtResource( 1 )
+region_rect = Rect2( 9, 9, 154, 55 )
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/NinePatchRect"]
+margin_left = 120.0
+margin_top = 20.0
+margin_right = 446.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 1 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="expressions" type="AnimatedSprite" parent="Control/NinePatchRect"]
+position = Vector2( 36.9133, 72.0959 )
+scale = Vector2( 1.88732, 2.07403 )
+frames = SubResource( 2 )
+animation = "null"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/NinePatchRect"]
+stream = ExtResource( 14 )
+volume_db = -21.174
+pitch_scale = 1.29
+
+[node name="nextIcon" type="AnimatedSprite" parent="Control/NinePatchRect"]
+position = Vector2( 442.97, 107.766 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 6 )
+animation = "Rest"
+centered = false
+
+[node name="PhoneUI" type="Sprite" parent="Control"]
+position = Vector2( 200, 900 )
+texture = ExtResource( 9 )
+
+[node name="Options" type="Button" parent="Control/PhoneUI"]
+margin_left = -142.0
+margin_top = -242.0
+margin_right = -98.0
+margin_bottom = -198.0
+focus_neighbour_bottom = NodePath("../App1")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/Options"]
+visible = false
+position = Vector2( 21.9989, 22.0002 )
+scale = Vector2( 3.75, 3.75 )
+texture = ExtResource( 17 )
+
+[node name="App1" type="Button" parent="Control/PhoneUI"]
+margin_left = -142.0
+margin_top = -107.205
+margin_right = -83.0
+margin_bottom = -48.2045
+focus_neighbour_top = NodePath("../Options")
+focus_neighbour_right = NodePath("../App2")
+focus_neighbour_bottom = NodePath("../App5")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App1"]
+visible = false
+position = Vector2( 29.5066, 29.5004 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="App2" type="Button" parent="Control/PhoneUI"]
+margin_left = -66.795
+margin_top = -107.205
+margin_right = -7.79504
+margin_bottom = -48.2045
+focus_neighbour_left = NodePath("../App1")
+focus_neighbour_top = NodePath("../Options")
+focus_neighbour_right = NodePath("../App3")
+focus_neighbour_bottom = NodePath("../App6")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App2"]
+visible = false
+position = Vector2( 29.5046, 29.498 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="App3" type="Button" parent="Control/PhoneUI"]
+margin_left = 8.0
+margin_top = -107.205
+margin_right = 67.0
+margin_bottom = -48.2045
+focus_neighbour_left = NodePath("../App2")
+focus_neighbour_top = NodePath("../Options")
+focus_neighbour_right = NodePath("../App4")
+focus_neighbour_bottom = NodePath("../App7")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App3"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="App4" type="Button" parent="Control/PhoneUI"]
+margin_left = 83.1062
+margin_top = -107.205
+margin_right = 142.106
+margin_bottom = -48.2045
+focus_neighbour_left = NodePath("../App3")
+focus_neighbour_top = NodePath("../Options")
+focus_neighbour_bottom = NodePath("../App8")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App4"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="App5" type="Button" parent="Control/PhoneUI"]
+margin_left = -142.0
+margin_top = -27.2051
+margin_right = -83.0
+margin_bottom = 31.7949
+focus_neighbour_top = NodePath("../App1")
+focus_neighbour_right = NodePath("../App6")
+focus_neighbour_bottom = NodePath("../QRApp")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App5"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="App6" type="Button" parent="Control/PhoneUI"]
+margin_left = -66.795
+margin_top = -27.2051
+margin_right = -7.79504
+margin_bottom = 31.7949
+focus_neighbour_left = NodePath("../App5")
+focus_neighbour_top = NodePath("../App2")
+focus_neighbour_right = NodePath("../App7")
+focus_neighbour_bottom = NodePath("../TextApp")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App6"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="App7" type="Button" parent="Control/PhoneUI"]
+margin_left = 8.0
+margin_top = -27.2051
+margin_right = 67.0
+margin_bottom = 31.7949
+focus_neighbour_left = NodePath("../App6")
+focus_neighbour_top = NodePath("../App3")
+focus_neighbour_right = NodePath("../App8")
+focus_neighbour_bottom = NodePath("../PixApp")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App7"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="App8" type="Button" parent="Control/PhoneUI"]
+margin_left = 83.1062
+margin_top = -27.2051
+margin_right = 142.106
+margin_bottom = 31.7949
+focus_neighbour_left = NodePath("../App7")
+focus_neighbour_top = NodePath("../App4")
+focus_neighbour_bottom = NodePath("../SoulApp")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/App8"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="QRApp" type="Button" parent="Control/PhoneUI"]
+margin_left = -142.0
+margin_top = 137.846
+margin_right = -83.0
+margin_bottom = 196.846
+focus_neighbour_top = NodePath("../App5")
+focus_neighbour_right = NodePath("../TextApp")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/QRApp"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="TextApp" type="Button" parent="Control/PhoneUI"]
+margin_left = -66.795
+margin_top = 137.846
+margin_right = -7.79504
+margin_bottom = 196.846
+focus_neighbour_left = NodePath("../QRApp")
+focus_neighbour_top = NodePath("../App6")
+focus_neighbour_right = NodePath("../PixApp")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/TextApp"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="PixApp" type="Button" parent="Control/PhoneUI"]
+margin_left = 8.0
+margin_top = 137.846
+margin_right = 67.0
+margin_bottom = 196.846
+focus_neighbour_left = NodePath("../TextApp")
+focus_neighbour_top = NodePath("../App7")
+focus_neighbour_right = NodePath("../SoulApp")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/PixApp"]
+visible = false
+position = Vector2( 29.5003, 29.4935 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="SoulApp" type="Button" parent="Control/PhoneUI"]
+margin_left = 83.1062
+margin_top = 137.846
+margin_right = 142.106
+margin_bottom = 196.846
+focus_neighbour_left = NodePath("../PixApp")
+focus_neighbour_top = NodePath("../App8")
+mouse_filter = 2
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/PhoneUI/SoulApp"]
+visible = false
+position = Vector2( 29.4973, 29.4973 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 17 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PhoneUI/SoulApp"]
+margin_left = 33.6259
+margin_top = -24.0
+margin_right = 79.6259
+margin_bottom = 8.0
+custom_fonts/normal_font = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Soul_Notification" type="AnimatedSprite" parent="Control/PhoneUI"]
+position = Vector2( 120.212, 119.996 )
+scale = Vector2( 2.5, 2.5 )
+frames = SubResource( 8 )
+playing = true
+
+[node name="Time" type="Label" parent="Control/PhoneUI"]
+margin_left = -72.2947
+margin_top = -246.251
+margin_right = 8.70531
+margin_bottom = -216.251
+custom_fonts/font = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="focus_entered" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App2" to="Control" method="_on_App2_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App2" to="Control" method="_on_App2_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App3" to="Control" method="_on_App3_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App3" to="Control" method="_on_App3_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App4" to="Control" method="_on_App4_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App4" to="Control" method="_on_App4_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App5" to="Control" method="_on_App5_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App5" to="Control" method="_on_App5_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App6" to="Control" method="_on_App6_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App6" to="Control" method="_on_App6_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App7" to="Control" method="_on_App7_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App7" to="Control" method="_on_App7_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/App8" to="Control" method="_on_App8_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/App8" to="Control" method="_on_App8_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/QRApp" to="Control" method="_on_QRApp_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/QRApp" to="Control" method="_on_QRApp_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/TextApp" to="Control" method="_on_TextApp_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/TextApp" to="Control" method="_on_TextApp_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/PixApp" to="Control" method="_on_PixApp_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/PixApp" to="Control" method="_on_PixApp_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/SoulApp" to="Control" method="_on_Soul_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/SoulApp" to="Control" method="_on_Soul_focus_exited"]

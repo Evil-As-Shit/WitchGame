@@ -1,0 +1,41 @@
+{
+    "SceneName": "Level1",
+    "eventTarget": {
+        "Object_Door": {
+            "Start": {
+                "Name": "doorInitial",
+                "Flag": false
+            },
+            "Unlock" : {
+                "Name": "doorUnlocked",
+                "Flag": "hasSoul"
+            }
+        },
+        "NPC1": {
+            "Start": {
+                "Name": "npc1",
+                "Flag": false
+            }
+        },
+        "Object_Bookstack" : {
+            "Start" : {
+                "Name" : "bookInspect",
+                "Flag" : false
+			},
+            "Repeat" : {
+                "Name" : "bookInspectRepeat",
+                "Flag" : false
+			}
+		},
+        "Soul": {
+            "Start" : {
+                "Name" : "soulInitial",
+                "Flag" : false
+			},
+            "Repeat" : {
+                "Name" : "soulRepeat",
+                "Flag" : false
+			}
+        }
+    }
+}
