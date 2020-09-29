@@ -46,10 +46,10 @@ func get_choices():
 func look_up_event(target):
 	return events["eventTarget"][target]
 
-func choose_dialogue(possibilities, choices):
+func choose_dialogue(possibilities, choice):
 	for item in possibilities:
 		if(item != "Start" and item != "Repeat"):
-			if(choices[possibilities[item]["Flag"]]):
+			if(choice[possibilities[item]["Flag"]]):
 				return possibilities[item]["Name"]
 	return null
 
@@ -78,7 +78,7 @@ func choose_dialogue_branch(target):
 		possibleBranches["Start"]["Flag"] = true
 		return possibleBranches["Start"]["Name"]
 
-func display_choices(text):
+func display_choices(_text):
 	for i in range(0, currChoices.size()):
 		var choiceButton = Button.new()
 		choiceButton.set_name("ChoiceButton" + str(i))
@@ -166,7 +166,7 @@ func _on_button_pressed(target):
 
 func show_text(text):
 	if(panelNode.is_visible()):
-		var textSize = text.length()
+#		var textSize = text.length()
 		var t = Timer.new()
 		t.set_wait_time(0.025)
 		t.set_one_shot(true)
@@ -200,7 +200,7 @@ func init_dialogue(target):
 	isChoice = false
 	isChoiceDialogue = false
 	isEnd = false
-	var player = get_node("../YSort/Player")
+#	var player = get_node("../YSort/Player")
 	player.animationState.travel("Idle")
 #	get_node("../YSort/" + target).update_choices(choices)
 	target = choose_dialogue_branch(target)

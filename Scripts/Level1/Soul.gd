@@ -3,7 +3,7 @@ extends "res://Scripts/Main/Item.gd"
 onready var notification = get_node("../../UI/Control/PhoneUI/Soul_Notification")
 onready var nearSoul = false
 
-func action(inventory):
+func action(_inventory):
 	pass
 
 func _on_icon_animation_finished():

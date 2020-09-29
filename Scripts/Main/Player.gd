@@ -35,7 +35,7 @@ func _physics_process(delta):
 	else:
 		ui.get_node("NinePatchRect/nextIcon").hide()
 
-func _input(event):
+func _input(_event):
 	if(Input.is_action_just_pressed("e")):
 		print("interacting: ", interacting)
 		print("canInteract: ", canInteract)
@@ -75,7 +75,7 @@ func _on_Area2D_body_enter(body, obj):
 		pass
 	else:
 		pass
-func _on_Area2D_body_exit(body, obj):
+func _on_Area2D_body_exit(body, _obj):
 	if(body.get_name() == "Player"):
 		canInteract = false
 		target = null

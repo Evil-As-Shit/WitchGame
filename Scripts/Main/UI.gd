@@ -7,6 +7,7 @@ onready var soul = get_node("../../YSort/Soul")
 onready var phone = get_node("PhoneUI")
 onready var app1 = get_node("PhoneUI/App1")
 onready var soul_notification = get_node("PhoneUI/Soul_Notification")
+onready var soul_collected = get_node("PhoneUI/Soul_Collected")
 onready var audio = get_node("../../AudioStreamPlayer")
 onready var time = get_node("PhoneUI/Time")
 func _ready():
@@ -24,13 +25,14 @@ func _physics_process(delta):
 	var currentTime = hour + ":" + minute
 	time.set_text(currentTime)
 
-func _input(event):
+func _input(_event):
 	if(inUI):
 		if(Input.is_action_just_pressed("e")):
 			var focused = get_focus_owner().name
 			if(soul != null):
 				if(focused == "SoulApp" and soul.nearSoul):
 					get_node("../../YSort/Soul/icon").animation = "Collected"
+					soul_collected.animation = "collected"
 					audio.stream = load("res://Assets/sfx/find ghost v2.wav")
 					audio.play()
 					player.interacting = true

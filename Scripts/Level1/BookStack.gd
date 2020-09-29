@@ -3,7 +3,7 @@ extends "res://Scripts/Main/Item.gd"
 func _ready():
 	pass
 
-func update_choices(choices):
+func update_choices(_choices):
 	pass
-func action(inventory):
+func action(_inventory):
 	pass
