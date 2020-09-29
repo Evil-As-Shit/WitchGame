@@ -18,9 +18,9 @@ onready var ui = get_node("../UI/Control")
 
 func _ready():
 	set_process_input(true)
-	myStory = load_file_as_JSON("Narrative/Level1/Test.json")
-	events = load_file_as_JSON("Narrative/Level1/events.json")
-	choices = load_file_as_JSON("Narrative/Level1/choices.json")
+	myStory = load_file_as_JSON("res://Narrative/Level1/Test.json")
+	events = load_file_as_JSON("res://Narrative/Level1/events.json")
+	choices = load_file_as_JSON("res://Narrative/Level1/choices.json")
 	panelNode = get_node("../UI/Control/NinePatchRect")
 	if(panelNode.is_visible()):
 		panelNode.hide()
