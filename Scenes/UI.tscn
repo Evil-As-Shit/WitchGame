@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_blankstare.png" type="Texture" id=7]
 [ext_resource path="res://Assets/ui/soulcollectphone.png" type="Texture" id=8]
 [ext_resource path="res://Assets/ui/phone ui.png" type="Texture" id=9]
-[ext_resource path="res://Assets/ui/npc1avatar.png" type="Texture" id=10]
+[ext_resource path="res://Assets/ui/Avatars/npc1/npc1avatar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/ui/such ui very wow.png" type="Texture" id=11]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_openhappy.png" type="Texture" id=12]
 [ext_resource path="res://Assets/ui/Avatars/npc2/npc2avatar.png" type="Texture" id=13]
@@ -256,7 +256,7 @@ __meta__ = {
 position = Vector2( 36.9133, 72.0959 )
 scale = Vector2( 1.88732, 2.07403 )
 frames = SubResource( 2 )
-animation = "witch_surprised"
+animation = "null"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/NinePatchRect"]
 stream = ExtResource( 14 )
