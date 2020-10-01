@@ -6,13 +6,13 @@
 [ext_resource path="res://Assets/ui/Fonts/dpcomic.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/ui/inventory.png" type="Texture" id=5]
 [ext_resource path="res://Assets/ui/nullicon.png" type="Texture" id=6]
-[ext_resource path="res://Assets/ui/npc2avatar.png" type="Texture" id=7]
+[ext_resource path="res://Assets/ui/Avatars/witch/witch_blankstare.png" type="Texture" id=7]
 [ext_resource path="res://Assets/ui/soulcollectphone.png" type="Texture" id=8]
 [ext_resource path="res://Assets/ui/phone ui.png" type="Texture" id=9]
 [ext_resource path="res://Assets/ui/npc1avatar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/ui/such ui very wow.png" type="Texture" id=11]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_openhappy.png" type="Texture" id=12]
-[ext_resource path="res://Assets/ui/witchavatar2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/ui/Avatars/npc2/npc2avatar.png" type="Texture" id=13]
 [ext_resource path="res://Assets/sfx/blip.wav" type="AudioStream" id=14]
 [ext_resource path="res://Assets/ui/nextindicator.png" type="Texture" id=15]
 [ext_resource path="res://Assets/ui/Fonts/Boo City.ttf" type="DynamicFontData" id=16]
@@ -66,7 +66,7 @@ animations = [ {
 "name": "witch_smug",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "npc2_netrual",
 "speed": 5.0
@@ -86,7 +86,7 @@ animations = [ {
 "name": "npc1_happy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "witch_stare",
 "speed": 5.0
@@ -561,7 +561,6 @@ __meta__ = {
 position = Vector2( 120.212, 119.996 )
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 8 )
-frame = 1
 playing = true
 
 [node name="Soul_Collected" type="AnimatedSprite" parent="Control/PhoneUI"]
