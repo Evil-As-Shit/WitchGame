@@ -163,7 +163,7 @@ func _on_button_pressed(target):
 		textToShow = currDialogue[0]
 		show_text(textToShow)
 		panelNode.get_node("expressions").play(currDialogue[2]["expression"])
-
+		print(currDialogue[2]["expression"])
 func show_text(text):
 	if(panelNode.is_visible()):
 #		var textSize = text.length()

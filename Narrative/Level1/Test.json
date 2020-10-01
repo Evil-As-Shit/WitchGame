@@ -17,12 +17,12 @@
         "soulRepeat": {
             "0": {
                 "content": [
-                    "Oh yea I think I'm suppose to use my phone!",
+                    "Oh yea I think I'm suppose to use my phone!!! (Press Q)",
                     {
                         "isEnd": true           
 					},
                     {
-                        "expression": "witch_happy"           
+                        "expression": "witch_surprised"           
 					}
 				]     
 			},
@@ -50,7 +50,7 @@
                         "divert": "1"           
 					},
                     {
-                        "expression": "witch_happy"           
+                        "expression": "witch_openhappy"           
 					}
 				]     
 			},
@@ -61,7 +61,7 @@
                         "isEnd" : true           
 					},
                     {
-                        "expression" : "witch_stare"           
+                        "expression" : "witch_upset"           
 					}
 				]     
 			},
@@ -114,7 +114,7 @@
                         "isEnd": true        
                     },
                     {
-                        "expression": "witch_stare"           
+                        "expression": "witch_upset"           
 					}
 				]     
 			},
