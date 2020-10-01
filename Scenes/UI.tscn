@@ -561,6 +561,7 @@ __meta__ = {
 position = Vector2( 120.212, 119.996 )
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 8 )
+frame = 1
 playing = true
 
 [node name="Soul_Collected" type="AnimatedSprite" parent="Control/PhoneUI"]
