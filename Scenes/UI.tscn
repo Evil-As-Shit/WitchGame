@@ -46,19 +46,9 @@ animations = [ {
 "name": "witch_opensmug",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ) ],
-"loop": true,
-"name": "witch_angry",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "witch_openhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "witch_tiltopenhappy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ) ],
@@ -66,14 +56,29 @@ animations = [ {
 "name": "witch_smug",
 "speed": 5.0
 }, {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "witch_angry",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "witch_tiltopenhappy",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "npc2_netrual",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "null",
+"name": "witch_stare",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
@@ -84,11 +89,6 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "npc1_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "witch_stare",
 "speed": 5.0
 } ]
 
@@ -191,10 +191,10 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 20 ), SubResource( 21 ), SubResource( 21 ), SubResource( 20 ), SubResource( 20 ), SubResource( 21 ) ],
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ) ],
 "loop": false,
 "name": "collected",
-"speed": 7.0
+"speed": 6.0
 } ]
 
 [sub_resource type="DynamicFont" id=23]

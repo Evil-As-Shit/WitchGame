@@ -1,10 +1,11 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Music/sand frand (loop).wav" type="AudioStream" id=2]
 [ext_resource path="res://Assets/mainmenuback.png" type="Texture" id=3]
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=4]
 [ext_resource path="res://Assets/ui/Fonts/Boo City.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/catspritetest.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -178,6 +179,43 @@ font_data = ExtResource( 5 )
 size = 40
 font_data = ExtResource( 5 )
 
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 80, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 6 )
+region = Rect2( 80, 80, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 6 )
+region = Rect2( 160, 80, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 6 )
+region = Rect2( 240, 80, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 160, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 6 )
+region = Rect2( 80, 160, 80, 80 )
+
+[sub_resource type="SpriteFrames" id=49]
+animations = [ {
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
+"loop": true,
+"name": "walking",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 47 ), SubResource( 48 ) ],
+"loop": true,
+"name": "sitting",
+"speed": 1.0
+} ]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
@@ -192,7 +230,7 @@ __meta__ = {
 position = Vector2( 540.028, 359.997 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 3
+frame = 13
 playing = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control"]
@@ -266,6 +304,13 @@ text = "Witch's Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Cat" type="AnimatedSprite" parent="Control"]
+position = Vector2( 1141.82, 412.626 )
+frames = SubResource( 49 )
+animation = "walking"
+frame = 2
+playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
