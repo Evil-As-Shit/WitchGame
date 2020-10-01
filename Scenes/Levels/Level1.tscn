@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level1/BookStack.gd" type="Script" id=2]
@@ -15,24 +15,9 @@
 [ext_resource path="res://Assets/objects/rug1.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/Objects/Object_Chair.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Objects/Object_Rug.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Assets/objects/outlet.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Objects/Outlet.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/world/hallway.png" type="Texture" id=17]
 [ext_resource path="res://Assets/sfx/find ghost v1.wav" type="AudioStream" id=27]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 16 )
-region = Rect2( 0, 0, 12, 12 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 16 )
-region = Rect2( 12, 0, 12, 12 )
-
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [node name="Level1" type="Node"]
 script = ExtResource( 11 )
@@ -41,8 +26,12 @@ script = ExtResource( 11 )
 
 [node name="Platform" parent="YSort" instance=ExtResource( 7 )]
 
+[node name="hallway" type="Sprite" parent="YSort"]
+position = Vector2( -39.5158, -35.0008 )
+texture = ExtResource( 17 )
+
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -2.3811, 26.9858 )
+position = Vector2( -9.85251, 20.5633 )
 
 [node name="Object_Bookstack" parent="YSort" groups=[
 "Interactable",
@@ -51,7 +40,7 @@ position = Vector2( -40.1116, 53.4928 )
 script = ExtResource( 2 )
 
 [node name="Object_Door" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( -26.0169, 4.77292 )
+position = Vector2( -27.2716, 4.75048 )
 
 [node name="NPC1" parent="YSort" instance=ExtResource( 10 )]
 position = Vector2( 28.9782, 5.03968 )
@@ -74,14 +63,9 @@ position = Vector2( 1.63913e-07, 7.96912 )
 texture = ExtResource( 13 )
 
 [node name="Object_Chair" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( -48.3616, 12.3744 )
+position = Vector2( 48.2434, 9.02301 )
 
-[node name="Outlet" type="Node2D" parent="YSort"]
-
-[node name="Sprite" type="AnimatedSprite" parent="YSort/Outlet"]
-position = Vector2( 3.00171, 2.99992 )
-frames = SubResource( 3 )
-frame = 1
+[node name="Outlet" parent="YSort" instance=ExtResource( 16 )]
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
 
