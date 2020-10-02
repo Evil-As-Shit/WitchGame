@@ -163,12 +163,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=42]
-size = 40
-font_data = ExtResource( 5 )
-
 [sub_resource type="DynamicFont" id=39]
-size = 20
+size = 40
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=40]
@@ -179,46 +175,50 @@ font_data = ExtResource( 5 )
 size = 20
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=50]
+[sub_resource type="DynamicFont" id=42]
+size = 20
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=43]
 size = 20
 outline_color = Color( 1, 1, 1, 0 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 80, 80, 80 )
-
 [sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 6 )
-region = Rect2( 80, 80, 80, 80 )
-
-[sub_resource type="AtlasTexture" id=45]
-atlas = ExtResource( 6 )
-region = Rect2( 160, 80, 80, 80 )
-
-[sub_resource type="AtlasTexture" id=46]
-atlas = ExtResource( 6 )
-region = Rect2( 240, 80, 80, 80 )
-
-[sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 160, 80, 80 )
 
-[sub_resource type="AtlasTexture" id=48]
+[sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 6 )
 region = Rect2( 80, 160, 80, 80 )
 
-[sub_resource type="SpriteFrames" id=49]
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 80, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 6 )
+region = Rect2( 80, 80, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 6 )
+region = Rect2( 160, 80, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 6 )
+region = Rect2( 240, 80, 80, 80 )
+
+[sub_resource type="SpriteFrames" id=50]
 animations = [ {
-"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
-"loop": true,
-"name": "walking",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 47 ), SubResource( 48 ) ],
+"frames": [ SubResource( 44 ), SubResource( 45 ) ],
 "loop": true,
 "name": "sitting",
 "speed": 1.0
+}, {
+"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "walking",
+"speed": 5.0
 } ]
 
 [node name="Node2D" type="Node2D"]
@@ -235,7 +235,7 @@ __meta__ = {
 position = Vector2( 540.028, 359.997 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 9
+frame = 25
 playing = true
 
 [node name="TitleBox" type="NinePatchRect" parent="Control"]
@@ -257,7 +257,7 @@ margin_left = 32.0
 margin_top = 16.0
 margin_right = 288.0
 margin_bottom = 63.0
-custom_fonts/font = SubResource( 42 )
+custom_fonts/font = SubResource( 39 )
 text = "Witch's Game"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -279,7 +279,7 @@ margin_right = 124.0
 margin_bottom = 26.0
 focus_neighbour_bottom = NodePath("../Options")
 mouse_filter = 2
-custom_fonts/font = SubResource( 39 )
+custom_fonts/font = SubResource( 40 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 button_mask = 0
 text = "Start Game"
@@ -294,7 +294,7 @@ margin_bottom = 56.0
 focus_neighbour_top = NodePath("../Start")
 focus_neighbour_bottom = NodePath("../Exit")
 mouse_filter = 2
-custom_fonts/font = SubResource( 40 )
+custom_fonts/font = SubResource( 41 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 button_mask = 0
 text = "Options"
@@ -305,7 +305,7 @@ margin_right = 124.0
 margin_bottom = 86.0
 focus_neighbour_top = NodePath("../Options")
 mouse_filter = 2
-custom_fonts/font = SubResource( 41 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 button_mask = 0
 text = "Exit"
@@ -332,7 +332,7 @@ margin_right = 212.0
 margin_bottom = 149.0
 focus_neighbour_top = NodePath("../CheckBox")
 mouse_filter = 2
-custom_fonts/font = SubResource( 41 )
+custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 button_mask = 0
 text = "Back"
@@ -345,8 +345,9 @@ margin_left = 23.0606
 margin_top = 92.8815
 margin_right = 287.061
 margin_bottom = 120.882
+focus_neighbour_top = NodePath(".")
 focus_neighbour_bottom = NodePath("../back")
-custom_fonts/font = SubResource( 50 )
+custom_fonts/font = SubResource( 43 )
 button_mask = 0
 text = "Mute This Amazing Music"
 __meta__ = {
@@ -355,9 +356,8 @@ __meta__ = {
 
 [node name="Cat" type="AnimatedSprite" parent="Control"]
 position = Vector2( 1141.82, 412.626 )
-frames = SubResource( 49 )
+frames = SubResource( 50 )
 animation = "walking"
-frame = 1
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

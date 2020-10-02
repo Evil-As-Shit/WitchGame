@@ -73,8 +73,11 @@ func _on_Area2D_body_enter(body, obj):
 		target = obj
 	if(rayCast.is_colliding()):
 		pass
-	else:
-		pass
+#		var space_state = get_world_2d().direct_space_state
+#		var result = space_state.intersect_ray(Vector2(0,0), Vector2(50,100))
+#		if result:
+#			print("collision detected!!", result.position)
+
 func _on_Area2D_body_exit(body, _obj):
 	if(body.get_name() == "Player"):
 		canInteract = false

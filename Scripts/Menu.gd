@@ -32,8 +32,10 @@ func _on_back_pressed():
 	pass # Replace with function body.
 
 func _on_CheckBox_toggled(button_pressed):
+	var temp = get_node("../AudioStreamPlayer").get_playback_position()
 	if (get_node("../AudioStreamPlayer").playing == true):
-		get_node("../AudioStreamPlayer").playing = false
+		get_node("../AudioStreamPlayer").stop()
 	else:
 		get_node("../AudioStreamPlayer").playing = true
+		get_node("../AudioStreamPlayer").seek(temp)
 	pass # Replace with function body.
