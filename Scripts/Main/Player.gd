@@ -26,6 +26,7 @@ func _physics_process(delta):
 	if(ui.inUI):
 		animationState.travel("Phone")
 	if(canMove):
+		print(self.position)
 		Movement(delta)
 	if (dialogue.panelNode.is_visible() and dialogue.texting):
 		ui.get_node("NinePatchRect/nextIcon").play("Rest")
@@ -85,8 +86,8 @@ func _on_Area2D_body_exit(body, _obj):
 
 func Movement(delta):
 	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	input_vector.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	input_vector.x = int(Input.get_action_strength("right") - Input.get_action_strength("left"))
+	input_vector.y = int(Input.get_action_strength("down") - Input.get_action_strength("up"))
 	input_vector = input_vector.normalized()
 	if input_vector != Vector2.ZERO:
 		animationTree.set("parameters/Idle/blend_position", input_vector)
@@ -96,7 +97,11 @@ func Movement(delta):
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 		rayCast.set_cast_to(velocity)
 	else:
+		self.position.x = int(self.position.x)
+		self.position.y = int(self.position.y)
 		animationState.travel("Idle")
 #		velocity = velocity.move_toward(Vector2.ZERO,FRICTION * delta)
 		velocity = Vector2.ZERO
 	velocity = move_and_slide(velocity)
+
+

@@ -31,7 +31,7 @@ extents = Vector2( 5.29731, 3.71578 )
 ]]
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( -4.47907, 2.99992 )
+position = Vector2( -5, 3 )
 frames = SubResource( 3 )
 animation = "unplugged"
 
