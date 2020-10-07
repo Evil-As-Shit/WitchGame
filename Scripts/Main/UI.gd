@@ -3,7 +3,7 @@ extends Control
 var inUI = false
 var ghostCount = 0
 onready var player = get_node("../../YSort/Player")
-onready var soul = get_node("../../YSort/Soul")
+onready var soul = get_node("../../YSort/Object_Soul")
 onready var phone = get_node("PhoneUI")
 onready var app1 = get_node("PhoneUI/App1")
 onready var soul_notification = get_node("PhoneUI/Soul_Notification")
@@ -31,7 +31,7 @@ func _input(_event):
 			var focused = get_focus_owner().name
 			if(soul != null):
 				if(focused == "SoulApp" and soul.nearSoul):
-					get_node("../../YSort/Soul/icon").animation = "Collected"
+					get_node("../../YSort/Object_Soul/icon").animation = "Collected"
 					soul_collected.animation = "collected"
 					audio.stream = load("res://Assets/sfx/find ghost v2.wav")
 					audio.play()

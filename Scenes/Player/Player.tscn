@@ -299,7 +299,7 @@ position = Vector2( 0, -11.6119 )
 texture = ExtResource( 2 )
 vframes = 5
 hframes = 4
-frame = 10
+frame = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -326,7 +326,7 @@ tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 33 )
-parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Idle/blend_position = Vector2( -0.434211, -0.312931 )
 parameters/Phone/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 

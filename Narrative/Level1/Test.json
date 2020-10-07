@@ -119,6 +119,20 @@
 				]     
 			},
             "initial": "0"
+		},
+        "outletRequest" : {
+            "0" : {
+                "content" : [
+                    "Would you like to charge your phone?",
+                    {
+                        "isEnd": true            
+					},
+                    {
+                        "expression": "null"           
+					}
+				]     
+			},
+            "initial": "0"
 		}
     }
 }

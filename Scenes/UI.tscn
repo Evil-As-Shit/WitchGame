@@ -25,73 +25,6 @@
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_smug.png" type="Texture" id=23]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_tiltopenhappy.png" type="Texture" id=24]
 
-[sub_resource type="DynamicFont" id=1]
-size = 24
-font_data = ExtResource( 4 )
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "witch_surprised",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "witch_upset",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "witch_opensmug",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "witch_smug",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "null",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ) ],
-"loop": true,
-"name": "witch_angry",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "witch_tiltopenhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "npc2_netrual",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "witch_stare",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "witch_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "npc1_happy",
-"speed": 5.0
-} ]
-
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 5, 5 )
@@ -116,6 +49,73 @@ animations = [ {
 "name": "Rest",
 "speed": 5.0
 } ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "witch_surprised",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "witch_angry",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "witch_stare",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "witch_smug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "witch_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "witch_opensmug",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "witch_tiltopenhappy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "witch_openhappy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "witch_upset",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 30
@@ -241,23 +241,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control/NinePatchRect"]
-margin_left = 120.0
-margin_top = 20.0
-margin_right = 446.0
-margin_bottom = 104.0
-custom_fonts/font = SubResource( 1 )
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="expressions" type="AnimatedSprite" parent="Control/NinePatchRect"]
-position = Vector2( 36.9133, 72.0959 )
-scale = Vector2( 1.88732, 2.07403 )
-frames = SubResource( 2 )
-animation = "null"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/NinePatchRect"]
 stream = ExtResource( 14 )
 volume_db = -21.174
@@ -269,6 +252,34 @@ scale = Vector2( 3, 3 )
 frames = SubResource( 6 )
 animation = "Rest"
 centered = false
+
+[node name="expressions" type="AnimatedSprite" parent="Control/NinePatchRect"]
+position = Vector2( 36.9133, 72.0959 )
+scale = Vector2( 1.88732, 2.07403 )
+frames = SubResource( 2 )
+animation = "null"
+
+[node name="Label" type="Label" parent="Control/NinePatchRect"]
+margin_left = 122.0
+margin_top = 25.0
+margin_right = 392.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nullLabel" type="Label" parent="Control/NinePatchRect"]
+margin_left = 39.0
+margin_top = 25.0
+margin_right = 430.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 1 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PhoneUI" type="Sprite" parent="Control"]
 position = Vector2( 200, 900 )

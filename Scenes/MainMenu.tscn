@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Music/sand frand (loop).wav" type="AudioStream" id=2]
-[ext_resource path="res://Assets/mainmenuback.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/Main Menu/mainmenuback.png" type="Texture" id=3]
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=4]
 [ext_resource path="res://Assets/ui/Fonts/Boo City.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Assets/catspritetest.png" type="Texture" id=6]
+[ext_resource path="res://Assets/ui/Main Menu/catspritetest.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -186,39 +186,39 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 160, 80, 80 )
+region = Rect2( 0, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 6 )
-region = Rect2( 80, 160, 80, 80 )
+region = Rect2( 80, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 80, 80, 80 )
+region = Rect2( 160, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 6 )
-region = Rect2( 80, 80, 80, 80 )
+region = Rect2( 240, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 6 )
-region = Rect2( 160, 80, 80, 80 )
+region = Rect2( 0, 160, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 6 )
-region = Rect2( 240, 80, 80, 80 )
+region = Rect2( 80, 160, 80, 80 )
 
 [sub_resource type="SpriteFrames" id=50]
 animations = [ {
-"frames": [ SubResource( 44 ), SubResource( 45 ) ],
-"loop": true,
-"name": "sitting",
-"speed": 1.0
-}, {
-"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "sitting",
+"speed": 1.0
 } ]
 
 [node name="Node2D" type="Node2D"]
@@ -235,7 +235,7 @@ __meta__ = {
 position = Vector2( 540.028, 359.997 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 25
+frame = 32
 playing = true
 
 [node name="TitleBox" type="NinePatchRect" parent="Control"]
@@ -358,6 +358,7 @@ __meta__ = {
 position = Vector2( 1141.82, 412.626 )
 frames = SubResource( 50 )
 animation = "walking"
+frame = 3
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

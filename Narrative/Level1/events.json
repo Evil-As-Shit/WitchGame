@@ -8,7 +8,7 @@
             },
             "Unlock" : {
                 "Name": "doorUnlocked",
-                "Flag": "hasSoul"
+                "Flag": "level1Soul"
             }
         },
         "NPC1": {
@@ -27,7 +27,7 @@
                 "Flag" : false
 			}
 		},
-        "Soul": {
+        "Object_Soul": {
             "Start" : {
                 "Name" : "soulInitial",
                 "Flag" : false
@@ -36,6 +36,12 @@
                 "Name" : "soulRepeat",
                 "Flag" : false
 			}
-        }
+        },
+        "Object_Outlet": {
+            "Start": {
+                "Name": "outletRequest",
+                "Flag": false
+            }
+		}
     }
 }

@@ -161,9 +161,9 @@ func _on_button_pressed(target):
 		display_choices(textToShow)
 	else:
 		textToShow = currDialogue[0]
-		show_text(textToShow)
 		panelNode.get_node("expressions").play(currDialogue[2]["expression"])
 		print(currDialogue[2]["expression"])
+		show_text(textToShow)
 func show_text(text):
 	if(panelNode.is_visible()):
 #		var textSize = text.length()
@@ -179,11 +179,21 @@ func show_text(text):
 				i = i+1
 				var newText = text.substr(0,i)
 				t.start()
-				panelNode.get_node("Label").set_text(newText)
+				if (currDialogue[2]["expression"] != "null"):
+					panelNode.get_node("nullLabel").set_text("")
+					panelNode.get_node("Label").set_text(newText)
+				else:
+					panelNode.get_node("Label").set_text("")
+					panelNode.get_node("nullLabel").set_text(newText)
 				audio.play()
 				yield(t,"timeout")
 			else:
-				panelNode.get_node("Label").set_text(text)
+				if (currDialogue[2]["expression"] != "null"):
+					panelNode.get_node("nullLabel").set_text("")
+					panelNode.get_node("Label").set_text(text)
+				else:
+					panelNode.get_node("Label").set_text("")
+					panelNode.get_node("nullLabel").set_text(text)
 				audio.play()
 				player.interupt = false
 				break

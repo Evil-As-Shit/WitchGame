@@ -8,7 +8,7 @@ func _ready():
 	start.grab_focus()
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(cat.position.x > 970):
 		cat.position.x -= 0.2
 	else:
@@ -31,7 +31,7 @@ func _on_back_pressed():
 	options.hide()
 	pass # Replace with function body.
 
-func _on_CheckBox_toggled(button_pressed):
+func _on_CheckBox_toggled(_button_pressed):
 	var temp = get_node("../AudioStreamPlayer").get_playback_position()
 	if (get_node("../AudioStreamPlayer").playing == true):
 		get_node("../AudioStreamPlayer").stop()
