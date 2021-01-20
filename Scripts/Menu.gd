@@ -4,7 +4,7 @@ onready var cat = get_node("Cat")
 onready var start = get_node("TitleBox/VBoxContainer/Start")
 onready var options = get_node("Options")
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+#	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	start.grab_focus()
 	pass
 

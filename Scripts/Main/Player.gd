@@ -11,6 +11,7 @@ var canInteract = false
 var interacting = false
 var velocity = Vector2.ZERO
 var interupt = false
+var choosing = false
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
@@ -26,7 +27,6 @@ func _physics_process(delta):
 	if(ui.inUI):
 		animationState.travel("Phone")
 	if(canMove):
-		print(self.position)
 		Movement(delta)
 	if (dialogue.panelNode.is_visible() and dialogue.texting):
 		ui.get_node("NinePatchRect/nextIcon").play("Rest")
@@ -38,17 +38,19 @@ func _physics_process(delta):
 
 func _input(_event):
 	if(Input.is_action_just_pressed("e")):
-		print("interacting: ", interacting)
-		print("canInteract: ", canInteract)
+#		print("interacting: ", interacting)
+#		print("canInteract: ", canInteract)
 
 		if(dialogue.texting):
 #			print("texting rn")
 			interupt = true
+		elif(choosing):
+			print("choose carefully!")
 		elif(interacting and canInteract):
-#			print("can interact and interacting")
+			print("can interact and interacting")
 			dialogue._on_button_pressed(target)
 		elif(!canInteract and dialogue.panelNode.is_visible() and !dialogue.texting):
-#			print("cant interact but in dialogue 'bug'")
+			print("cant interact but in dialogue 'bug'")
 			dialogue._on_button_pressed(target)
 		elif(!canInteract and !interacting or ui.inUI):
 			pass
@@ -66,7 +68,7 @@ func _input(_event):
 			target.action(inventory)
 			if (target.is_in_group("Item") and inventory.find(target.get_name()) < 0):
 				inventory.append(target.get_name())
-				print(inventory)
+#				print(inventory)
 
 func _on_Area2D_body_enter(body, obj):
 	if(body.get_name() == "Player"):
@@ -97,8 +99,8 @@ func Movement(delta):
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 		rayCast.set_cast_to(velocity)
 	else:
-		self.position.x = int(self.position.x)
-		self.position.y = int(self.position.y)
+#		self.position.x = int(self.position.x)
+#		self.position.y = int(self.position.y)
 		animationState.travel("Idle")
 #		velocity = velocity.move_toward(Vector2.ZERO,FRICTION * delta)
 		velocity = Vector2.ZERO

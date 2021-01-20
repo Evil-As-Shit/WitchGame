@@ -3,35 +3,14 @@
 [ext_resource path="res://Assets/objects/door.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level1/Door.gd" type="Script" id=2]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 18, 0, 18, 29 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 18, 29 )
-
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ SubResource( 1 ) ],
-"loop": true,
-"name": "open",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 2 ) ],
-"loop": true,
-"name": "closed",
-"speed": 5.0
-} ]
-
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 1.51091
-height = 11.0708
+height = 12.038
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("../Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -43,11 +22,11 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("../Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -59,8 +38,29 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8.23418, 3.90113 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 18, 0, 18, 29 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 18, 29 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "open",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "closed",
+"speed": 5.0
+} ]
 
 [node name="Door" type="Node2D" groups=[
 "Interactable",
@@ -70,23 +70,24 @@ script = ExtResource( 2 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16
 
-[node name="Sprite" type="AnimatedSprite" parent="StaticBody2D"]
-position = Vector2( 0, -15 )
-frames = SubResource( 3 )
-animation = "closed"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -0.0954361, -0.127275 )
+position = Vector2( -0.343468, -0.672943 )
 rotation = 1.57079
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody2D"]
-anims/Closed = SubResource( 5 )
-anims/Open = SubResource( 6 )
+anims/Closed = SubResource( 2 )
+anims/Open = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2( -0.198425, 3.9685 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -15 )
+frames = SubResource( 7 )
+animation = "closed"

@@ -5,10 +5,10 @@
                 "content": [
                     "How do I collect this thing?",
                     {
-                        "isEnd": true           
-					},
-                    {
                         "expression": "witch_stare"           
+					},                    
+                    {
+                        "isEnd": true           
 					}
 				]     
 			},
@@ -19,10 +19,10 @@
                 "content": [
                     "Oh yea I think I'm suppose to use my phone!!! (Press Q)",
                     {
-                        "isEnd": true           
-					},
-                    {
                         "expression": "witch_surprised"           
+					},                    
+                    {
+                        "isEnd": true           
 					}
 				]     
 			},
@@ -33,11 +33,11 @@
                 "content": [
                     "I shouldn't leave until I get my first soul..",
                     {
-                        "isEnd": true
-                    },
-                    {
                         "expression": "witch_stare"           
-					}
+					},                    
+                    {
+                        "isEnd": true
+                    }
                 ]
             },
             "initial": "0"
@@ -47,10 +47,10 @@
                 "content" : [
                     "I'm ready to explore the world with my new Soul now!",
                     {
-                        "divert": "1"           
-					},
+                        "expression" : "witch_happy"           
+					},                    
                     {
-                        "expression": "witch_openhappy"           
+                        "isEnd" : true          
 					}
 				]     
 			},
@@ -58,10 +58,10 @@
                 "content": [
                     "If only SOMEONE would code it...",
                     {
-                        "isEnd" : true           
-					},
-                    {
                         "expression" : "witch_upset"           
+					},                    
+                    {
+                        "isEnd" : true           
 					}
 				]     
 			},
@@ -72,21 +72,21 @@
                 "content": [
                     "hello!",
                     {
-                        "divert": "1"
-                    },
-                    {
                         "expression": "npc1_happy"           
-					}
+					},                    
+                    {
+                        "divert": "1"
+                    }
                 ]
             },
             "1":{
                 "content": [
                     "Hi!!",
                     {
-                        "isEnd": true           
-					},
-                    {
                         "expression": "witch_happy"           
+					},                    
+                    {
+                        "isEnd": true           
 					}
 				]     
 			},
@@ -97,11 +97,11 @@
                 "content" : [
                    "Do they really expect me to read all these books?",
                    {
-                        "isEnd": true        
-                    },
-                    {
                         "expression": "witch_stare"           
-					}
+                   },                 
+                   {
+                        "isEnd": true        
+                   }
 				]     
 			},
             "initial": "0"
@@ -111,28 +111,59 @@
                 "content" : [
                    "Yea I aint reading all of these...",
                    {
-                        "isEnd": true        
-                    },
-                    {
                         "expression": "witch_upset"           
-					}
+				   },                   
+                   {
+                        "isEnd": true        
+                   }
 				]     
 			},
             "initial": "0"
 		},
         "outletRequest" : {
-            "0" : {
-                "content" : [
+            "initial": "chargeRequest",
+            "chargeRequest": {
+                "content":[
                     "Would you like to charge your phone?",
                     {
-                        "isEnd": true            
+                        "expression": "null"           
+					},                    
+                    {
+                        "linkPath": "yesAnswer",
+                        "ifConditions": null,
+                        "notIfConditions": null,
+                        "option": "Yes"
 					},
                     {
-                        "expression": "null"           
-					}
-				]     
+                        "linkPath": "noAnswer",
+                        "ifConditions": null,
+                        "notIfConditions": null,
+                        "option": "No"         
+					},
+				]
 			},
-            "initial": "0"
+            "yesAnswer":{
+                "content": [
+                    "Charging phone...",
+                    {
+                        "expression": "null"           
+					},                   
+                    {
+                        "isEnd": true           
+					},
+				]
+			},
+            "noAnswer":{
+                "content": [
+                    "Oh... Ok!",
+                    {
+                        "expression": "null"           
+					},                    
+                    {
+                        "isEnd": true           
+					}
+				]
+			}
 		}
     }
 }

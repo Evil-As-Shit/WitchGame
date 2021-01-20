@@ -31,30 +31,30 @@ region = Rect2( 0, 0, 5, 5 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 15 )
-region = Rect2( 5, 0, 5, 5 )
+region = Rect2( 0, 0, 5, 5 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 5, 5 )
+region = Rect2( 5, 0, 5, 5 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "Next",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 3 ) ],
+"frames": [ SubResource( 1 ) ],
 "loop": true,
 "name": "Rest",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "Next",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 21 ) ],
+"frames": [  ],
 "loop": true,
-"name": "witch_surprised",
+"name": "null",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -62,34 +62,9 @@ animations = [ {
 "name": "witch_stare",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "null",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "npc2_netrual",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "witch_tiltopenhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "witch_upset",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "npc1_happy",
+"name": "witch_happy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
@@ -97,19 +72,44 @@ animations = [ {
 "name": "witch_opensmug",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "witch_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ) ],
-"loop": true,
-"name": "witch_angry",
+"name": "witch_openhappy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "witch_smug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "witch_tiltopenhappy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "witch_upset",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "witch_surprised",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "witch_angry",
 "speed": 5.0
 } ]
 
@@ -274,7 +274,7 @@ __meta__ = {
 
 [node name="nullLabel" type="Label" parent="Control/NinePatchRect"]
 margin_left = 45.0
-margin_top = 25.0
+margin_top = 32.0
 margin_right = 430.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 6 )
@@ -574,7 +574,6 @@ __meta__ = {
 position = Vector2( 125, 120 )
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 8 )
-frame = 1
 playing = true
 
 [node name="Soul_Collected" type="AnimatedSprite" parent="Control/PhoneUI"]

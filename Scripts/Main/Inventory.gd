@@ -6,7 +6,7 @@ onready var slot_3 = get_node("slot_3")
 
 func _ready():
 	myInventory = load_file_as_JSON("res://Narrative/Level1/inventory.json")
-	print(myInventory)
+#	print(myInventory)
 	update_inventory(myInventory)
 
 

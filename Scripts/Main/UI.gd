@@ -38,7 +38,7 @@ func _input(_event):
 					player.interacting = true
 					get_tree().get_root().set_disable_input(true)
 					yield(audio, "finished")
-					print("audio finished")
+#					print("audio finished")
 					player.interacting = false
 					get_tree().get_root().set_disable_input(false)
 	if (Input.is_action_just_pressed("UI") and !player.interacting):

@@ -1,0 +1,138 @@
+{
+    "data": {
+        "soulInitial": {
+            "0": {
+                "content": [
+                    "How do I collect this thing?",
+                    {
+                        "isEnd": true           
+					},
+                    {
+                        "expression": "witch_stare"           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "soulRepeat": {
+            "0": {
+                "content": [
+                    "Oh yea I think I'm suppose to use my phone!!! (Press Q)",
+                    {
+                        "isEnd": true           
+					},
+                    {
+                        "expression": "witch_surprised"           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "doorInitial": {
+            "0": {
+                "content": [
+                    "I shouldn't leave until I get my first soul..",
+                    {
+                        "isEnd": true
+                    },
+                    {
+                        "expression": "witch_stare"           
+					}
+                ]
+            },
+            "initial": "0"
+        },
+        "doorUnlocked": {
+            "0" : {
+                "content" : [
+                    "I'm ready to explore the world with my new Soul now!",
+                    {
+                        "divert": "1"           
+					},
+                    {
+                        "expression": "witch_openhappy"           
+					}
+				]     
+			},
+            "1":{
+                "content": [
+                    "If only SOMEONE would code it...",
+                    {
+                        "isEnd" : true           
+					},
+                    {
+                        "expression" : "witch_upset"           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "npc1": {
+            "0": {
+                "content": [
+                    "hello!",
+                    {
+                        "divert": "1"
+                    },
+                    {
+                        "expression": "npc1_happy"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Hi!!",
+                    {
+                        "isEnd": true           
+					},
+                    {
+                        "expression": "witch_happy"           
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "bookInspect" : {
+            "0" : {
+                "content" : [
+                   "Do they really expect me to read all these books?",
+                   {
+                        "isEnd": true        
+                    },
+                    {
+                        "expression": "witch_stare"           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "bookInspectRepeat" : {
+            "0" : {
+                "content" : [
+                   "Yea I aint reading all of these...",
+                   {
+                        "isEnd": true        
+                    },
+                    {
+                        "expression": "witch_upset"           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "outletRequest" : {
+            "0" : {
+                "content" : [
+                    "Would you like to charge your phone?",
+                    {
+                        "isEnd": true            
+					},
+                    {
+                        "expression": "null"           
+					}
+				]     
+			},
+            "initial": "0"
+		}
+    }
+}
