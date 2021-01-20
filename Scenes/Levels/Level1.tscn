@@ -34,17 +34,20 @@ position = Vector2( 0, -1 )
 position = Vector2( -45, -155 )
 
 [node name="Sprite" type="Sprite" parent="YSort/hallway"]
-position = Vector2( 0, 115 )
+position = Vector2( 0, 116 )
 texture = ExtResource( 17 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/hallway"]
+visible = false
 position = Vector2( 0, 1.52588e-05 )
-polygon = PoolVector2Array( -47, -1, -24, 58, -39, 95, -14, 152, -42, 155, -51, 29 )
+polygon = PoolVector2Array( -47, -1, -24, 58, -39, 95, -16, 154, -42, 155, -51, 29 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="YSort/hallway"]
-polygon = PoolVector2Array( -5, 2.00002, 27, 55, 21, 99, 48, 148, 61, 135, 34, 53 )
+visible = false
+polygon = PoolVector2Array( -6, 1.99998, 26, 55, 21, 99, 48, 148, 61, 135, 34, 53 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="YSort/hallway"]
+visible = false
 polygon = PoolVector2Array( -47, -0.999985, -5, 2.00002, -5, -4.99998, -47, -6.99998 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
@@ -86,7 +89,7 @@ texture = ExtResource( 13 )
 position = Vector2( 48, 5 )
 
 [node name="Object_Outlet" parent="YSort" instance=ExtResource( 16 )]
-position = Vector2( 0, -3 )
+position = Vector2( -52, 0 )
 script = ExtResource( 18 )
 
 [node name="UI" parent="." instance=ExtResource( 3 )]

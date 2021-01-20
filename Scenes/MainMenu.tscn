@@ -235,7 +235,7 @@ __meta__ = {
 position = Vector2( 540.028, 359.997 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 19
+frame = 2
 playing = true
 
 [node name="TitleBox" type="NinePatchRect" parent="Control"]

@@ -13,8 +13,16 @@
         },
         "NPC1": {
             "Start": {
-                "Name": "npc1",
+                "Name": "npc1_First",
                 "Flag": false
+            },
+            "SoulCollected": {
+                "Name": "npc1_Soul_Collected",
+                "Flag": "level1Soul"
+            },
+            "SoulInteracted": {
+                "Name": "npc1_Soul",
+                "Flag": "soulInteracted"
             }
         },
         "Object_Bookstack" : {

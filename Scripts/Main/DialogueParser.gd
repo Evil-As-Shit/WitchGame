@@ -126,7 +126,6 @@ func display_choices(_text):
 				Button.set_focus_neighbour(MARGIN_LEFT, panelNode.get_node("ChoiceButton" + str(i-1)).get_path())
 				Button.set_focus_neighbour(MARGIN_RIGHT, Button.get_path())
 
-
 func clear_choices(shouldClear):
 	player.choosing = false
 #	lock_next_button(false)
@@ -191,7 +190,6 @@ func get_link_type(dialogue):
 	elif dialogue.has("isEnd"):
 		linkType = "divert"
 	return linkType
-	
 
 func _on_button_pressed(target):
 	print(target)
@@ -265,7 +263,6 @@ func init_dialogue(target):
 	target = choose_dialogue_branch(target)
 	
 	panelNode.show()
-	
 	
 	initStory = myStory["data"][target]
 	currDialogue = initStory[initStory["initial"]]["content"]

@@ -17,9 +17,9 @@
         "soulRepeat": {
             "0": {
                 "content": [
-                    "Oh yea I think I'm suppose to use my phone!!! (Press Q)",
+                    "Maybe someone around here knows what to do...",
                     {
-                        "expression": "witch_surprised"           
+                        "expression": "witch_smug"           
 					},                    
                     {
                         "isEnd": true           
@@ -67,26 +67,109 @@
 			},
             "initial": "0"
 		},
-        "npc1": {
+        "npc1_First": {
             "0": {
                 "content": [
                     "hello!",
                     {
-                        "expression": "npc1_happy"           
-					},                    
+                        "expression": "npc1_happy"
+                    },
                     {
-                        "divert": "1"
-                    }
+                        "divert": "1"           
+					}
                 ]
             },
             "1":{
                 "content": [
                     "Hi!!",
                     {
-                        "expression": "witch_happy"           
-					},                    
+                        "expression": "witch_happy"          
+					},
                     {
-                        "isEnd": true           
+                       "isEnd": true             
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "npc1_Soul": {
+            "0": {
+                "content": [
+                    "What's up with that soul over there?",
+                    {
+                        "expression": "witch_stare"  
+                    },
+                    {
+                        "divert": "1"
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Oh you don't know about the souls?!",
+                    {
+                        "expression": "npc1_happy"         
+					},
+                    {
+                       "divert": "2"          
+					}
+				]     
+            },
+            "2":{
+                "content": [
+                    "Well obviously, I just asked about it...",
+                    {
+                        "expression": "witch_smug"            
+					},
+                    {
+                        "divert": "3"          
+					}
+				]     
+            },
+            "3":{
+                "content": [
+                    "Right... Well all you have to do is open your phone (Q) when you are close to it and use (E) your SoulApp!",
+                    {
+                        "expression": "npc1_happy"        
+					},
+                    {
+                        "divert" : "4"              
+					}
+				]     
+            },
+            "4":{
+                "content": [
+                    "Oh yea... I knew that...",
+                    {
+                        "expression": "witch_smug"        
+					},
+                    {
+                        "isEnd": true              
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "npc1_Soul_Collected": {
+            "0": {
+                "content": [
+                    "Wow! Good job! You collected your first soul!!",
+                    {
+                        "expression": "npc1_happy"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Oh thanks, no biggie...",
+                    {
+                        "expression": "witch_opensmug"          
+					},
+                    {
+                       "isEnd": true             
 					}
 				]     
 			},
