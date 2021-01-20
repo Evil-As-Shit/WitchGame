@@ -42,6 +42,12 @@
                 "Name": "outletRequest",
                 "Flag": false
             }
-		}
+        },
+        "Object_Soul_Corrupted": {
+            "Start": {
+                "Name": "corruptSoulInitial",
+                "Flag": false
+            }
+        }
     }
 }

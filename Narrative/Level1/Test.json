@@ -164,6 +164,20 @@
 					}
 				]
 			}
-		}
+        },
+        "corruptSoulInitial" :  {
+            "0" : {
+                "content" :[
+                    "What is wrong with this soul?",
+                    {
+                        "expression" : "witch_surprised"
+                    },
+                    {
+                        "isEnd": true
+                    }
+                ]
+            },
+            "initial": "0"
+        }
     }
 }
