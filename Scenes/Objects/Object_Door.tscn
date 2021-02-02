@@ -71,7 +71,7 @@ script = ExtResource( 2 )
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -0.343468, -0.672943 )
+position = Vector2( 0.0321833, -1.31376 )
 rotation = 1.57079
 shape = SubResource( 1 )
 

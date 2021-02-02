@@ -222,7 +222,7 @@
                         "ifConditions": null,
                         "notIfConditions": null,
                         "option": "No"         
-					},
+					}
 				]
 			},
             "yesAnswer":{
@@ -233,7 +233,7 @@
 					},                   
                     {
                         "isEnd": true           
-					},
+					}
 				]
 			},
             "noAnswer":{

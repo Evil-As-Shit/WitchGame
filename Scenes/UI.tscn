@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Assets/ui/nullicon.png" type="Texture" id=6]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_blankstare.png" type="Texture" id=7]
 [ext_resource path="res://Assets/ui/soulcollectphone.png" type="Texture" id=8]
-[ext_resource path="res://Assets/ui/phone ui.png" type="Texture" id=9]
+[ext_resource path="res://Assets/ui/phone ui battle smol.png" type="Texture" id=9]
 [ext_resource path="res://Assets/ui/Avatars/npc1/npc1avatar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/ui/such ui very wow.png" type="Texture" id=11]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_openhappy.png" type="Texture" id=12]
@@ -58,9 +58,9 @@ animations = [ {
 "name": "null",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "witch_happy",
+"name": "witch_stare",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ) ],
@@ -68,24 +68,19 @@ animations = [ {
 "name": "witch_smug",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "witch_happy",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "witch_tiltopenhappy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "npc1_happy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "witch_upset",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ) ],
-"loop": true,
-"name": "witch_angry",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ) ],
@@ -98,9 +93,14 @@ animations = [ {
 "name": "npc2_netrual",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "witch_stare",
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "witch_opensmug",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
@@ -108,9 +108,9 @@ animations = [ {
 "name": "witch_openhappy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 20 ) ],
 "loop": true,
-"name": "witch_opensmug",
+"name": "witch_angry",
 "speed": 5.0
 } ]
 
@@ -118,11 +118,62 @@ animations = [ {
 size = 24
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 9 )
+region = Rect2( 63, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 9 )
+region = Rect2( 126, 0, 63, 105 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
+"loop": false,
+"name": "default",
+"speed": 10.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.09
+} ]
+
+[sub_resource type="StyleBoxEmpty" id=39]
+
+[sub_resource type="StyleBoxEmpty" id=40]
+
+[sub_resource type="StyleBoxEmpty" id=41]
+
+[sub_resource type="StyleBoxEmpty" id=42]
+
+[sub_resource type="StyleBoxEmpty" id=43]
+
+[sub_resource type="StyleBoxEmpty" id=44]
+
+[sub_resource type="StyleBoxEmpty" id=45]
+
+[sub_resource type="StyleBoxEmpty" id=46]
+
+[sub_resource type="StyleBoxEmpty" id=47]
+
+[sub_resource type="StyleBoxEmpty" id=51]
+
+[sub_resource type="StyleBoxEmpty" id=48]
+
+[sub_resource type="StyleBoxEmpty" id=49]
+
+[sub_resource type="StyleBoxEmpty" id=50]
+
+[sub_resource type="DynamicFont" id=12]
 size = 30
 font_data = ExtResource( 4 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=13]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 6 ) ],
 "loop": true,
@@ -130,105 +181,105 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 10, 10 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 10, 10 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 80, 130 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 8 )
-region = Rect2( 80, 0, 80, 130 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 8 )
-region = Rect2( 160, 0, 80, 130 )
-
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 8 )
-region = Rect2( 240, 0, 80, 130 )
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 10, 10 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 8 )
-region = Rect2( 320, 0, 80, 130 )
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 10, 10 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 8 )
-region = Rect2( 400, 0, 80, 130 )
+region = Rect2( 0, 0, 80, 130 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 8 )
-region = Rect2( 480, 0, 80, 130 )
+region = Rect2( 80, 0, 80, 130 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 8 )
-region = Rect2( 560, 0, 80, 130 )
+region = Rect2( 160, 0, 80, 130 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 8 )
-region = Rect2( 640, 0, 80, 130 )
+region = Rect2( 240, 0, 80, 130 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 8 )
-region = Rect2( 720, 0, 80, 130 )
+region = Rect2( 320, 0, 80, 130 )
 
 [sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 8 )
+region = Rect2( 400, 0, 80, 130 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 8 )
+region = Rect2( 480, 0, 80, 130 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 8 )
+region = Rect2( 560, 0, 80, 130 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 8 )
+region = Rect2( 640, 0, 80, 130 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 8 )
+region = Rect2( 720, 0, 80, 130 )
+
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 10, 10 )
 
-[sub_resource type="SpriteFrames" id=22]
+[sub_resource type="SpriteFrames" id=27]
 animations = [ {
-"frames": [ SubResource( 9 ) ],
+"frames": [ SubResource( 14 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 21 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": false,
 "name": "collected",
 "speed": 6.0
 } ]
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="DynamicFont" id=28]
 size = 30
 font_data = ExtResource( 16 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 25 )
 region = Rect2( 0, 0, 14, 6 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 25 )
 region = Rect2( 14, 0, 14, 6 )
 
-[sub_resource type="AtlasTexture" id=26]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 25 )
 region = Rect2( 28, 0, 14, 6 )
 
-[sub_resource type="AtlasTexture" id=27]
+[sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 25 )
 region = Rect2( 42, 0, 14, 6 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 25 )
 region = Rect2( 56, 0, 14, 6 )
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 25 )
 region = Rect2( 70, 0, 14, 6 )
 
-[sub_resource type="SpriteFrames" id=30]
+[sub_resource type="SpriteFrames" id=35]
 animations = [ {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 28 ), SubResource( 29 ) ],
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -296,9 +347,9 @@ animation = "null"
 
 [node name="Label" type="Label" parent="Control/NinePatchRect"]
 margin_left = 122.0
-margin_top = 25.0
+margin_top = 19.0
 margin_right = 392.0
-margin_bottom = 100.0
+margin_bottom = 94.0
 custom_fonts/font = SubResource( 6 )
 autowrap = true
 __meta__ = {
@@ -316,17 +367,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhoneUI" type="Sprite" parent="Control"]
+[node name="PhoneUI" type="AnimatedSprite" parent="Control"]
 position = Vector2( 200, 900 )
-texture = ExtResource( 9 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 11 )
 
 [node name="Options" type="Button" parent="Control/PhoneUI"]
-margin_left = -142.0
-margin_top = -242.0
-margin_right = -98.0
-margin_bottom = -198.0
+margin_left = -31.0
+margin_top = -51.4
+margin_right = -11.0
+margin_bottom = -31.4
+grow_horizontal = 0
+grow_vertical = 0
+rect_scale = Vector2( 0.75, 0.75 )
 focus_neighbour_bottom = NodePath("../App1")
 mouse_filter = 2
+custom_styles/focus = SubResource( 39 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -335,19 +391,21 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/Options"]
 visible = false
-position = Vector2( 22, 22 )
-scale = Vector2( 3.75, 3.75 )
+position = Vector2( 3.003, 2.999 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="App1" type="Button" parent="Control/PhoneUI"]
-margin_left = -142.0
-margin_top = -107.205
-margin_right = -83.0
-margin_bottom = -48.2045
+margin_left = -32.0
+margin_top = -24.4
+margin_right = -12.0
+margin_bottom = -4.4
 focus_neighbour_top = NodePath("../Options")
 focus_neighbour_right = NodePath("../App2")
 focus_neighbour_bottom = NodePath("../App5")
 mouse_filter = 2
+custom_styles/focus = SubResource( 40 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -356,20 +414,21 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App1"]
 visible = false
-position = Vector2( 29.5, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 2 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="App2" type="Button" parent="Control/PhoneUI"]
-margin_left = -66.795
-margin_top = -107.205
-margin_right = -7.79504
-margin_bottom = -48.2045
+margin_left = -17.0
+margin_top = -25.2
+margin_right = 3.0
+margin_bottom = -5.2
 focus_neighbour_left = NodePath("../App1")
 focus_neighbour_top = NodePath("../Options")
 focus_neighbour_right = NodePath("../App3")
 focus_neighbour_bottom = NodePath("../App6")
 mouse_filter = 2
+custom_styles/focus = SubResource( 41 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -378,20 +437,20 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App2"]
 visible = false
-position = Vector2( 29.5, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 10, 10 )
 texture = ExtResource( 17 )
 
 [node name="App3" type="Button" parent="Control/PhoneUI"]
-margin_left = 8.0
-margin_top = -107.205
-margin_right = 67.0
-margin_bottom = -48.2045
+margin_left = -2.0
+margin_top = -25.0
+margin_right = 18.0
+margin_bottom = -5.00001
 focus_neighbour_left = NodePath("../App2")
 focus_neighbour_top = NodePath("../Options")
 focus_neighbour_right = NodePath("../App4")
 focus_neighbour_bottom = NodePath("../App7")
 mouse_filter = 2
+custom_styles/focus = SubResource( 42 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -400,19 +459,20 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App3"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="App4" type="Button" parent="Control/PhoneUI"]
-margin_left = 83.1062
-margin_top = -107.205
-margin_right = 142.106
-margin_bottom = -48.2045
+margin_left = 13.0
+margin_top = -25.0
+margin_right = 33.0
+margin_bottom = -5.00001
 focus_neighbour_left = NodePath("../App3")
 focus_neighbour_top = NodePath("../Options")
 focus_neighbour_bottom = NodePath("../App8")
 mouse_filter = 2
+custom_styles/focus = SubResource( 43 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -421,19 +481,20 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App4"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="App5" type="Button" parent="Control/PhoneUI"]
-margin_left = -142.0
-margin_top = -27.2051
-margin_right = -83.0
-margin_bottom = 31.7949
+margin_left = -32.0
+margin_top = -9.00001
+margin_right = -12.0
+margin_bottom = 11.0
 focus_neighbour_top = NodePath("../App1")
 focus_neighbour_right = NodePath("../App6")
 focus_neighbour_bottom = NodePath("../QRApp")
 mouse_filter = 2
+custom_styles/focus = SubResource( 44 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -442,20 +503,21 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App5"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="App6" type="Button" parent="Control/PhoneUI"]
-margin_left = -66.795
-margin_top = -27.2051
-margin_right = -7.79504
-margin_bottom = 31.7949
+margin_left = -17.0
+margin_top = -9.0
+margin_right = 3.0
+margin_bottom = 11.0
 focus_neighbour_left = NodePath("../App5")
 focus_neighbour_top = NodePath("../App2")
 focus_neighbour_right = NodePath("../App7")
 focus_neighbour_bottom = NodePath("../TextApp")
 mouse_filter = 2
+custom_styles/focus = SubResource( 45 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -464,20 +526,21 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App6"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="App7" type="Button" parent="Control/PhoneUI"]
-margin_left = 8.0
-margin_top = -27.2051
-margin_right = 67.0
-margin_bottom = 31.7949
+margin_left = -2.0
+margin_top = -9.00001
+margin_right = 18.0
+margin_bottom = 11.0
 focus_neighbour_left = NodePath("../App6")
 focus_neighbour_top = NodePath("../App3")
 focus_neighbour_right = NodePath("../App8")
 focus_neighbour_bottom = NodePath("../PixApp")
 mouse_filter = 2
+custom_styles/focus = SubResource( 46 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -486,19 +549,20 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App7"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="App8" type="Button" parent="Control/PhoneUI"]
-margin_left = 83.1062
-margin_top = -27.2051
-margin_right = 142.106
-margin_bottom = 31.7949
+margin_left = 13.0
+margin_top = -9.00001
+margin_right = 33.0
+margin_bottom = 11.0
 focus_neighbour_left = NodePath("../App7")
 focus_neighbour_top = NodePath("../App4")
 focus_neighbour_bottom = NodePath("../SoulApp")
 mouse_filter = 2
+custom_styles/focus = SubResource( 47 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -507,18 +571,19 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/App8"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="QRApp" type="Button" parent="Control/PhoneUI"]
-margin_left = -142.0
-margin_top = 137.846
-margin_right = -83.0
-margin_bottom = 196.846
+margin_left = -32.0
+margin_top = 24.2
+margin_right = -12.0
+margin_bottom = 44.2
 focus_neighbour_top = NodePath("../App5")
 focus_neighbour_right = NodePath("../TextApp")
 mouse_filter = 2
+custom_styles/focus = SubResource( 51 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -527,19 +592,20 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/QRApp"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="TextApp" type="Button" parent="Control/PhoneUI"]
-margin_left = -66.795
-margin_top = 137.846
-margin_right = -7.79504
-margin_bottom = 196.846
+margin_left = -17.0
+margin_top = 24.4
+margin_right = 3.0
+margin_bottom = 44.4
 focus_neighbour_left = NodePath("../QRApp")
 focus_neighbour_top = NodePath("../App6")
 focus_neighbour_right = NodePath("../PixApp")
 mouse_filter = 2
+custom_styles/focus = SubResource( 48 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -548,19 +614,20 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/TextApp"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="PixApp" type="Button" parent="Control/PhoneUI"]
-margin_left = 8.0
-margin_top = 137.846
-margin_right = 67.0
-margin_bottom = 196.846
+margin_left = -2.0
+margin_top = 24.4
+margin_right = 18.0
+margin_bottom = 44.4
 focus_neighbour_left = NodePath("../TextApp")
 focus_neighbour_top = NodePath("../App7")
 focus_neighbour_right = NodePath("../SoulApp")
 mouse_filter = 2
+custom_styles/focus = SubResource( 49 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -569,18 +636,19 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/PixApp"]
 visible = false
-position = Vector2( 29.5003, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="SoulApp" type="Button" parent="Control/PhoneUI"]
-margin_left = 83.1062
-margin_top = 137.846
-margin_right = 142.106
-margin_bottom = 196.846
+margin_left = 13.0
+margin_top = 24.2
+margin_right = 33.0
+margin_bottom = 44.2
 focus_neighbour_left = NodePath("../PixApp")
 focus_neighbour_top = NodePath("../App8")
 mouse_filter = 2
+custom_styles/focus = SubResource( 50 )
 button_mask = 0
 flat = true
 __meta__ = {
@@ -589,30 +657,33 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/SoulApp"]
 visible = false
-position = Vector2( 29.5, 29.5 )
-scale = Vector2( 5, 5 )
+position = Vector2( 3, 3 )
 texture = ExtResource( 17 )
+centered = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/PhoneUI/SoulApp"]
 margin_left = 33.6259
 margin_top = -24.0
 margin_right = 79.6259
 margin_bottom = 8.0
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Soul_Notification" type="AnimatedSprite" parent="Control/PhoneUI"]
-position = Vector2( 125, 120 )
-scale = Vector2( 2.5, 2.5 )
-frames = SubResource( 8 )
+visible = false
+position = Vector2( 25, 22 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 13 )
 frame = 1
 playing = true
+centered = false
 
 [node name="Soul_Collected" type="AnimatedSprite" parent="Control/PhoneUI"]
-position = Vector2( 113, 193 )
-frames = SubResource( 22 )
+position = Vector2( 23, 39 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 27 )
 animation = "idle"
 playing = true
 
@@ -621,7 +692,7 @@ margin_left = -72.2947
 margin_top = -246.251
 margin_right = 8.70531
 margin_bottom = -216.251
-custom_fonts/font = SubResource( 23 )
+custom_fonts/font = SubResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -629,9 +700,8 @@ __meta__ = {
 [node name="Battery" type="AnimatedSprite" parent="Control/PhoneUI"]
 visible = false
 position = Vector2( 198, -233 )
-scale = Vector2( 5, 5 )
-frames = SubResource( 30 )
-frame = 6
+frames = SubResource( 35 )
+frame = 2
 playing = true
 [connection signal="focus_entered" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_exited"]

@@ -5,7 +5,7 @@ var ghostCount = 0
 onready var player = get_node("../../YSort/Player")
 onready var soul = get_node("../../YSort/Object_Soul")
 onready var phone = get_node("PhoneUI")
-onready var app1 = get_node("PhoneUI/App1")
+onready var QRApp = get_node("PhoneUI/QRApp")
 onready var soul_notification = get_node("PhoneUI/Soul_Notification")
 onready var soul_collected = get_node("PhoneUI/Soul_Collected")
 onready var audio = get_node("../../AudioStreamPlayer")
@@ -48,7 +48,7 @@ func _input(_event):
 			exitUI()
 
 func enterUI():
-	app1.grab_focus()
+	QRApp.grab_focus()
 	audio.stream = load("res://Assets/sfx/phone open v4.wav")
 	audio.play()
 	player.canMove = false

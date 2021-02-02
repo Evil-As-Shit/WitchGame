@@ -221,7 +221,7 @@ animations = [ {
 "speed": 1.0
 } ]
 
-[node name="Node2D" type="Node2D"]
+[node name="MainMenu" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
 margin_right = 1024.0
@@ -232,10 +232,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Control"]
-position = Vector2( 540.028, 359.997 )
+position = Vector2( 540, 360 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 2
+frame = 29
 playing = true
 
 [node name="TitleBox" type="NinePatchRect" parent="Control"]
@@ -253,12 +253,13 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Control/TitleBox"]
-margin_left = 32.0
+margin_left = 29.0
 margin_top = 16.0
-margin_right = 288.0
+margin_right = 285.0
 margin_bottom = 63.0
 custom_fonts/font = SubResource( 39 )
-text = "Witch's Game"
+text = "Hex Quest"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -269,6 +270,7 @@ margin_top = 63.0
 margin_right = 212.0
 margin_bottom = 149.0
 focus_mode = 2
+mouse_filter = 2
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -358,6 +360,7 @@ __meta__ = {
 position = Vector2( 1117, 412 )
 frames = SubResource( 50 )
 animation = "walking"
+frame = 2
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
