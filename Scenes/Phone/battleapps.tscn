@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/ui/BattleApps/decrypt.png" type="Texture" id=1]
+[ext_resource path="res://Assets/ui/BattleApps/salt.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/BattleApps/file shredder.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "decrypt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "file shredder",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "salt",
+"speed": 5.0
+} ]
+
+[node name="battleapps" type="AnimatedSprite"]
+visible = false
+position = Vector2( 10, 10 )
+frames = SubResource( 1 )
+animation = "decrypt"

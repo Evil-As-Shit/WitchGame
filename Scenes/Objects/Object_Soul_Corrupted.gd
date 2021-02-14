@@ -1,7 +1,8 @@
 extends "res://Scripts/Main/Item.gd"
 
-onready var notification = get_node("../../UI/Control/PhoneUI/Soul_Notification")
-onready var nearSoul = false
+onready var soulNotification = get_node("../../UI/Control/PhoneUI/Soul_Notification")
+onready var nearSoulCorrupt = false
+onready var inBattle = get_node("../../UI/Control").battlemode
 
 func _ready():
 	pass
@@ -9,9 +10,11 @@ func _ready():
 func update_choices(_choices):
 	pass
 
+#func _physics_process(delta):
+
+
 func action(_inventory):
 	pass
-
 
 func _on_icon_animation_finished():
 	if ($icon.animation == "Collected"):
@@ -21,10 +24,12 @@ func _on_icon_animation_finished():
 
 func _on_Area2D_body_entered(body):
 	if(body.name == "Player"):
-		notification.show()
-		nearSoul = true
+		nearSoulCorrupt = true
+		soulNotification.show()
+
 
 func _on_Area2D_body_exited(body):
 	if(body.name == "Player"):
-		notification.hide()
-		nearSoul = false
+		nearSoulCorrupt = false
+		soulNotification.hide()
+

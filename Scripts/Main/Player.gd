@@ -38,9 +38,6 @@ func _physics_process(delta):
 
 func _input(_event):
 	if(Input.is_action_just_pressed("e")):
-#		print("interacting: ", interacting)
-#		print("canInteract: ", canInteract)
-
 		if(dialogue.texting):
 #			print("texting rn")
 			interupt = true
