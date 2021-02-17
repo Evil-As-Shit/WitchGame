@@ -3,6 +3,8 @@
 [ext_resource path="res://Assets/objects/door.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level1/Door.gd" type="Script" id=2]
 
+
+
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.51091
 height = 12.038

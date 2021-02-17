@@ -1,5 +1,6 @@
 extends Control
 
+
 var inUI = false
 var ghostCount = 0
 var battlemode = false
@@ -11,12 +12,15 @@ var inApp = false
 var focusedApp = ""
 var choosing = false
 var focused = null
+var notEnoughMem = false
+signal text_finished
 onready var player = get_node("../../YSort/Player")
 onready var soul = get_node("../../YSort/Object_Soul")
 onready var soulCorrupt = get_node("../../YSort/Object_Soul_Corrupted")
 onready var phone = get_node("PhoneUI")
 onready var appscreen = get_node("PhoneUI/AppScreen")
 onready var soul_notification = get_node("PhoneUI/Soul_Notification")
+onready var qr_notification = get_node("PhoneUI/QR_Notification")
 onready var soul_collected = get_node("PhoneUI/Soul_Collected")
 onready var audio = get_node("../../AudioStreamPlayer")
 onready var time = get_node("PhoneUI/Time")
@@ -41,12 +45,7 @@ onready var battApp4 = get_node("PhoneUI/BattleApp4")
 onready var QRCode = get_node("../../YSort/QRCode")
 onready var battleApps = []
 onready var phoneLabel = get_node("PhoneUI/AppScreen/Label")
-signal button_pressed
-enum State{
-	state_text1
-	state_text2,
-	state_appinstalled
-	}
+
 
 func _ready():
 	pass
@@ -64,14 +63,15 @@ func _physics_process(delta):
 	memory.set_text(str(ghostCount))
 
 #pressing e when in phone ui
-func _input(_event):
+func _input(event):
 	if(Input.is_action_just_pressed("e") and inUI):
 		if(!inApp):
 			focused = get_focus_owner()
 			print(focused.name)
 		if(texting):
+			print("interupted")
 			interupt = true
-			get_tree().set_input_as_handled()
+#			get_tree().get_root().set_input_as_handled()
 #pressing e on soul app
 		elif(focused.name == "SoulApp"):
 			if(soul != null):
@@ -83,6 +83,7 @@ func _input(_event):
 					player.interacting = true
 					get_tree().get_root().set_disable_input(true)
 					yield(audio, "finished")
+					ghostCount += 1
 					player.interacting = false
 					get_tree().get_root().set_disable_input(false)
 			if(soulCorrupt != null):
@@ -99,47 +100,59 @@ func _input(_event):
 							print("BattleApp4 GOOO!!")
 					if(!inApp):
 						enterApp()
+						soul_notification.hide()
 						battApp1.show()
 						battApp2.show()
 						battApp3.show()
 						battApp4.show()
 						soul_notification.hide()
-						phone.play("battle")
+						phone.play("battleIN")
+						yield(phone,"animation_finished")
 						battlemode = true
 						battApp1.grab_focus()
 #pressing e on QRApp
 		elif(focused.name == "QRApp" and QRCode.nearQR):
 			if(!inApp):
+				qr_notification.hide()
 				enterApp()
-			if(battleApps.has(QRCode.appName)):
-				qrText = "This app is already installed"
-				yield(appscreen,"animation_finished")
-				show_text(qrText)
+			if(notEnoughMem):
+				qrText = "You don't have enough memory!"
+				show_text(qrText,0.025)
+				yield(self,"text_finished")
+				notEnoughMem = false
 				phone.get_node("HomeButton").grab_focus()
-				get_tree().set_input_as_handled()
+			elif(battleApps.has(QRCode.appName)):
+					qrText = "This app is already installed!"
+					yield(appscreen,"animation_finished")
+					show_text(qrText,0.025)
+					yield(self, "text_finished")
+					phone.get_node("HomeButton").grab_focus()
 			elif(choosing):
 				if(text1seen):
-					qrText = "Download App?"
-					show_text(qrText)
+#					get_tree().get_root().set_input_as_handled()
+					qrText = "Download App? Cost:"+str(QRCode.memCost)+"GB"
+					show_text(qrText,0.025)
+					choosing = false
+					yield(self, "text_finished")
 					appscreen.get_node("Button").show()
 					appscreen.get_node("Button2").show()
 					appscreen.get_node("Button").grab_focus()
-					choosing = false
-					get_tree().set_input_as_handled()
+				else:
+					print("1")
+					pass
 			elif(!text1seen):
-				print("first text")
+#				get_tree().get_root().set_input_as_handled()
 				qrText = "A sketchy app is available to download from the undernet!"
-				yield(appscreen,"animation_finished")
-				show_text(qrText)
 				text1seen = true
 				choosing = true
-				get_tree().set_input_as_handled()
+				yield(appscreen,"animation_finished")
+				show_text(qrText,0.025)
 			else:
-				print("passed1")
+				print("2")
 				pass
 		else:
-			print("passed")
-
+			print("3")
+			pass
 #exiting/entering phone ui
 	if (Input.is_action_just_pressed("UI") and !player.interacting and !inApp):
 		if (inUI == false):
@@ -162,10 +175,12 @@ func hideApps():
 	textapp.hide()
 	soulapp.hide()
 	options.hide()
-#	battApp1.hide()
-#	battApp2.hide()
-#	battApp3.hide()
-#	battApp4.hide()
+	if(focused != null):
+		if(focused.name != "SoulApp"):
+			battApp1.hide()
+			battApp2.hide()
+			battApp3.hide()
+			battApp4.hide()
 func showApps():
 	app1.show()
 	app2.show()
@@ -181,11 +196,16 @@ func showApps():
 	soulapp.show()
 	options.show()
 
+func yieldToAni():
+	get_tree().get_root().set_disable_input(true)
+	yield(appscreen,"animation_finished")
+	get_tree().get_root().set_disable_input(false)
+
 #show text routine
-func show_text(text):
-	if(appscreen.is_visible()):
+func show_text(text,speed):
+	if(inApp):
 		var t = Timer.new()
-		t.set_wait_time(0.025)
+		t.set_wait_time(speed)
 		t.set_one_shot(true)
 		self.add_child(t)
 		var i = 0
@@ -208,37 +228,48 @@ func show_text(text):
 				interupt = false
 				break
 		texting =false
+		emit_signal("text_finished")
 
 #updates the app icons using the battleApps array
 func updateApps():
 	var i = 0
 	for app in battleApps:
 		i += 1
-		print(i)
-		print(app)
-		print("in for loop")
 		var icon = get_node("PhoneUI/App"+str(i)+"/battleapps")
-		icon.animation = str(app)
-		icon.show()
+		if(!icon.is_visible()):
+			icon.animation = str(app)
+			icon.show()
+			yieldToAni()
+			get_node("PhoneUI/App"+str(i)+"/notification").show()
+			get_node("PhoneUI/App"+str(i)+"/notification").play("notify")
+			yield(get_node("PhoneUI/App"+str(i)+"/notification"),"animation_finished")
+			get_node("PhoneUI/App"+str(i)+"/notification").hide()
+		else:
+			pass
 
 func enterApp():
-	inApp = true
 	appscreen.show()
 	appscreen.play("open")
+	yieldToAni()
 	phoneLabel.set_text("")
+	yield(appscreen,"animation_finished")
+	inApp = true
 	hideApps()
 
 func exitApp():
-	phone.animation = "default"
+	if(focused.name == "QRApp"):
+		text1seen = false
+		choosing = false
+	if(focused.name == "SoulApp" and soulCorrupt.nearSoulCorrupt):
+		phone.play("battleOUT")
 	focusedApp = ""
 	phoneLabel.set_text("")
-	appscreen.play("close")
-	yield(appscreen,"animation_finished")
-	appscreen.hide()
 	showApps()
+	appscreen.play("close")
+	yieldToAni()
+	inApp = false
 	if(focused != null):
 		focused.grab_focus()
-	inApp = false
 
 func appendApp(appName):
 	if(!battleApps.has(appName)):
@@ -389,53 +420,60 @@ func _on_BattleApp4_focus_exited():
 	$PhoneUI/BattleApp4/Sprite.hide()
 
 func _on_Button_pressed():
-	print("button1 pressed")
 	$PhoneUI/AppScreen/Button/Sprite.play("selected")
 	yield($PhoneUI/AppScreen/Button/Sprite,"animation_finished")
-	appendApp(QRCode.appName)
-	exitApp()
-	$PhoneUI/AppScreen/Button.hide()
-	$PhoneUI/AppScreen/Button2.hide()
 	$PhoneUI/AppScreen/Button/Sprite.play("default")
 	$PhoneUI/AppScreen/Button2/Sprite.play("default")
-	print("button1 press finished")
-
+	$PhoneUI/AppScreen/Button.hide()
+	$PhoneUI/AppScreen/Button2.hide()
+	if(ghostCount >= QRCode.memCost):
+		appendApp(QRCode.appName)
+		ghostCount -= QRCode.memCost
+		exitApp()
+		qr_notification.show()
+	else:
+		show_text("...",0.25)
+		notEnoughMem = true
+		pass
+		
 func _on_Button2_pressed():
-	print("button2 pressed")
-	text1seen = false
 	$PhoneUI/AppScreen/Button2/Sprite.play("selected")
 	yield($PhoneUI/AppScreen/Button2/Sprite,"animation_finished")
-	exitApp()
-	$PhoneUI/AppScreen/Button.hide()
-	$PhoneUI/AppScreen/Button2.hide()
 	$PhoneUI/AppScreen/Button/Sprite.play("default")
 	$PhoneUI/AppScreen/Button2/Sprite.play("default")
-	print("button2 press finished")
+	$PhoneUI/AppScreen/Button.hide()
+	$PhoneUI/AppScreen/Button2.hide()
+	text1seen = false
+	notEnoughMem = false
+	exitApp()
+	qr_notification.show()
+
 
 func _on_Button_focus_entered():
 	$PhoneUI/AppScreen/Button/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
+#	audio.stream = load("res://Assets/sfx/menu browse.wav")
+#	audio.play()
 
 func _on_Button_focus_exited():
 	$PhoneUI/AppScreen/Button/Sprite.hide()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
 
 func _on_Button2_focus_entered():
 	$PhoneUI/AppScreen/Button2/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
+#	audio.stream = load("res://Assets/sfx/menu browse.wav")
+#	audio.play()
 
 func _on_Button2_focus_exited():
 	$PhoneUI/AppScreen/Button2/Sprite.hide()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
 
 func _on_HomeButton_pressed():
+#	get_tree().set_input_as_handled()
 	if(inApp):
 		exitApp()
-		get_tree().set_input_as_handled()
+		if(focused.name == "SoulApp"):
+			soul_notification.show()
+			phone.play("battleOUT")
+		if(focused.name == "QRApp"):
+			qr_notification.show()
 		if($PhoneUI/AppScreen/Button.is_visible()):
 			$PhoneUI/AppScreen/Button.hide()
 			$PhoneUI/AppScreen/Button2.hide()

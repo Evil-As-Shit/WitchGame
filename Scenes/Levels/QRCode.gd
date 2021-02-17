@@ -1,7 +1,8 @@
 extends "res://Scripts/Main/Item.gd"
 
 onready var nearQR = false
-onready var appName = "decrypt"
+export var appName = "decrypt"
+export var memCost = 1
 onready var qrNotification = get_node("../../UI/Control/PhoneUI/QR_Notification")
 
 func _ready():

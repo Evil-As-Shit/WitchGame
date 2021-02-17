@@ -35,6 +35,7 @@ script = ExtResource( 12 )
 
 [node name="Platform" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 0, -1 )
+rotation = 0.00271361
 
 [node name="hallway" type="StaticBody2D" parent="YSort"]
 position = Vector2( -45, -155 )
@@ -57,10 +58,10 @@ visible = false
 polygon = PoolVector2Array( -47, -0.999985, -5, 2.00002, -5, -4.99998, -47, -6.99998 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -19, 12 )
+position = Vector2( -21, 9 )
 
 [node name="QRCode" parent="YSort" instance=ExtResource( 20 )]
-position = Vector2( -81, -154 )
+position = Vector2( 0, -1 )
 
 [node name="Object_Bookstack" parent="YSort" groups=[
 "Interactable",

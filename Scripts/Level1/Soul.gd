@@ -14,7 +14,6 @@ func action(_inventory):
 
 func _on_icon_animation_finished():
 	if ($icon.animation == "Collected"):
-		get_node("../../UI/Control").ghostCount =+ 1
 		get_node("../../DialogueParser").choices["level1Soul"] = true
 		soulNotification.hide()
 		nearSoul = false
