@@ -12,6 +12,7 @@ var interacting = false
 var velocity = Vector2.ZERO
 var interupt = false
 var choosing = false
+var location = null
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree

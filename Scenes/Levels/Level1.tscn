@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Objects/Object_Soul.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Objects/Object_Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Objects/Object_Bookstack.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Levels/Platform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Levels/Room1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Objects/Object_Lamp.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Main/DialogueParser.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/NPCs/NPC1.tscn" type="PackedScene" id=10]
@@ -16,7 +16,7 @@
 [ext_resource path="res://Scenes/Objects/Object_Chair.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Objects/Object_Rug.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Objects/Object_Outlet.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Assets/world/hallway.png" type="Texture" id=17]
+[ext_resource path="res://Scenes/Levels/Hallway1.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Objects/Outlet.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/Objects/Object_Soul_Corrupted.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Objects/QRCode.tscn" type="PackedScene" id=20]
@@ -33,73 +33,53 @@ script = ExtResource( 12 )
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Platform" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 0, -1 )
-rotation = 0.00271361
+[node name="Hallway1" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( -69, -155 )
 
-[node name="hallway" type="StaticBody2D" parent="YSort"]
-position = Vector2( -45, -155 )
-
-[node name="Sprite" type="Sprite" parent="YSort/hallway"]
-position = Vector2( 0, 116 )
-texture = ExtResource( 17 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/hallway"]
-visible = false
-position = Vector2( 0, 1.52588e-05 )
-polygon = PoolVector2Array( -47, -1, -24, 58, -39, 95, -16, 154, -42, 155, -51, 29 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="YSort/hallway"]
-visible = false
-polygon = PoolVector2Array( -6, 1.99998, 26, 55, 21, 99, 48, 148, 61, 135, 34, 53 )
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="YSort/hallway"]
-visible = false
-polygon = PoolVector2Array( -47, -0.999985, -5, 2.00002, -5, -4.99998, -47, -6.99998 )
+[node name="Room1" parent="YSort" instance=ExtResource( 7 )]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -21, 9 )
+position = Vector2( -8, 8 )
 
-[node name="QRCode" parent="YSort" instance=ExtResource( 20 )]
-position = Vector2( 0, -1 )
+[node name="QRCode_Room1" parent="YSort" instance=ExtResource( 20 )]
 
 [node name="Object_Bookstack" parent="YSort" groups=[
 "Interactable",
 ] instance=ExtResource( 6 )]
-position = Vector2( -40, 49 )
+position = Vector2( -68, 45 )
 script = ExtResource( 2 )
 
 [node name="Object_Door" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( -26, 1 )
 
 [node name="NPC1" parent="YSort" instance=ExtResource( 10 )]
-position = Vector2( 26, 2 )
+position = Vector2( 25, 0 )
 
 [node name="Object_Soul" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 24, 42 )
+position = Vector2( 26, 38 )
 
 [node name="Object_Soul_Corrupted" parent="YSort" instance=ExtResource( 19 )]
-position = Vector2( -56, -149 )
+position = Vector2( -55, -149 )
 
 [node name="Object_Lamp" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( -63, 43 )
+position = Vector2( 56, 0 )
 
 [node name="Rug" parent="YSort" instance=ExtResource( 15 )]
 visible = false
 position = Vector2( 61, 75 )
 
 [node name="Rug2" type="Node2D" parent="YSort"]
-position = Vector2( -8, 17 )
+position = Vector2( -7, 18 )
 
 [node name="rug1" type="Sprite" parent="YSort/Rug2"]
 position = Vector2( 0.5, 9 )
 texture = ExtResource( 13 )
 
 [node name="Object_Chair" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( 48, 5 )
+position = Vector2( 43, 2 )
 
 [node name="Object_Outlet" parent="YSort" instance=ExtResource( 16 )]
-position = Vector2( -52, 0 )
+position = Vector2( -51, 1 )
 script = ExtResource( 18 )
 
 [node name="UI" parent="." instance=ExtResource( 3 )]

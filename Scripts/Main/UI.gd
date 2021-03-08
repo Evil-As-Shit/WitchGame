@@ -2,7 +2,7 @@ extends Control
 
 
 var inUI = false
-var ghostCount = 0
+var ghostCount = 1
 var battlemode = false
 var texting = false
 var interupt = false
@@ -42,8 +42,10 @@ onready var battApp1 = get_node("PhoneUI/BattleApp1")
 onready var battApp2 = get_node("PhoneUI/BattleApp2")
 onready var battApp3 = get_node("PhoneUI/BattleApp3")
 onready var battApp4 = get_node("PhoneUI/BattleApp4")
-onready var QRCode = get_node("../../YSort/QRCode")
 onready var battleApps = []
+onready var soulMoves = {}
+onready var moves = []
+onready var corruptSouls = []
 onready var phoneLabel = get_node("PhoneUI/AppScreen/Label")
 
 
@@ -88,6 +90,12 @@ func _input(event):
 					get_tree().get_root().set_disable_input(false)
 			if(soulCorrupt != null):
 				if(soulCorrupt.nearSoulCorrupt):
+					if(!corruptSouls.has(soulCorrupt)):
+						corruptSouls.append(soulCorrupt)
+						randomizeMoves(soulCorrupt,soulMoves)
+						updateBattleApps(soulMoves)
+					else:
+						print("soul already in the system")
 					if(battlemode):
 						focusedApp = get_focus_owner().name
 						if(focusedApp == "BattleApp1"):
@@ -111,48 +119,51 @@ func _input(event):
 						battlemode = true
 						battApp1.grab_focus()
 #pressing e on QRApp
-		elif(focused.name == "QRApp" and QRCode.nearQR):
-			if(!inApp):
-				qr_notification.hide()
-				enterApp()
-			if(notEnoughMem):
-				qrText = "You don't have enough memory!"
-				show_text(qrText,0.025)
-				yield(self,"text_finished")
-				notEnoughMem = false
-				phone.get_node("HomeButton").grab_focus()
-			elif(battleApps.has(QRCode.appName)):
-					qrText = "This app is already installed!"
-					yield(appscreen,"animation_finished")
-					show_text(qrText,0.025)
-					yield(self, "text_finished")
-					phone.get_node("HomeButton").grab_focus()
-			elif(choosing):
-				if(text1seen):
-#					get_tree().get_root().set_input_as_handled()
-					qrText = "Download App? Cost:"+str(QRCode.memCost)+"GB"
-					show_text(qrText,0.025)
-					choosing = false
-					yield(self, "text_finished")
-					appscreen.get_node("Button").show()
-					appscreen.get_node("Button2").show()
-					appscreen.get_node("Button").grab_focus()
+		elif(focused.name == "QRApp"):
+			var QRCode = get_node("../../YSort/QRCode_"+player.location)
+			if(QRCode != null):
+				if(QRCode.nearQR):
+					if(!inApp):
+						qr_notification.hide()
+						enterApp()
+					if(notEnoughMem):
+						qrText = "You don't have enough memory!"
+						show_text(qrText,0.025)
+						yield(self,"text_finished")
+						notEnoughMem = false
+						phone.get_node("HomeButton").grab_focus()
+					elif(battleApps.has(QRCode.appName)):
+							qrText = "This app is already installed!"
+							yield(appscreen,"animation_finished")
+							show_text(qrText,0.025)
+							yield(self, "text_finished")
+							phone.get_node("HomeButton").grab_focus()
+					elif(choosing):
+						if(text1seen):
+		#					get_tree().get_root().set_input_as_handled()
+							qrText = "Download App? Cost:"+str(QRCode.memCost)+"GB"
+							show_text(qrText,0.025)
+							choosing = false
+							yield(self, "text_finished")
+							appscreen.get_node("Button").show()
+							appscreen.get_node("Button2").show()
+							appscreen.get_node("Button").grab_focus()
+						else:
+							print("1")
+							pass
+					elif(!text1seen):
+		#				get_tree().get_root().set_input_as_handled()
+						qrText = "A sketchy app is available to download from the undernet!"
+						text1seen = true
+						choosing = true
+						yield(appscreen,"animation_finished")
+						show_text(qrText,0.025)
+					else:
+						print("2")
+						pass
 				else:
-					print("1")
+					print("3")
 					pass
-			elif(!text1seen):
-#				get_tree().get_root().set_input_as_handled()
-				qrText = "A sketchy app is available to download from the undernet!"
-				text1seen = true
-				choosing = true
-				yield(appscreen,"animation_finished")
-				show_text(qrText,0.025)
-			else:
-				print("2")
-				pass
-		else:
-			print("3")
-			pass
 #exiting/entering phone ui
 	if (Input.is_action_just_pressed("UI") and !player.interacting and !inApp):
 		if (inUI == false):
@@ -181,6 +192,7 @@ func hideApps():
 			battApp2.hide()
 			battApp3.hide()
 			battApp4.hide()
+
 func showApps():
 	app1.show()
 	app2.show()
@@ -196,6 +208,7 @@ func showApps():
 	soulapp.show()
 	options.show()
 
+#yield all input to app screen open/close animation
 func yieldToAni():
 	get_tree().get_root().set_disable_input(true)
 	yield(appscreen,"animation_finished")
@@ -262,6 +275,10 @@ func exitApp():
 		choosing = false
 	if(focused.name == "SoulApp" and soulCorrupt.nearSoulCorrupt):
 		phone.play("battleOUT")
+		battApp1.hide()
+		battApp2.hide()
+		battApp3.hide()
+		battApp4.hide()
 	focusedApp = ""
 	phoneLabel.set_text("")
 	showApps()
@@ -299,6 +316,28 @@ func exitUI():
 	focused = get_focus_owner()
 	if (focused != null):
 		focused.release_focus()
+
+func updateBattleApps(moves):
+	var i = 1
+	print(battleApps)
+	for app in battleApps:
+		i += 1
+		var icon = get_node("PhoneUI/BattleApp"+str(i)+"/battleapps")
+		print(icon)
+		icon.animation = str(app)
+		icon.show()
+
+func randomizeMoves(soul,soulmoves):
+	if(battleApps.size() < 3):
+		print(battleApps.size())
+		for app in battleApps:
+			var i = 0
+			moves = battleApps
+			i += 1
+		pass
+	soulmoves[soul] = moves
+	print(soulmoves)
+	pass
 
 func _on_App1_focus_entered():
 	$PhoneUI/App1/Sprite.show()
@@ -420,6 +459,7 @@ func _on_BattleApp4_focus_exited():
 	$PhoneUI/BattleApp4/Sprite.hide()
 
 func _on_Button_pressed():
+	var QRCode = get_node("../../YSort/QRCode_"+player.location)
 	$PhoneUI/AppScreen/Button/Sprite.play("selected")
 	yield($PhoneUI/AppScreen/Button/Sprite,"animation_finished")
 	$PhoneUI/AppScreen/Button/Sprite.play("default")

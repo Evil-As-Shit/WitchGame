@@ -3,8 +3,6 @@
 [ext_resource path="res://Assets/objects/door.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level1/Door.gd" type="Script" id=2]
 
-
-
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.51091
 height = 12.038
@@ -82,14 +80,15 @@ anims/Closed = SubResource( 2 )
 anims/Open = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, -10.75 )
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2( -0.198425, 3.9685 )
 shape = SubResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -15 )
+position = Vector2( -9, -29 )
 frames = SubResource( 7 )
 animation = "closed"
+centered = false

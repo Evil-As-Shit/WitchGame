@@ -3,6 +3,7 @@ extends Control
 onready var cat = get_node("Cat")
 onready var start = get_node("TitleBox/VBoxContainer/Start")
 onready var options = get_node("Options")
+
 func _ready():
 #	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	start.grab_focus()
@@ -16,7 +17,7 @@ func _physics_process(_delta):
 
 func _on_Start_pressed():
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/Levels/Level1.tscn")
+	get_tree().change_scene("res://Scenes/Levels/Level1_Special.tscn")
 
 func _on_Options_pressed():
 	get_node("Options/back").grab_focus()

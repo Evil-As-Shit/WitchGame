@@ -1,0 +1,266 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Assets/npcs/npc2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/world/special.png" type="Texture" id=2]
+[ext_resource path="res://Assets/npcs/npc6.png" type="Texture" id=3]
+[ext_resource path="res://Assets/npcs/npc5.png" type="Texture" id=4]
+[ext_resource path="res://Assets/npcs/npc7.png" type="Texture" id=5]
+[ext_resource path="res://Assets/objects/specialhat.png" type="Texture" id=6]
+[ext_resource path="res://Assets/npcs/npc3.png" type="Texture" id=7]
+[ext_resource path="res://Assets/objects/rug1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/ui/speech.png" type="Texture" id=9]
+[ext_resource path="res://Assets/sfx/find ghost v1.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Objects/Object_Bookstack.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Objects/Object_Door.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Objects/Object_Lamp.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Objects/Object_Soul_Corrupted.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Objects/Object_Outlet.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Objects/Object_Chair.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Levels/Hallway1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Levels/Room1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/NPCs/NPC1.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Objects/Object_Rug.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Objects/Object_Soul.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Objects/QRCode.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scripts/Main/DialogueParser.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/Main/ChoiceProcessor.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/Level1/BookStack.gd" type="Script" id=27]
+[ext_resource path="res://Scripts/Main/Context_Bubble.gd" type="Script" id=28]
+[ext_resource path="res://Scenes/Objects/Outlet.gd" type="Script" id=29]
+[ext_resource path="res://Scripts/Level1/NPC1.gd" type="Script" id=30]
+[ext_resource path="res://Scripts/Main/GameInit.gd" type="Script" id=31]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 1.21349
+height = 1.65643
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.22731, 4.11176 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 7, 5 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 9 )
+region = Rect2( 7, 0, 7, 5 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.24
+} ]
+
+[node name="Level1" type="Node"]
+script = ExtResource( 31 )
+
+[node name="DialogueParser" type="Node" parent="."]
+script = ExtResource( 25 )
+
+[node name="EventParser" type="Node" parent="."]
+script = ExtResource( 26 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Hallway1" parent="YSort" instance=ExtResource( 18 )]
+position = Vector2( -69, -155 )
+
+[node name="Room1" parent="YSort" instance=ExtResource( 19 )]
+
+[node name="Player" parent="YSort" instance=ExtResource( 21 )]
+position = Vector2( -8, 8 )
+
+[node name="QRCode_Room1" parent="YSort" instance=ExtResource( 24 )]
+visible = false
+position = Vector2( -40, 2 )
+
+[node name="Object_Bookstack" parent="YSort" groups=[
+"Interactable",
+] instance=ExtResource( 12 )]
+visible = false
+position = Vector2( -100, 39 )
+script = ExtResource( 27 )
+
+[node name="Object_Door" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( -26, 1 )
+
+[node name="NPC1" parent="YSort" instance=ExtResource( 20 )]
+position = Vector2( 35, 0 )
+
+[node name="specialhat" type="Sprite" parent="YSort/NPC1"]
+position = Vector2( 0, -26.3438 )
+scale = Vector2( 0.375, 0.473214 )
+texture = ExtResource( 6 )
+
+[node name="NPC2" parent="YSort" instance=ExtResource( 20 )]
+position = Vector2( -62, 23 )
+
+[node name="Sprite" parent="YSort/NPC2/StaticBody2D" index="1"]
+texture = ExtResource( 7 )
+
+[node name="Area2D" parent="YSort/NPC2" index="1"]
+position = Vector2( 3, -4 )
+
+[node name="Sprite" parent="YSort/NPC2/Area2D" index="1"]
+position = Vector2( -3, -29 )
+frame = 0
+
+[node name="specialhat" type="Sprite" parent="YSort/NPC2"]
+position = Vector2( 0, -27 )
+scale = Vector2( 0.5625, 0.75 )
+texture = ExtResource( 6 )
+
+[node name="NPC3" parent="YSort" instance=ExtResource( 20 )]
+position = Vector2( -69, 42 )
+
+[node name="CollisionShape2D" parent="YSort/NPC3/StaticBody2D" index="0"]
+position = Vector2( 1, 0 )
+
+[node name="Sprite" parent="YSort/NPC3/StaticBody2D" index="1"]
+texture = ExtResource( 1 )
+
+[node name="Area2D" parent="YSort/NPC3" index="1"]
+position = Vector2( -2, -5 )
+
+[node name="Sprite" parent="YSort/NPC3/Area2D" index="1"]
+position = Vector2( -3, -23 )
+frame = 0
+
+[node name="specialhat" type="Sprite" parent="YSort/NPC3"]
+position = Vector2( 0, -23 )
+scale = Vector2( 0.4375, 0.535714 )
+texture = ExtResource( 6 )
+
+[node name="NPC4" parent="YSort" instance=ExtResource( 20 )]
+position = Vector2( -38, 2 )
+
+[node name="Sprite" parent="YSort/NPC4/StaticBody2D" index="1"]
+texture = ExtResource( 4 )
+
+[node name="Sprite" parent="YSort/NPC4/Area2D" index="1"]
+position = Vector2( 4.47035e-07, -33 )
+frame = 0
+
+[node name="specialhat" type="Sprite" parent="YSort/NPC4"]
+position = Vector2( 0, -28 )
+scale = Vector2( 0.382353, 0.464286 )
+texture = ExtResource( 6 )
+
+[node name="NPC5" parent="YSort" instance=ExtResource( 20 )]
+position = Vector2( 49, 23 )
+
+[node name="Sprite" parent="YSort/NPC5/StaticBody2D" index="1"]
+texture = ExtResource( 3 )
+
+[node name="Area2D" parent="YSort/NPC5" index="1"]
+position = Vector2( -4, -5 )
+
+[node name="Sprite" parent="YSort/NPC5/Area2D" index="1"]
+position = Vector2( 4, -26 )
+frame = 0
+
+[node name="specialhat" type="Sprite" parent="YSort/NPC5"]
+position = Vector2( 0.513, -25.967 )
+scale = Vector2( 0.357143, 0.464286 )
+texture = ExtResource( 6 )
+
+[node name="NPC6" type="Node2D" parent="YSort" groups=[
+"Interactable",
+]]
+position = Vector2( 39, 47 )
+scale = Vector2( 1, 1.00365 )
+script = ExtResource( 30 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="YSort/NPC6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/NPC6/StaticBody2D"]
+position = Vector2( -0.117983, 0.119415 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="YSort/NPC6/StaticBody2D"]
+position = Vector2( 0, -12 )
+texture = ExtResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="YSort/NPC6"]
+position = Vector2( -4, -6 )
+collision_layer = 2
+script = ExtResource( 28 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/NPC6/Area2D"]
+position = Vector2( -0.210224, 5.55223 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="YSort/NPC6/Area2D"]
+visible = false
+position = Vector2( 4, -24 )
+frames = SubResource( 5 )
+playing = true
+
+[node name="specialhat" type="Sprite" parent="YSort/NPC6"]
+position = Vector2( 7.62939e-06, -25 )
+scale = Vector2( 0.321429, 0.464286 )
+texture = ExtResource( 6 )
+
+[node name="Object_Soul" parent="YSort" instance=ExtResource( 23 )]
+position = Vector2( -42, 44 )
+
+[node name="Object_Soul_Corrupted" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( -55, -149 )
+
+[node name="Object_Lamp" parent="YSort" instance=ExtResource( 14 )]
+visible = false
+position = Vector2( 56, 0 )
+
+[node name="Rug" parent="YSort" instance=ExtResource( 22 )]
+visible = false
+position = Vector2( 61, 75 )
+
+[node name="Rug2" type="Node2D" parent="YSort"]
+position = Vector2( -7, 18 )
+
+[node name="rug1" type="Sprite" parent="YSort/Rug2"]
+position = Vector2( 0.5, 9 )
+texture = ExtResource( 8 )
+
+[node name="Object_Chair" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( 52, 3 )
+
+[node name="Object_Outlet" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( -51, 1 )
+script = ExtResource( 29 )
+
+[node name="Node2D" type="Node2D" parent="YSort"]
+position = Vector2( -7, 25 )
+
+[node name="Sprite" type="Sprite" parent="YSort/Node2D"]
+position = Vector2( 0, -6 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="StaticBody2D" parent="YSort/Node2D"]
+visible = false
+position = Vector2( 0, -6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/Node2D/Area2D"]
+polygon = PoolVector2Array( -20, 8, -13, 13, 0, 14, 13, 13, 20, 9, 17, 4, 4, 2, -7, 2, -17, 4 )
+
+[node name="UI" parent="." instance=ExtResource( 11 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -21.174
+pitch_scale = 0.81
+[connection signal="body_entered" from="YSort/NPC6/Area2D" to="YSort/NPC6/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="YSort/NPC6/Area2D" to="YSort/NPC6/Area2D" method="_on_Area2D_body_exited"]
+
+[editable path="YSort/NPC2"]
+
+[editable path="YSort/NPC3"]
+
+[editable path="YSort/NPC4"]
+
+[editable path="YSort/NPC5"]

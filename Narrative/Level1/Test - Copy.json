@@ -1,0 +1,423 @@
+{
+    "data": {
+        "soulInitial": {
+            "0": {
+                "content": [
+                    "How do I collect this thing?",
+                    {
+                        "expression": "witch_stare"           
+					},                    
+                    {
+                        "isEnd": true           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "soulRepeat": {
+            "0": {
+                "content": [
+                    "Maybe someone around here knows what to do...",
+                    {
+                        "expression": "witch_smug"           
+					},                    
+                    {
+                        "isEnd": true           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "doorInitial": {
+            "0": {
+                "content": [
+                    "I shouldn't leave until I get my first soul..",
+                    {
+                        "expression": "witch_stare"           
+					},                    
+                    {
+                        "isEnd": true
+                    }
+                ]
+            },
+            "initial": "0"
+        },
+        "doorUnlocked": {
+            "0" : {
+                "content" : [
+                    "I'm ready to explore the world with my new Soul now!",
+                    {
+                        "expression" : "witch_happy"           
+					},                    
+                    {
+                        "isEnd" : true          
+					}
+				]     
+			},
+            "1":{
+                "content": [
+                    "If only SOMEONE would code it...",
+                    {
+                        "expression" : "witch_upset"           
+					},                    
+                    {
+                        "isEnd" : true           
+					}
+				]     
+			},
+            "initial": "0"
+		},
+        "npc1_First": {
+            "0": {
+                "content": [
+                    "happy birthday!",
+                    {
+                        "expression": "npc1_happy"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Oh tanks!",
+                    {
+                        "expression": "witch_happy"          
+					},
+                    {
+                       "isEnd": true             
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "npc2": {
+            "0": {
+                "content": [
+                    "happy birthday!",
+                    {
+                        "expression": "null"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Thanks ur the best!",
+                    {
+                        "expression": "witch_openhappy"          
+					},
+                    {
+                       "isEnd": true             
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "npc3": {
+            "0": {
+                "content": [
+                    "hey, hppy bday! uwu",
+                    {
+                        "expression": "null"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Thanks!",
+                    {
+                        "expression": "witch_open"          
+					},
+                    {
+                       "isEnd": true             
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "npc4": {
+            "0": {
+                "content": [
+                    "I can't remember when my birthday is. Anyway, happy birthday!",
+                    {
+                        "expression": "null"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Oh, thanks Dracula!",
+                    {
+                        "expression": "witch_happy"          
+					},
+                    {
+                        "divert": "2"              
+					}
+				]     
+			},
+            "2":{
+                "content": [
+                    "Don't forget the rent is due soon...",
+                    {
+                        "expression": "null"          
+					},
+                    {
+                        "divert": "3"              
+					}
+				]     
+			},
+            "3":{
+                "content": [
+                    "Oh right... thanks Dracula...",
+                    {
+                        "expression": "witch_stare"          
+					},
+                    {
+                        "isEnd" : true             
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "npc5": {
+            "0": {
+                "content": [
+                    "Wait who are you again?",
+                    {
+                        "expression": "witch_smug"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Uhhh, happy birthday! When are we having cake?",
+                    {
+                        "expression": "null"          
+					},
+                    {
+                        "divert": "2"              
+					}
+				]     
+			},
+            "2":{
+                "content": [
+                    "...",
+                    {
+                        "expression": "witch_stare"          
+					},
+                    {
+                        "isEnd": true             
+					}
+				]        
+			},
+            "initial": "0"
+        },
+        "npc6": {
+            "0": {
+                "content": [
+                    "Did you know there is a 0.27% chance of dying on your birthday? Happy birthday!",
+                    {
+                        "expression": "null"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "... I did not know that.",
+                    {
+                        "expression": "witch_suprised"          
+					},
+                    {
+                        "isEnd" : true              
+					}
+				]     
+			}
+        },
+        "npc1_Soul": {
+            "0": {
+                "content": [
+                    "What's up with that soul over there?",
+                    {
+                        "expression": "witch_stare"  
+                    },
+                    {
+                        "divert": "1"
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Oh you don't know about the souls?!",
+                    {
+                        "expression": "npc1_happy"         
+					},
+                    {
+                       "divert": "2"          
+					}
+				]     
+            },
+            "2":{
+                "content": [
+                    "Well obviously, I just asked about it...",
+                    {
+                        "expression": "witch_smug"            
+					},
+                    {
+                        "divert": "3"          
+					}
+				]     
+            },
+            "3":{
+                "content": [
+                    "Right... Well all you have to do is open your phone (Q) when you are close to it and use (E) your SoulApp!",
+                    {
+                        "expression": "npc1_happy"        
+					},
+                    {
+                        "divert" : "4"              
+					}
+				]     
+            },
+            "4":{
+                "content": [
+                    "Oh yea... I knew that...",
+                    {
+                        "expression": "witch_smug"        
+					},
+                    {
+                        "isEnd": true              
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "npc1_Soul_Collected": {
+            "0": {
+                "content": [
+                    "Wow! Good job! You collected your first soul!!",
+                    {
+                        "expression": "npc1_happy"
+                    },
+                    {
+                        "divert": "1"           
+					}
+                ]
+            },
+            "1":{
+                "content": [
+                    "Oh thanks, no biggie...",
+                    {
+                        "expression": "witch_opensmug"          
+					},
+                    {
+                       "isEnd": true             
+					}
+				]     
+			},
+            "initial": "0"
+        },
+        "bookInspect" : {
+            "0" : {
+                "content" : [
+                   "Do they really expect me to read all these books?",
+                   {
+                        "expression": "witch_stare"           
+                   },                 
+                   {
+                        "isEnd": true        
+                   }
+				]     
+			},
+            "initial": "0"
+		},
+        "bookInspectRepeat" : {
+            "0" : {
+                "content" : [
+                   "Yea I aint reading all of these...",
+                   {
+                        "expression": "witch_upset"           
+				   },                   
+                   {
+                        "isEnd": true        
+                   }
+				]     
+			},
+            "initial": "0"
+		},
+        "outletRequest" : {
+            "initial": "chargeRequest",
+            "chargeRequest": {
+                "content":[
+                    "Would you like to charge your phone?",
+                    {
+                        "expression": "null"           
+					},                    
+                    {
+                        "linkPath": "yesAnswer",
+                        "ifConditions": null,
+                        "notIfConditions": null,
+                        "option": "Yes"
+					},
+                    {
+                        "linkPath": "noAnswer",
+                        "ifConditions": null,
+                        "notIfConditions": null,
+                        "option": "No"         
+					}
+				]
+			},
+            "yesAnswer":{
+                "content": [
+                    "Charging phone...",
+                    {
+                        "expression": "null"           
+					},                   
+                    {
+                        "isEnd": true           
+					}
+				]
+			},
+            "noAnswer":{
+                "content": [
+                    "Oh... Ok!",
+                    {
+                        "expression": "null"           
+					},                    
+                    {
+                        "isEnd": true           
+					}
+				]
+			}
+        },
+        "corruptSoulInitial" :  {
+            "0" : {
+                "content" :[
+                    "What is wrong with this soul?",
+                    {
+                        "expression" : "witch_surprised"
+                    },
+                    {
+                        "isEnd": true
+                    }
+                ]
+            },
+            "initial": "0"
+        }
+    }
+}
