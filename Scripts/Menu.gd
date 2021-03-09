@@ -17,7 +17,7 @@ func _physics_process(_delta):
 
 func _on_Start_pressed():
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/Levels/Level1_Special.tscn")
+	get_tree().change_scene("res://Scenes/Levels/Level1.tscn")
 
 func _on_Options_pressed():
 	get_node("Options/back").grab_focus()

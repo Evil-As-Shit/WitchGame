@@ -84,7 +84,7 @@ position = Vector2( 0, -10.75 )
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -0.198425, 3.9685 )
+position = Vector2( 0, 14.702 )
 shape = SubResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
