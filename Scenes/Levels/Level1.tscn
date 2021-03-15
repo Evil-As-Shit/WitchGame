@@ -43,6 +43,9 @@ position = Vector2( -8, 8 )
 
 [node name="QRCode_Room1" parent="YSort" instance=ExtResource( 20 )]
 
+[node name="QRCode_Hallway1" parent="YSort" instance=ExtResource( 20 )]
+position = Vector2( -79, -153 )
+
 [node name="Object_Bookstack" parent="YSort" groups=[
 "Interactable",
 ] instance=ExtResource( 6 )]

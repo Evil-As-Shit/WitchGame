@@ -224,6 +224,7 @@ func show_text(text, target):
 			if (!player.interupt):
 				i = i+1
 				var newText = text.substr(0,i)
+#				var newText = text.visible_character(i)
 				t.start()
 				if (!currDialogue[1]["expression"] == "null"):
 					panelNode.get_node("nullLabel").set_text("")

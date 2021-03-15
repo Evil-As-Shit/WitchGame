@@ -25,36 +25,6 @@
                 "Flag": "soulInteracted"
             }
         },
-        "NPC2": {
-            "Start": {
-                "Name": "npc2",
-                "Flag": false
-            }
-        },
-        "NPC3": {
-            "Start": {
-                "Name": "npc3",
-                "Flag": false
-            }
-        },
-        "NPC4": {
-            "Start": {
-                "Name": "npc4",
-                "Flag": false
-            }
-        },
-        "NPC5": {
-            "Start": {
-                "Name": "npc5",
-                "Flag": false
-            }
-        },
-        "NPC6": {
-            "Start": {
-                "Name": "npc6",
-                "Flag": false
-            }
-        },
         "Object_Bookstack" : {
             "Start" : {
                 "Name" : "bookInspect",
@@ -68,6 +38,10 @@
         "Object_Soul": {
             "Start" : {
                 "Name" : "soulInitial",
+                "Flag" : false
+			},
+            "Repeat" : {
+                "Name" : "soulRepeat",
                 "Flag" : false
 			}
         },

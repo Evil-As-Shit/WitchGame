@@ -3,9 +3,9 @@
         "soulInitial": {
             "0": {
                 "content": [
-                    "Even the ghost has a hat!",
+                    "How do I collect this thing?",
                     {
-                        "expression": "witch_happy"           
+                        "expression": "witch_stare"           
 					},                    
                     {
                         "isEnd": true           
@@ -70,7 +70,7 @@
         "npc1_First": {
             "0": {
                 "content": [
-                    "happy birthday!",
+                    "hello!",
                     {
                         "expression": "npc1_happy"
                     },
@@ -81,170 +81,12 @@
             },
             "1":{
                 "content": [
-                    "Oh tanks!",
+                    "Hi!!",
                     {
                         "expression": "witch_happy"          
 					},
                     {
                        "isEnd": true             
-					}
-				]     
-			},
-            "initial": "0"
-        },
-        "npc2": {
-            "0": {
-                "content": [
-                    "happy birthday!",
-                    {
-                        "expression": "null"
-                    },
-                    {
-                        "divert": "1"           
-					}
-                ]
-            },
-            "1":{
-                "content": [
-                    "Thanks ur the best!",
-                    {
-                        "expression": "witch_openhappy"          
-					},
-                    {
-                       "isEnd": true             
-					}
-				]     
-			},
-            "initial": "0"
-        },
-        "npc3": {
-            "0": {
-                "content": [
-                    "hey, hppy bday! uwu",
-                    {
-                        "expression": "null"
-                    },
-                    {
-                        "divert": "1"           
-					}
-                ]
-            },
-            "1":{
-                "content": [
-                    "Thanks!",
-                    {
-                        "expression": "witch_openhappy"          
-					},
-                    {
-                       "isEnd": true             
-					}
-				]     
-			},
-            "initial": "0"
-        },
-        "npc4": {
-            "0": {
-                "content": [
-                    "I can't remember when my birthday is. Anyway, happy birthday!",
-                    {
-                        "expression": "null"
-                    },
-                    {
-                        "divert": "1"           
-					}
-                ]
-            },
-            "1":{
-                "content": [
-                    "Oh, thanks Dracula!",
-                    {
-                        "expression": "witch_happy"          
-					},
-                    {
-                        "divert": "2"              
-					}
-				]     
-			},
-            "2":{
-                "content": [
-                    "Don't forget the rent is due soon...",
-                    {
-                        "expression": "null"          
-					},
-                    {
-                        "divert": "3"              
-					}
-				]     
-			},
-            "3":{
-                "content": [
-                    "Oh right... thanks Dracula...",
-                    {
-                        "expression": "witch_stare"          
-					},
-                    {
-                        "isEnd" : true             
-					}
-				]     
-			},
-            "initial": "0"
-        },
-        "npc5": {
-            "0": {
-                "content": [
-                    "Wait who are you again?",
-                    {
-                        "expression": "witch_smug"
-                    },
-                    {
-                        "divert": "1"           
-					}
-                ]
-            },
-            "1":{
-                "content": [
-                    "Uhhh, happy birthday! When are we having cake?",
-                    {
-                        "expression": "null"          
-					},
-                    {
-                        "divert": "2"              
-					}
-				]     
-			},
-            "2":{
-                "content": [
-                    "...",
-                    {
-                        "expression": "witch_stare"          
-					},
-                    {
-                        "isEnd": true             
-					}
-				]        
-			},
-            "initial": "0"
-        },
-        "npc6": {
-            "0": {
-                "content": [
-                    "Did you know there is a 0.27% chance of dying on your birthday? Happy birthday!",
-                    {
-                        "expression": "null"
-                    },
-                    {
-                        "divert": "1"           
-					}
-                ]
-            },
-            "1":{
-                "content": [
-                    "... I did not know that.",
-                    {
-                        "expression": "witch_surprised"          
-					},
-                    {
-                        "isEnd" : true              
 					}
 				]     
 			},

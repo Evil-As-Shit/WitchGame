@@ -109,13 +109,12 @@ func _input(event):
 					if(!inApp):
 						enterApp()
 						soul_notification.hide()
+						phone.play("battleIN")
+						yield(phone,"animation_finished")
 						battApp1.show()
 						battApp2.show()
 						battApp3.show()
 						battApp4.show()
-						soul_notification.hide()
-						phone.play("battleIN")
-						yield(phone,"animation_finished")
 						battlemode = true
 						battApp1.grab_focus()
 #pressing e on QRApp
@@ -126,17 +125,18 @@ func _input(event):
 					if(!inApp):
 						qr_notification.hide()
 						enterApp()
-					if(notEnoughMem):
-						qrText = "You don't have enough memory!"
-						show_text(qrText,0.025)
-						yield(self,"text_finished")
-						notEnoughMem = false
-						phone.get_node("HomeButton").grab_focus()
-					elif(battleApps.has(QRCode.appName)):
-							qrText = "This app is already installed!"
+					if(battleApps.has(QRCode.appName)):
+							qrText = "This app is \nalready \ninstalled!"
 							yield(appscreen,"animation_finished")
 							show_text(qrText,0.025)
 							yield(self, "text_finished")
+							phone.get_node("HomeButton").grab_focus()
+					elif(notEnoughMem):
+						if(!texting):
+							qrText = "You don't have enough memory!"
+							show_text(qrText,0.025)
+							yield(self,"text_finished")
+							notEnoughMem = false
 							phone.get_node("HomeButton").grab_focus()
 					elif(choosing):
 						if(text1seen):
@@ -249,14 +249,16 @@ func updateApps():
 	for app in battleApps:
 		i += 1
 		var icon = get_node("PhoneUI/App"+str(i)+"/battleapps")
+		var notification = get_node("PhoneUI/App"+str(i)+"/notification")
 		if(!icon.is_visible()):
+			print(app)
 			icon.animation = str(app)
 			icon.show()
 			yieldToAni()
-			get_node("PhoneUI/App"+str(i)+"/notification").show()
-			get_node("PhoneUI/App"+str(i)+"/notification").play("notify")
-			yield(get_node("PhoneUI/App"+str(i)+"/notification"),"animation_finished")
-			get_node("PhoneUI/App"+str(i)+"/notification").hide()
+			notification.show()
+			notification.play("notify")
+			yield(notification,"animation_finished")
+			notification.hide()
 		else:
 			pass
 
@@ -320,6 +322,7 @@ func exitUI():
 func updateBattleApps(moves):
 	var i = 1
 	print(battleApps)
+	yield(phone,"animation_finished")
 	for app in battleApps:
 		i += 1
 		var icon = get_node("PhoneUI/BattleApp"+str(i)+"/battleapps")
@@ -458,6 +461,12 @@ func _on_BattleApp4_focus_entered():
 func _on_BattleApp4_focus_exited():
 	$PhoneUI/BattleApp4/Sprite.hide()
 
+func pressKey():
+	var a = InputEventKey.new()
+	a.scancode = KEY_E
+	a.pressed = true
+	Input.parse_input_event(a)
+
 func _on_Button_pressed():
 	var QRCode = get_node("../../YSort/QRCode_"+player.location)
 	$PhoneUI/AppScreen/Button/Sprite.play("selected")
@@ -466,15 +475,15 @@ func _on_Button_pressed():
 	$PhoneUI/AppScreen/Button2/Sprite.play("default")
 	$PhoneUI/AppScreen/Button.hide()
 	$PhoneUI/AppScreen/Button2.hide()
-	if(ghostCount >= QRCode.memCost):
+	if(ghostCount >= QRCode.memCost and !battleApps.has(QRCode.appName)):
 		appendApp(QRCode.appName)
 		ghostCount -= QRCode.memCost
 		exitApp()
 		qr_notification.show()
 	else:
-		show_text("...",0.25)
+#		show_text("...",0.25)
 		notEnoughMem = true
-		pass
+		pressKey()
 		
 func _on_Button2_pressed():
 	$PhoneUI/AppScreen/Button2/Sprite.play("selected")
