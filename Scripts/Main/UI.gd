@@ -2,7 +2,7 @@ extends Control
 
 
 var inUI = false
-var ghostCount = 1
+var ghostCount = 3
 var battlemode = false
 var texting = false
 var interupt = false
