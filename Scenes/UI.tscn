@@ -35,22 +35,22 @@ region = Rect2( 0, 0, 5, 5 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 5, 5 )
+region = Rect2( 5, 0, 5, 5 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 15 )
-region = Rect2( 5, 0, 5, 5 )
+region = Rect2( 0, 0, 5, 5 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
-"loop": true,
-"name": "Rest",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "Next",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "Rest",
 "speed": 5.0
 } ]
 
@@ -66,11 +66,6 @@ animations = [ {
 "name": "null",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "witch_smug",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "npc2_netrual",
@@ -81,14 +76,14 @@ animations = [ {
 "name": "npc1_happy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "witch_happy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "witch_upset",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "witch_smug",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 24 ) ],
@@ -106,14 +101,19 @@ animations = [ {
 "name": "witch_stare",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "witch_surprised",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "witch_angry",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "witch_surprised",
+"name": "witch_happy",
 "speed": 5.0
 } ]
 
@@ -127,7 +127,7 @@ region = Rect2( 0, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 63, 105 )
+region = Rect2( 126, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 9 )
@@ -135,11 +135,11 @@ region = Rect2( 63, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 9 )
-region = Rect2( 126, 0, 63, 105 )
+region = Rect2( 0, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 9 )
-region = Rect2( 126, 0, 63, 105 )
+region = Rect2( 0, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 9 )
@@ -147,7 +147,7 @@ region = Rect2( 63, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 63, 105 )
+region = Rect2( 126, 0, 63, 105 )
 
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
@@ -158,12 +158,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
-"name": "battleIN",
+"name": "battleOUT",
 "speed": 20.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": false,
-"name": "battleOUT",
+"name": "battleIN",
 "speed": 20.0
 } ]
 

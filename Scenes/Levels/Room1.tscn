@@ -12,7 +12,7 @@ texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -444, -202 )
-polygon = PoolVector2Array( 365.391, 252.61, 365, 251, 387, 205, 413, 202, 413, 203, 387, 206 )
+polygon = PoolVector2Array( 365.391, 252.61, 365, 251, 387, 205, 410, 202, 410, 203, 387, 206 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
 position = Vector2( -443.884, -201.876 )
@@ -26,7 +26,7 @@ polygon = PoolVector2Array( 434.138, 258.433, 437.374, 257.744, 430.395, 322.531
 
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -3 )
-polygon = PoolVector2Array( -20, 3, 63, -2, 63, -1, -20, 4 )
+polygon = PoolVector2Array( -17, 3, 63, -2, 63, -1, -17, 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
