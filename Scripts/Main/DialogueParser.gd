@@ -212,7 +212,11 @@ func _on_button_pressed(target):
 
 func show_text(text, target):
 	if(panelNode.is_visible()):
-#		var textSize = text.length()
+		if(text == "Charging phone..."):
+			if(ui.battery.frame == 10):
+				text = "Phone is already charged!!"
+			else:
+				ui.chargeBattery()
 		var t = Timer.new()
 		t.set_wait_time(0.025)
 		t.set_one_shot(true)
@@ -224,7 +228,6 @@ func show_text(text, target):
 			if (!player.interupt):
 				i = i+1
 				var newText = text.substr(0,i)
-#				var newText = text.visible_character(i)
 				t.start()
 				if (!currDialogue[1]["expression"] == "null"):
 					panelNode.get_node("nullLabel").set_text("")

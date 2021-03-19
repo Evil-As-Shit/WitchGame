@@ -44,6 +44,11 @@ onready var battApp1 = get_node("PhoneUI/BattleApp1")
 onready var battApp2 = get_node("PhoneUI/BattleApp2")
 onready var battApp3 = get_node("PhoneUI/BattleApp3")
 onready var battApp4 = get_node("PhoneUI/BattleApp4")
+onready var homeButton = get_node("PhoneUI/HomeButton")
+onready var corruptGhost = get_node("PhoneUI/AppScreen/corruptGhost")
+onready var battleMoves = get_node("PhoneUI/AppScreen/battleMoves")
+onready var ghostLife = get_node("PhoneUI/AppScreen/ghostLife")
+onready var battery = get_node("PhoneUI/Battery")
 onready var battleApps = []
 onready var soulMoves = {}
 onready var moves = []
@@ -76,6 +81,7 @@ func _unhandled_input(_event):
 				if(focused.get_node("battleapps").is_visible()):
 					focusedName = focused.get_node("battleapps").animation
 			print(focusedName)
+			print(player.location)
 		if(texting):
 #			print("interupted")
 			interupt = true
@@ -91,6 +97,7 @@ func _unhandled_input(_event):
 					player.interacting = true
 					get_tree().get_root().set_disable_input(true)
 					yield(audio, "finished")
+					batteryUse(1)
 					ghostCount += 1
 					player.interacting = false
 					get_tree().get_root().set_disable_input(false)
@@ -101,38 +108,55 @@ func _unhandled_input(_event):
 						randomizeMoves(soulCorrupt,soulMoves)
 						updateBattleApps()
 					else:
+						updateBattleApps()
 						pass
 #						print("soul already in the system")
 					if(battlemode):
-						focusedApp = get_focus_owner().name
-						if(focusedApp == "BattleApp1"):
-							print("BattleApp1 GOOO!!")
-						if(focusedApp == "BattleApp2"):
-							if(get_focus_owner().get_node("battleapps").is_visible()):
-								print(get_focus_owner().get_node("battleapps").animation)
-							else:
-								print("BattleApp2 GOOO!!")
-						if(focusedApp == "BattleApp3"):
-							if(get_focus_owner().get_node("battleapps").is_visible()):
-								print(get_focus_owner().get_node("battleapps").animation)
-							else:
-								print("BattleApp3 GOOO!!")
-						if(focusedApp == "BattleApp4"):
-							if(get_focus_owner().get_node("battleapps").is_visible()):
-								print(get_focus_owner().get_node("battleapps").animation)
-							else:
-								print("BattleApp4 GOOO!!")
+						if(get_focus_owner() != null):
+							focusedApp = get_focus_owner().name
+							if(focusedApp == "BattleApp1"):
+								print("BattleApp1 GOOO!!")
+							if(focusedApp == "BattleApp2"):
+								if(get_focus_owner().get_node("battleapps").is_visible()):
+									var battleMove = get_focus_owner().get_node("battleapps").animation
+									moveAniPlayer(battleMove)
+								else:
+									print("BattleApp2 GOOO!!")
+							if(focusedApp == "BattleApp3"):
+								if(get_focus_owner().get_node("battleapps").is_visible()):
+									var battleMove = get_focus_owner().get_node("battleapps").animation
+									moveAniPlayer(battleMove)
+								else:
+									print("BattleApp3 GOOO!!")
+							if(focusedApp == "BattleApp4"):
+								if(get_focus_owner().get_node("battleapps").is_visible()):
+									var battleMove = get_focus_owner().get_node("battleapps").animation
+									moveAniPlayer(battleMove)
+								else:
+									print("BattleApp4 GOOO!!")
+						else:
+							pass
 					if(!inApp):
 						enterApp()
 						soul_notification.hide()
 						phone.play("battleIN")
-						yield(phone,"animation_finished")
+						yield(appscreen,"animation_finished")
+						corruptGhost.show()
+						ghostLife.show()
+						ghostLife.play("default")
+						corruptGhost.play("intro")
+						get_tree().get_root().set_disable_input(true)
+						yield(corruptGhost,"animation_finished")
+						get_tree().get_root().set_disable_input(false)
+						corruptGhost.play("default")
+						yield(ghostLife,"animation_finished")
 						battApp1.show()
 						battApp2.show()
 						battApp3.show()
 						battApp4.show()
 						battlemode = true
 						battApp1.grab_focus()
+						ghostLife.stop()
 #pressing e on QRApp
 		elif(focusedName == "QRApp"):
 			var QRCode = get_node("../../YSort/QRCode_"+player.location)
@@ -190,14 +214,90 @@ func _unhandled_input(_event):
 		elif(focusedName == "Options"):
 			if(!inApp):
 				enterApp()
+				yield(appscreen,"animation_finished")
+				appscreen.get_node("Uninstall").show()
+				appscreen.get_node("Uninstall").grab_focus()
+#pressing e on TextApp
+		elif(focusedName == "TextApp"):
+			if(!inApp):
+				enterApp()
 				phone.get_node("HomeButton").grab_focus()
-				
+#pressing e on PixApp
+		elif(focusedName == "PixApp"):
+			if(!inApp):
+				enterApp()
+				phone.get_node("HomeButton").grab_focus()
+
 #exiting/entering phone ui
 	if (Input.is_action_just_pressed("UI") and !player.interacting and !inApp):
 		if (inUI == false):
 			enterUI()
 		else:
 			exitUI()
+
+func ghostAttack():
+	get_tree().get_root().set_disable_input(true)
+	var t = Timer.new()
+	t.set_wait_time(0.5)
+	t.set_one_shot(true)
+	self.add_child(t)
+	get_node("PhoneUI/"+focusedApp).release_focus()
+	t.start()
+	yield(t,"timeout")
+	corruptGhost.play("attack")
+	yield(corruptGhost,"animation_finished")
+	corruptGhost.play("default")
+	t.start()
+	yield(t,"timeout")
+	t.set_wait_time(0.1)
+	var phoneUse = 1
+	for i in phoneUse:
+		batteryUse(1)
+		t.start()
+		yield(t,"timeout")
+	get_node("PhoneUI/"+focusedApp).grab_focus()
+	get_tree().get_root().set_disable_input(false)
+
+func moveAniPlayer(move):
+	get_tree().get_root().set_disable_input(true)
+	var t = Timer.new()
+	t.set_wait_time(0.1)
+	t.set_one_shot(true)
+	self.add_child(t)
+	battleMoves.show()
+	battleMoves.play(move)
+	yield(battleMoves,"animation_finished")
+	battleMoves.hide()
+	battleMoves.play("null")
+	var damage = 2
+	for i in damage:
+		var life = ghostLife.frame
+		print(life)
+		life -= 1
+		ghostLife.frame = life
+		t.start()
+		yield(t,"timeout")
+
+	ghostAttack()
+	get_tree().get_root().set_disable_input(false)
+
+func chargeBattery():
+	get_tree().get_root().set_disable_input(true)
+	var t = Timer.new()
+	t.set_wait_time(0.5)
+	t.set_one_shot(true)
+	self.add_child(t)
+	for i in (10-battery.frame):
+		battery.frame += 1
+		t.start()
+		yield(t,"timeout")
+	get_tree().get_root().set_disable_input(false)
+
+func batteryUse(amount):
+	var life = battery.frame
+	print(life)
+	life -= amount
+	battery.frame = life
 
 #hide/show apps
 func hideApps():
@@ -300,11 +400,18 @@ func enterApp():
 	hideApps()
 
 func exitApp():
+	if(focusedName == "Options"):
+		appscreen.get_node("Uninstall").hide()
 	if(focusedName == "QRApp"):
 		text1seen = false
 		choosing = false
 	if(focusedName == "SoulApp" and soulCorrupt.nearSoulCorrupt):
 		phone.play("battleOUT")
+		corruptGhost.play("null")
+		corruptGhost.hide()
+		ghostLife.play("null")
+		ghostLife.hide()
+		battlemode = false
 		battApp1.hide()
 		battApp2.hide()
 		battApp3.hide()
@@ -322,10 +429,11 @@ func appendApp(appName):
 	if(!battleApps.has(appName)):
 		battleApps.append(appName)
 		updateApps()
+		batteryUse(1)
 
 func enterUI():
 	showApps()
-	QRApp.grab_focus()
+	homeButton.grab_focus()
 	audio.stream = load("res://Assets/sfx/phone open v4.wav")
 	audio.play()
 	player.canMove = false
@@ -558,4 +666,4 @@ func _on_HomeButton_pressed():
 		if($PhoneUI/AppScreen/Button.is_visible()):
 			$PhoneUI/AppScreen/Button.hide()
 			$PhoneUI/AppScreen/Button2.hide()
-	QRApp.grab_focus()
+	homeButton.grab_focus()

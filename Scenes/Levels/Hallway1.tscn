@@ -3,7 +3,6 @@
 [ext_resource path="res://Assets/world/hallway.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level1/Hallway1.gd" type="Script" id=2]
 
-
 [node name="Hallway1" type="StaticBody2D"]
 script = ExtResource( 2 )
 
@@ -20,6 +19,5 @@ polygon = PoolVector2Array( -57, 3, -81, -58, -66, -97, -89, -155, -48, -152, -1
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
-polygon = PoolVector2Array( 11, 159, 74, 154, 46, 100, 51, 57, 18, 4, -21, 1, 1, 60, -14, 98 )
+polygon = PoolVector2Array( 10, 157, 73, 152, 46, 100, 51, 57, 18, 4, -21, 1, 1, 60, -14, 98 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

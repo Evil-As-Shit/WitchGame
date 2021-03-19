@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -28,6 +28,10 @@
 [ext_resource path="res://Assets/ui/battle screen smol.png" type="Texture" id=26]
 [ext_resource path="res://Scenes/Phone/battleapps.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Phone/PhoneCursor.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Assets/objects/battle soul.png" type="Texture" id=29]
+[ext_resource path="res://Assets/ui/BattleApps/animations/fileshredderani.png" type="Texture" id=30]
+[ext_resource path="res://Assets/ui/battery.png" type="Texture" id=31]
+[ext_resource path="res://Assets/ui/soulbattery.png" type="Texture" id=32]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 15 )
@@ -56,11 +60,6 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "null",
@@ -81,6 +80,11 @@ animations = [ {
 "name": "witch_upset",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "witch_openhappy",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "witch_smug",
@@ -91,14 +95,14 @@ animations = [ {
 "name": "witch_tiltopenhappy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "witch_opensmug",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "witch_stare",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "witch_happy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ) ],
@@ -106,14 +110,14 @@ animations = [ {
 "name": "witch_surprised",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "witch_opensmug",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "witch_angry",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "witch_happy",
 "speed": 5.0
 } ]
 
@@ -154,7 +158,7 @@ animations = [ {
 "frames": [ SubResource( 7 ) ],
 "loop": false,
 "name": "default",
-"speed": 5.09
+"speed": 5.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
@@ -301,25 +305,49 @@ font_data = ExtResource( 16 )
 size = 50
 font_data = ExtResource( 16 )
 
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 25 )
-region = Rect2( 0, 0, 14, 6 )
+[sub_resource type="AtlasTexture" id=99]
+atlas = ExtResource( 31 )
+region = Rect2( 0, 0, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 25 )
-region = Rect2( 14, 0, 14, 6 )
+[sub_resource type="AtlasTexture" id=100]
+atlas = ExtResource( 31 )
+region = Rect2( 12, 0, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 25 )
-region = Rect2( 28, 0, 14, 6 )
+[sub_resource type="AtlasTexture" id=101]
+atlas = ExtResource( 31 )
+region = Rect2( 24, 0, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=52]
-atlas = ExtResource( 25 )
-region = Rect2( 42, 0, 14, 6 )
+[sub_resource type="AtlasTexture" id=102]
+atlas = ExtResource( 31 )
+region = Rect2( 36, 0, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=53]
-atlas = ExtResource( 25 )
-region = Rect2( 56, 0, 14, 6 )
+[sub_resource type="AtlasTexture" id=103]
+atlas = ExtResource( 31 )
+region = Rect2( 48, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=104]
+atlas = ExtResource( 31 )
+region = Rect2( 60, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=105]
+atlas = ExtResource( 31 )
+region = Rect2( 72, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=106]
+atlas = ExtResource( 31 )
+region = Rect2( 84, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=107]
+atlas = ExtResource( 31 )
+region = Rect2( 96, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=108]
+atlas = ExtResource( 31 )
+region = Rect2( 108, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=109]
+atlas = ExtResource( 31 )
+region = Rect2( 120, 0, 12, 4 )
 
 [sub_resource type="AtlasTexture" id=54]
 atlas = ExtResource( 25 )
@@ -327,7 +355,7 @@ region = Rect2( 70, 0, 14, 6 )
 
 [sub_resource type="SpriteFrames" id=55]
 animations = [ {
-"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 53 ), SubResource( 54 ) ],
+"frames": [ SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ), SubResource( 107 ), SubResource( 108 ), SubResource( 109 ), SubResource( 54 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -423,6 +451,208 @@ font_data = ExtResource( 16 )
 [sub_resource type="DynamicFont" id=75]
 size = 90
 font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=76]
+size = 20
+font_data = ExtResource( 16 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 29 )
+region = Rect2( 280, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 29 )
+region = Rect2( 210, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 29 )
+region = Rect2( 420, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 29 )
+region = Rect2( 350, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 29 )
+region = Rect2( 560, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 29 )
+region = Rect2( 490, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 29 )
+region = Rect2( 0, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 29 )
+region = Rect2( 70, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 29 )
+region = Rect2( 140, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 29 )
+region = Rect2( 0, 70, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 29 )
+region = Rect2( 70, 70, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 29 )
+region = Rect2( 140, 70, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=90]
+atlas = ExtResource( 29 )
+region = Rect2( 210, 70, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=91]
+atlas = ExtResource( 29 )
+region = Rect2( 280, 70, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=92]
+atlas = ExtResource( 29 )
+region = Rect2( 350, 70, 70, 70 )
+
+[sub_resource type="SpriteFrames" id=86]
+animations = [ {
+"frames": [ SubResource( 78 ), SubResource( 77 ), SubResource( 80 ), SubResource( 79 ), SubResource( 82 ), SubResource( 81 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 83 ), SubResource( 84 ), SubResource( 85 ) ],
+"loop": false,
+"name": "intro",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ) ],
+"loop": false,
+"name": "attack",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=122]
+atlas = ExtResource( 30 )
+region = Rect2( 220, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=123]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=124]
+atlas = ExtResource( 30 )
+region = Rect2( 110, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=125]
+atlas = ExtResource( 30 )
+region = Rect2( 165, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=126]
+atlas = ExtResource( 30 )
+region = Rect2( 55, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=93]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 30 )
+region = Rect2( 55, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=95]
+atlas = ExtResource( 30 )
+region = Rect2( 110, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=96]
+atlas = ExtResource( 30 )
+region = Rect2( 165, 0, 55, 55 )
+
+[sub_resource type="AtlasTexture" id=97]
+atlas = ExtResource( 30 )
+region = Rect2( 220, 0, 55, 55 )
+
+[sub_resource type="SpriteFrames" id=98]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ) ],
+"loop": true,
+"name": "decrypt",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 93 ), SubResource( 94 ), SubResource( 95 ), SubResource( 96 ), SubResource( 97 ) ],
+"loop": false,
+"name": "shredder",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=110]
+atlas = ExtResource( 32 )
+region = Rect2( 0, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=111]
+atlas = ExtResource( 32 )
+region = Rect2( 12, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=112]
+atlas = ExtResource( 32 )
+region = Rect2( 24, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=113]
+atlas = ExtResource( 32 )
+region = Rect2( 36, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=114]
+atlas = ExtResource( 32 )
+region = Rect2( 48, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=115]
+atlas = ExtResource( 32 )
+region = Rect2( 60, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=116]
+atlas = ExtResource( 32 )
+region = Rect2( 72, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=117]
+atlas = ExtResource( 32 )
+region = Rect2( 84, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=118]
+atlas = ExtResource( 32 )
+region = Rect2( 96, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=119]
+atlas = ExtResource( 32 )
+region = Rect2( 108, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=120]
+atlas = ExtResource( 32 )
+region = Rect2( 120, 0, 12, 4 )
+
+[sub_resource type="SpriteFrames" id=121]
+animations = [ {
+"frames": [ SubResource( 110 ), SubResource( 111 ), SubResource( 112 ), SubResource( 113 ), SubResource( 114 ), SubResource( 115 ), SubResource( 116 ), SubResource( 117 ), SubResource( 118 ), SubResource( 119 ), SubResource( 120 ) ],
+"loop": false,
+"name": "default",
+"speed": 20.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+} ]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -935,6 +1165,7 @@ visible = false
 position = Vector2( 25, 22 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 30 )
+frame = 1
 playing = true
 centered = false
 
@@ -943,7 +1174,6 @@ visible = false
 position = Vector2( -20, 22 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 32 )
-frame = 1
 playing = true
 centered = false
 
@@ -978,8 +1208,7 @@ __meta__ = {
 }
 
 [node name="Battery" type="AnimatedSprite" parent="Control/PhoneUI"]
-visible = false
-position = Vector2( 23, -49.8 )
+position = Vector2( 23, -46 )
 frames = SubResource( 55 )
 frame = 4
 
@@ -1066,6 +1295,39 @@ __meta__ = {
 [node name="Sprite" parent="Control/PhoneUI/AppScreen/Button2" instance=ExtResource( 28 )]
 position = Vector2( -0.800011, 0.799988 )
 scale = Vector2( 3.02857, 1.19999 )
+
+[node name="Uninstall" type="Button" parent="Control/PhoneUI/AppScreen"]
+visible = false
+margin_left = -26.2
+margin_top = -33.6
+margin_right = 186.8
+margin_bottom = -7.60001
+rect_scale = Vector2( 0.25, 0.25 )
+focus_neighbour_bottom = NodePath("../../HomeButton")
+custom_fonts/font = SubResource( 76 )
+text = "Uninstall Apps"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="corruptGhost" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
+visible = false
+position = Vector2( 0, -5 )
+frames = SubResource( 86 )
+animation = "attack"
+
+[node name="battleMoves" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
+visible = false
+position = Vector2( 3.8147e-06, -8 )
+frames = SubResource( 98 )
+animation = "decrypt"
+
+[node name="ghostLife" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
+visible = false
+position = Vector2( -8, -41 )
+frames = SubResource( 121 )
+animation = "null"
 [connection signal="focus_entered" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_entered"]
