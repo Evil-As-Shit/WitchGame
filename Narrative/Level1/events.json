@@ -1,6 +1,12 @@
 {
     "SceneName": "Level1",
     "eventTarget": {
+        "QRCode_Room1":{
+            "Start":{
+                "Name":"qrCode",
+                "Flag": false
+            }
+        },
         "Object_Door": {
             "Start": {
                 "Name": "doorInitial",
@@ -35,7 +41,7 @@
                 "Flag" : false
 			}
 		},
-        "Object_Soul": {
+        "Object_Soul_Room1": {
             "Start" : {
                 "Name" : "soulInitial",
                 "Flag" : false
@@ -49,9 +55,14 @@
             "Start": {
                 "Name": "outletRequest",
                 "Flag": false
+            },
+            "phoneCharged":{
+                "Name": "phoneCharged",
+                "Flag": "phoneCharged"
             }
+            
         },
-        "Object_Soul_Corrupted": {
+        "Object_Soul_Corrupted_Hallway1": {
             "Start": {
                 "Name": "corruptSoulInitial",
                 "Flag": false

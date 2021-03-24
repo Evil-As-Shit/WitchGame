@@ -1,5 +1,30 @@
 {
     "data": {
+        "qrCode":{
+            "0":{
+                "content":[
+                    "Looks like there is some texture missing here...",
+                    {
+                        "expression":"witch_surprised"
+                    },
+                    {
+                        "divert":"1"
+                    }
+                ]
+            },
+            "1":{
+                "content":[
+                    "I have an app that looks kinda similar!",
+                    {
+                        "expression":"witch_happy"
+                    },
+                    {
+                        "isEnd": true
+                    }
+                ]
+            },
+            "initial": "0"
+        },
         "soulInitial": {
             "0": {
                 "content": [
@@ -232,7 +257,7 @@
                         "expression": "null"           
 					},                   
                     {
-                        "isEnd": true           
+                        "isEnd": true      
 					}
 				]
 			},

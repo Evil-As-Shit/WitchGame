@@ -11,14 +11,19 @@ animations = [ {
 "name": "decrypt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "salt",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "shredder",
+"speed": 5.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "salt",
 "speed": 5.0
 } ]
 
@@ -26,4 +31,4 @@ animations = [ {
 visible = false
 position = Vector2( 10, 10 )
 frames = SubResource( 1 )
-animation = "decrypt"
+animation = "null"

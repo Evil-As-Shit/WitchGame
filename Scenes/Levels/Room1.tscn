@@ -26,7 +26,7 @@ polygon = PoolVector2Array( 434.138, 258.433, 437.374, 257.744, 430.395, 322.531
 
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -3 )
-polygon = PoolVector2Array( -17, 3, 63, -2, 63, -1, -17, 4 )
+polygon = PoolVector2Array( -17, 3, 63, -2, 63, 0, -17, 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

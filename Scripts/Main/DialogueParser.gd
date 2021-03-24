@@ -214,7 +214,8 @@ func show_text(text, target):
 	if(panelNode.is_visible()):
 		if(text == "Charging phone..."):
 			if(ui.battery.frame == 10):
-				text = "Phone is already charged!!"
+				text = "Phone is fully charged!"
+				pass
 			else:
 				ui.chargeBattery()
 		var t = Timer.new()

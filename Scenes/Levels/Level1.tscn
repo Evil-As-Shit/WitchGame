@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level1/BookStack.gd" type="Script" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Scripts/Main/ChoiceProcessor.gd" type="Script" id=12]
 [ext_resource path="res://Assets/objects/rug1.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/Objects/Object_Chair.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Objects/Object_Rug.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Objects/Object_Outlet.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Levels/Hallway1.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Objects/Outlet.gd" type="Script" id=18]
@@ -33,15 +32,20 @@ script = ExtResource( 12 )
 
 [node name="YSort" type="YSort" parent="."]
 
+[node name="Object_Door" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( -26, 1 )
+
 [node name="Hallway1" parent="YSort" instance=ExtResource( 17 )]
 position = Vector2( -69, -155 )
 
 [node name="Room1" parent="YSort" instance=ExtResource( 7 )]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -15, 28 )
+position = Vector2( -10, 44 )
 
-[node name="QRCode_Room1" parent="YSort" instance=ExtResource( 20 )]
+[node name="QRCode_Room1" parent="YSort" groups=[
+"Interactable",
+] instance=ExtResource( 20 )]
 
 [node name="QRCode_Hallway1" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( -79, -153 )
@@ -52,29 +56,22 @@ position = Vector2( -79, -153 )
 position = Vector2( -68, 45 )
 script = ExtResource( 2 )
 
-[node name="Object_Door" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( -26, 1 )
-
 [node name="NPC1" parent="YSort" instance=ExtResource( 10 )]
-position = Vector2( 25, 0 )
+position = Vector2( 30, 0 )
 
-[node name="Object_Soul" parent="YSort" instance=ExtResource( 4 )]
+[node name="Object_Soul_Room1" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 26, 38 )
 
-[node name="Object_Soul_Corrupted" parent="YSort" instance=ExtResource( 19 )]
+[node name="Object_Soul_Corrupted_Hallway1" parent="YSort" instance=ExtResource( 19 )]
 position = Vector2( -55, -149 )
 
 [node name="Object_Lamp" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 56, 0 )
 
-[node name="Rug" parent="YSort" instance=ExtResource( 15 )]
-visible = false
-position = Vector2( 61, 75 )
-
-[node name="Rug2" type="Node2D" parent="YSort"]
+[node name="Rug" type="Node2D" parent="YSort"]
 position = Vector2( -7, 18 )
 
-[node name="rug1" type="Sprite" parent="YSort/Rug2"]
+[node name="rug1" type="Sprite" parent="YSort/Rug"]
 position = Vector2( 0.5, 9 )
 texture = ExtResource( 13 )
 

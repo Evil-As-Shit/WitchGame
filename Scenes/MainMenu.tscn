@@ -235,7 +235,7 @@ __meta__ = {
 position = Vector2( 540, 360 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 12
+frame = 13
 playing = true
 
 [node name="TitleBox" type="NinePatchRect" parent="Control"]
@@ -360,6 +360,7 @@ __meta__ = {
 position = Vector2( 1117, 412 )
 frames = SubResource( 50 )
 animation = "walking"
+frame = 2
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
