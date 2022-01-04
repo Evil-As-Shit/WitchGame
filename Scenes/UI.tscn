@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=160 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/sfx/blip.wav" type="AudioStream" id=14]
 [ext_resource path="res://Assets/ui/nextindicator.png" type="Texture" id=15]
 [ext_resource path="res://Assets/ui/Fonts/Boo City.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://Assets/ui/OTB background.png" type="Texture" id=17]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_opensmug.png" type="Texture" id=18]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_happy.png" type="Texture" id=19]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_angry.png" type="Texture" id=20]
@@ -33,10 +34,6 @@
 [ext_resource path="res://Assets/ui/soulbattery.png" type="Texture" id=32]
 [ext_resource path="res://Scenes/Phone/notification.tscn" type="PackedScene" id=33]
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 5, 5 )
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 5, 5 )
@@ -45,16 +42,20 @@ region = Rect2( 0, 0, 5, 5 )
 atlas = ExtResource( 15 )
 region = Rect2( 5, 0, 5, 5 )
 
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 5, 5 )
+
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 3 ) ],
-"loop": true,
-"name": "Rest",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "Next",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "Rest",
 "speed": 5.0
 } ]
 
@@ -65,24 +66,9 @@ animations = [ {
 "name": "witch_smug",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [  ],
 "loop": true,
-"name": "witch_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "npc2_netrual",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "npc1_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "witch_upset",
+"name": "null",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -90,24 +76,9 @@ animations = [ {
 "name": "witch_stare",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "witch_opensmug",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 21 ) ],
 "loop": true,
 "name": "witch_surprised",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "witch_tiltopenhappy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 20 ) ],
@@ -115,9 +86,39 @@ animations = [ {
 "name": "witch_angry",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "null",
+"name": "witch_openhappy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "witch_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "witch_tiltopenhappy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "witch_opensmug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "witch_upset",
 "speed": 5.0
 } ]
 
@@ -415,6 +416,34 @@ region = Rect2( 315, 0, 63, 105 )
 atlas = ExtResource( 26 )
 region = Rect2( 378, 0, 63, 105 )
 
+[sub_resource type="AtlasTexture" id=120]
+atlas = ExtResource( 26 )
+region = Rect2( 0, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=121]
+atlas = ExtResource( 26 )
+region = Rect2( 63, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=122]
+atlas = ExtResource( 26 )
+region = Rect2( 126, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=123]
+atlas = ExtResource( 26 )
+region = Rect2( 189, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=124]
+atlas = ExtResource( 26 )
+region = Rect2( 252, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=125]
+atlas = ExtResource( 26 )
+region = Rect2( 315, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=126]
+atlas = ExtResource( 26 )
+region = Rect2( 378, 0, 63, 105 )
+
 [sub_resource type="SpriteFrames" id=74]
 animations = [ {
 "frames": [ SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), null ],
@@ -428,14 +457,14 @@ animations = [ {
 "speed": 20.0
 }, {
 "frames": [  ],
-"loop": true,
-"name": "otb",
-"speed": 5.0
-}, {
-"frames": [  ],
 "loop": false,
 "name": "null",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "otb",
+"speed": 20.0
 } ]
 
 [sub_resource type="DynamicFont" id=75]
@@ -531,15 +560,15 @@ animations = [ {
 "name": "decrypt",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
-"loop": true,
-"name": "attack",
-"speed": 10.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "null",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
+"loop": true,
+"name": "attack",
+"speed": 10.0
 }, {
 "frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 87 ) ],
 "loop": false,
@@ -1173,10 +1202,9 @@ frames = SubResource( 59 )
 frame = 7
 
 [node name="AppScreen" type="AnimatedSprite" parent="Control/PhoneUI"]
-visible = false
 frames = SubResource( 74 )
-animation = "close"
-offset = Vector2( 0.5, 0.5 )
+animation = "open"
+offset = Vector2( 0.5, 2.5 )
 
 [node name="Label" type="Label" parent="Control/PhoneUI/AppScreen"]
 margin_left = -25.0

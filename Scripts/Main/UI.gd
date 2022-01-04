@@ -175,7 +175,7 @@ func _input(_event):
 						player.interacting = true
 						focusedApp = get_focus_owner()
 						focusedApp.release_focus()
-						enterApp()
+						enterApp(focusedName)
 						soul_notification.play("null")
 						phone.play("battleIN")
 						yield(appscreen,"animation_finished")
@@ -210,7 +210,7 @@ func _input(_event):
 						yield(focusedApp.get_node("Sprite"),"animation_finished")
 						focusedApp.get_node("Sprite").play("default")
 						get_tree().get_root().set_disable_input(false)
-						enterApp()
+						enterApp(focusedName)
 					if(home):
 						pass
 					elif(battleApps.has(QRCode.appName)):
@@ -299,7 +299,7 @@ func _input(_event):
 				get_node("PhoneUI/Options/Sprite").play("selected")
 				yield(get_node("PhoneUI/Options/Sprite"),"animation_finished")
 				get_tree().get_root().set_disable_input(false)
-				enterApp()
+				enterApp(focusedName)
 				yield(appscreen,"animation_finished")
 				get_node("PhoneUI/Options/Sprite").play("default")
 				appscreen.get_node("Uninstall").show()
@@ -317,7 +317,7 @@ func _input(_event):
 				yield(focusedApp.get_node("Sprite"),"animation_finished")
 				focusedApp.get_node("Sprite").play("default")
 				get_tree().get_root().set_disable_input(false)
-				enterApp()
+				enterApp(focusedName)
 				phone.get_node("HomeButton").grab_focus()
 #pressing e on PixApp
 		elif(focusedName == "PixApp"):
@@ -328,7 +328,7 @@ func _input(_event):
 				yield(focusedApp.get_node("Sprite"),"animation_finished")
 				focusedApp.get_node("Sprite").play("default")
 				get_tree().get_root().set_disable_input(false)
-				enterApp()
+				enterApp(focusedName)
 				phone.get_node("HomeButton").grab_focus()
 #exiting/entering phone ui
 	if (Input.is_action_just_pressed("UI") and !player.interacting):
@@ -548,12 +548,14 @@ func updateApps():
 		notification.hide()
 		notification.play("default")
 
-func enterApp():
+func enterApp(appName):
 	get_tree().get_root().set_disable_input(true)
 	inApp = true
 	appscreen.show()
 	appscreen.play("open")
 	yieldToAni()
+	if(appName == "TextApp"):
+		appscreen.play("otb")
 	phoneLabel.set_text("")
 	yield(appscreen,"animation_finished")
 	hideApps()
