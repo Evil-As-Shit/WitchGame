@@ -16,10 +16,10 @@ func action(_inventory):
 
 func _on_Area2D_body_entered(body):
 	if(body.name == "Player"):
-		qrNotification.show()
+		qrNotification.play("default")
 		nearQR = true
 
 func _on_Area2D_body_exited(body):
 	if(body.name == "Player"):
-		qrNotification.hide()
+		qrNotification.play("null")
 		nearQR = false

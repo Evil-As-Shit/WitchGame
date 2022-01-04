@@ -72,7 +72,7 @@ func _physics_process(delta):
 
 #pressing e when in phone ui
 func _input(_event):
-	if(Input.is_action_just_pressed("e") and inUI and !player.interacting):
+	if(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false):
 		if(!inApp):
 			focused = get_focus_owner()
 			focusedName = focused.name
@@ -114,10 +114,10 @@ func _input(_event):
 						yield(focused.get_node("Sprite"),"animation_finished")
 						focused.get_node("Sprite").play("default")
 						get_tree().get_root().set_disable_input(false)
-						if(!corruptSouls.has(soulCorrupt.name)):
-							corruptSouls.append(soulCorrupt.name)
-							randomizeMoves(soulCorrupt.name,battleApps)
-							print("first time ghost")
+#						if(!corruptSouls.has(soulCorrupt.name)):
+						corruptSouls.append(soulCorrupt.name)
+						randomizeMoves(soulCorrupt.name,battleApps)
+#						print("first time ghost")
 						showBattleApps(soulCorrupt.name)
 					if(battlemode):
 						if(get_focus_owner() != null):
@@ -176,7 +176,7 @@ func _input(_event):
 						focusedApp = get_focus_owner()
 						focusedApp.release_focus()
 						enterApp()
-						soul_notification.hide()
+						soul_notification.play("null")
 						phone.play("battleIN")
 						yield(appscreen,"animation_finished")
 						corruptGhost.show()
@@ -204,7 +204,7 @@ func _input(_event):
 			if(QRCode != null):
 				if(QRCode.nearQR):
 					if(!inApp):
-						qr_notification.hide()
+						qr_notification.play("null")
 						get_tree().get_root().set_disable_input(true)
 						focusedApp.get_node("Sprite").play("selected")
 						yield(focusedApp.get_node("Sprite"),"animation_finished")
@@ -258,17 +258,56 @@ func _input(_event):
 					pass
 #pressing e on Options
 		elif(focusedName == "Options"):
-			if(!inApp):
-				focusedApp = get_focus_owner()
+			if(inApp):
+				if(!text1seen):
+					focusedApp = get_focus_owner().name
+				appscreen.get_node("Uninstall").hide()
+				print(focusedApp)
+				if(focusedApp != "HomeButton"):
+					if(battleApps.size() != 0):
+						if(choosing):
+							appscreen.play("close")
+							var i = 1
+							for app in battleApps:
+								get_node("PhoneUI/App"+str(i)).show()
+								i += 1
+							show_text("",0.025)
+							app1.grab_focus()
+							choosing = false
+						elif(text1seen and !choosing):
+							appscreen.play("close")
+							yieldToAni()
+							print(get_focus_owner().get_node("battleapps").get_animation())
+							battleApps.erase(get_focus_owner().get_node("battleapps").get_animation())
+							var QRCode = get_node("../../YSort/QRCode_"+player.location)
+							ghostCount += QRCode.memCost
+							updateApps()
+							choosing = false
+							text1seen = false
+							exitApp()
+						else:
+							show_text("Which App Would You Like To Uninstall???",0.025)
+							yield(self,"text_finished")
+							choosing = true
+							text1seen = true
+					else:
+						show_text("You don't have any apps to uninstall :p",0.025)
+						yield(self,"text_finished")
+						homeButton.grab_focus()
+			elif(!inApp):
 				get_tree().get_root().set_disable_input(true)
-				focusedApp.get_node("Sprite").play("selected")
-				yield(focusedApp.get_node("Sprite"),"animation_finished")
-				focusedApp.get_node("Sprite").play("default")
+				get_node("PhoneUI/Options/Sprite").play("selected")
+				yield(get_node("PhoneUI/Options/Sprite"),"animation_finished")
 				get_tree().get_root().set_disable_input(false)
 				enterApp()
 				yield(appscreen,"animation_finished")
+				get_node("PhoneUI/Options/Sprite").play("default")
 				appscreen.get_node("Uninstall").show()
 				appscreen.get_node("Uninstall").grab_focus()
+		elif(focusedName == "Uninstall"):
+#			appscreen.hide()
+#			print("uninstall")
+			pass
 #pressing e on TextApp
 		elif(focusedName == "TextApp"):
 			if(!inApp):
@@ -291,7 +330,6 @@ func _input(_event):
 				get_tree().get_root().set_disable_input(false)
 				enterApp()
 				phone.get_node("HomeButton").grab_focus()
-
 #exiting/entering phone ui
 	if (Input.is_action_just_pressed("UI") and !player.interacting):
 		if(!inApp):
@@ -486,25 +524,29 @@ func show_text(text,speed):
 #updates the app icons using the battleApps array
 func updateApps():
 	var i = 0
+	for n in 2:
+		if(get_node("PhoneUI/App"+str(n+1)+"/battleapps").is_visible()):
+			get_node("PhoneUI/App"+str(n+1)+"/battleapps").hide()
 	for apps in battleApps:
 		i += 1
 		var icon = get_node("PhoneUI/App"+str(i)+"/battleapps")
+		
+#		if(!icon.is_visible()):
+#		print(app)
+		icon.animation = str(apps)
+		icon.show()
+	if(choosing == true):
+		yieldToAni()
 		var notification = get_node("PhoneUI/App"+str(i)+"/notification")
-		if(!icon.is_visible()):
-#			print(app)
-			icon.animation = str(apps)
-			icon.show()
-			yieldToAni()
-			notification.show()
-			notification.play("notify")
-			get_tree().get_root().set_disable_input(true)
-			player.interacting = true
-			yield(notification,"animation_finished")
-			player.interacting = false
-			get_tree().get_root().set_disable_input(false)
-			notification.hide()
-		else:
-			pass
+		notification.show()
+		notification.play("notify")
+		get_tree().get_root().set_disable_input(true)
+		player.interacting = true
+		yield(notification,"animation_finished")
+		player.interacting = false
+		get_tree().get_root().set_disable_input(false)
+		notification.hide()
+		notification.play("default")
 
 func enterApp():
 	get_tree().get_root().set_disable_input(true)
@@ -535,7 +577,7 @@ func exitApp():
 			$PhoneUI/AppScreen/Button2.hide()
 		if(home):
 			home = false
-		qr_notification.show()
+		qr_notification.play("default")
 	if(focusedName == "SoulApp" and soulCorrupt.nearSoulCorrupt):
 		battlemode = false
 		soulCorrupt.get_node("Sprite").play("unfight")
@@ -557,7 +599,7 @@ func exitApp():
 		corruptGhost.hide()
 		ghostLife.play("null")
 		ghostLife.hide()
-		soul_notification.show()
+		soul_notification.play("default")
 		battApp1.hide()
 		battApp2.hide()
 		battApp3.hide()
@@ -747,6 +789,7 @@ func pressKey():
 	a.pressed = false
 	Input.parse_input_event(a)
 	
+	
 func _on_Button_pressed():
 	print("yes pressed")
 	player.interacting = true
@@ -763,7 +806,7 @@ func _on_Button_pressed():
 		appendApp(QRCode.appName)
 		ghostCount -= QRCode.memCost
 		exitApp()
-		qr_notification.show()
+		qr_notification.play("default")
 	if(ghostCount < QRCode.memCost and choosing):
 		print("notenoughmem")
 		notEnoughMem = true
@@ -783,7 +826,7 @@ func _on_Button2_pressed():
 	$PhoneUI/AppScreen/Button.hide()
 	$PhoneUI/AppScreen/Button2.hide()
 	exitApp()
-	qr_notification.show()
+	qr_notification.play("default")
 	get_tree().get_root().set_disable_input(false)
 	player.interacting = false
 
@@ -804,6 +847,7 @@ func _on_Button2_focus_exited():
 	$PhoneUI/AppScreen/Button2/Sprite.hide()
 
 func _on_HomeButton_pressed():
+	focusedApp = get_focus_owner().name
 	home = false
 	if(inApp):
 		audio.stream = load("res://Assets/sfx/menu back v2.wav")
@@ -812,3 +856,7 @@ func _on_HomeButton_pressed():
 #		if(focused.name == "QRApp"):
 #			qr_notification.show()
 	homeButton.grab_focus()
+
+func _on_Uninstall_pressed():
+	
+	pass # Replace with function body.

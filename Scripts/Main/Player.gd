@@ -95,7 +95,7 @@ func Movement(delta):
 		animationTree.set("parameters/Phone/blend_position", input_vector)
 		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
-		rayCast.set_cast_to(velocity)
+		rayCast.set_cast_to(velocity.normalized() * 16)
 	else:
 #		self.position.x = int(self.position.x)
 #		self.position.y = int(self.position.y)

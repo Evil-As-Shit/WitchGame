@@ -33,6 +33,10 @@
 [ext_resource path="res://Assets/ui/soulbattery.png" type="Texture" id=32]
 [ext_resource path="res://Scenes/Phone/notification.tscn" type="PackedScene" id=33]
 
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 5, 5 )
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 5, 5 )
@@ -41,38 +45,44 @@ region = Rect2( 0, 0, 5, 5 )
 atlas = ExtResource( 15 )
 region = Rect2( 5, 0, 5, 5 )
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 5, 5 )
-
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "Next",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
 "name": "Rest",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "Next",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [  ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "null",
+"name": "witch_smug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "witch_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "witch_upset",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "witch_smug",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -85,9 +95,14 @@ animations = [ {
 "name": "witch_opensmug",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "npc1_happy",
+"name": "witch_openhappy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "witch_surprised",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 24 ) ],
@@ -100,24 +115,9 @@ animations = [ {
 "name": "witch_angry",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [  ],
 "loop": true,
-"name": "witch_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "npc2_netrual",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "witch_surprised",
+"name": "null",
 "speed": 5.0
 } ]
 
@@ -203,6 +203,11 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 2.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=29]
@@ -215,6 +220,11 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 2.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "null",
+"speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=31]
@@ -418,6 +428,11 @@ animations = [ {
 "speed": 20.0
 }, {
 "frames": [  ],
+"loop": true,
+"name": "otb",
+"speed": 5.0
+}, {
+"frames": [  ],
 "loop": false,
 "name": "null",
 "speed": 5.0
@@ -516,6 +531,11 @@ animations = [ {
 "name": "decrypt",
 "speed": 10.0
 }, {
+"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
+"loop": true,
+"name": "attack",
+"speed": 10.0
+}, {
 "frames": [  ],
 "loop": true,
 "name": "null",
@@ -524,11 +544,6 @@ animations = [ {
 "frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 87 ) ],
 "loop": false,
 "name": "intro",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
-"loop": false,
-"name": "attack",
 "speed": 10.0
 } ]
 
@@ -579,15 +594,15 @@ animations = [ {
 "name": "decrypt",
 "speed": 5.0
 }, {
-"frames": [  ],
-"loop": true,
-"name": "null",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ) ],
 "loop": false,
 "name": "shredder",
 "speed": 10.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=108]
@@ -660,7 +675,7 @@ __meta__ = {
 
 [node name="Inventory" type="Sprite" parent="Control"]
 position = Vector2( 90, 36 )
-scale = Vector2( 4, 4 )
+scale = Vector2( 4.3717, 4.54342 )
 texture = ExtResource( 5 )
 script = ExtResource( 2 )
 
@@ -730,16 +745,17 @@ __meta__ = {
 }
 
 [node name="PhoneUI" type="AnimatedSprite" parent="Control"]
-position = Vector2( 199, 900 )
+position = Vector2( 200, 900 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 14 )
 playing = true
+offset = Vector2( 0.5, 0.5 )
 
 [node name="Options" type="Button" parent="Control/PhoneUI"]
 margin_left = -31.0
-margin_top = -51.4
+margin_top = -51.0
 margin_right = -11.0
-margin_bottom = -31.4
+margin_bottom = -31.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_scale = Vector2( 0.75, 0.75 )
@@ -754,6 +770,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/Options" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="App1" type="Button" parent="Control/PhoneUI"]
 margin_left = -32.0
@@ -772,11 +789,13 @@ __meta__ = {
 }
 
 [node name="Sprite" parent="Control/PhoneUI/App1" instance=ExtResource( 28 )]
+offset = Vector2( 0, 0 )
 
 [node name="battleapps" parent="Control/PhoneUI/App1" instance=ExtResource( 27 )]
 position = Vector2( 10, 9 )
 
 [node name="notification" parent="Control/PhoneUI/App1" instance=ExtResource( 33 )]
+animation = "default"
 
 [node name="App2" type="Button" parent="Control/PhoneUI"]
 margin_left = -17.0
@@ -798,9 +817,11 @@ __meta__ = {
 [node name="battleapps" parent="Control/PhoneUI/App2" instance=ExtResource( 27 )]
 
 [node name="notification" parent="Control/PhoneUI/App2" instance=ExtResource( 33 )]
+animation = "default"
 
 [node name="Sprite" parent="Control/PhoneUI/App2" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="App3" type="Button" parent="Control/PhoneUI"]
 margin_left = -2.0
@@ -822,9 +843,11 @@ __meta__ = {
 [node name="battleapps" parent="Control/PhoneUI/App3" instance=ExtResource( 27 )]
 
 [node name="notification" parent="Control/PhoneUI/App3" instance=ExtResource( 33 )]
+animation = "default"
 
 [node name="Sprite" parent="Control/PhoneUI/App3" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="App4" type="Button" parent="Control/PhoneUI"]
 margin_left = 13.0
@@ -844,6 +867,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/App4" instance=ExtResource( 28 )]
 position = Vector2( 3, 3.00006 )
+offset = Vector2( 0, 0 )
 
 [node name="App5" type="Button" parent="Control/PhoneUI"]
 margin_left = -32.0
@@ -863,6 +887,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/App5" instance=ExtResource( 28 )]
 position = Vector2( 3, 3.00002 )
+offset = Vector2( 0, 0 )
 
 [node name="App6" type="Button" parent="Control/PhoneUI"]
 margin_left = -17.0
@@ -883,6 +908,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/App6" instance=ExtResource( 28 )]
 position = Vector2( 3, 3.00006 )
+offset = Vector2( 0, 0 )
 
 [node name="App7" type="Button" parent="Control/PhoneUI"]
 margin_left = -2.0
@@ -903,6 +929,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/App7" instance=ExtResource( 28 )]
 position = Vector2( 3, 3.00002 )
+offset = Vector2( 0, 0 )
 
 [node name="App8" type="Button" parent="Control/PhoneUI"]
 margin_left = 13.0
@@ -922,6 +949,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/App8" instance=ExtResource( 28 )]
 position = Vector2( 3, 3.00002 )
+offset = Vector2( 0, 0 )
 
 [node name="QRApp" type="Button" parent="Control/PhoneUI"]
 margin_left = -32.0
@@ -940,6 +968,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/QRApp" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="TextApp" type="Button" parent="Control/PhoneUI"]
 margin_left = -17.0
@@ -959,6 +988,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/TextApp" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="PixApp" type="Button" parent="Control/PhoneUI"]
 margin_left = -2.0
@@ -978,6 +1008,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/PixApp" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="SoulApp" type="Button" parent="Control/PhoneUI"]
 margin_left = 13.0
@@ -996,6 +1027,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/SoulApp" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="BattleApp1" type="Button" parent="Control/PhoneUI"]
 margin_left = -32.0
@@ -1013,6 +1045,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="BattleApp2" type="Button" parent="Control/PhoneUI"]
 margin_left = -17.0
@@ -1033,6 +1066,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="BattleApp3" type="Button" parent="Control/PhoneUI"]
 margin_left = -2.0
@@ -1053,6 +1087,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/BattleApp3" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="BattleApp4" type="Button" parent="Control/PhoneUI"]
 margin_left = 13.0
@@ -1072,6 +1107,7 @@ __meta__ = {
 
 [node name="Sprite" parent="Control/PhoneUI/BattleApp4" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
 
 [node name="HomeButton" type="Button" parent="Control/PhoneUI"]
 margin_left = -4.2
@@ -1085,19 +1121,19 @@ __meta__ = {
 }
 
 [node name="Soul_Notification" type="AnimatedSprite" parent="Control/PhoneUI"]
-visible = false
 position = Vector2( 25, 22 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 28 )
+animation = "null"
 playing = true
 centered = false
 
 [node name="QR_Notification" type="AnimatedSprite" parent="Control/PhoneUI"]
-visible = false
 position = Vector2( -20, 22 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 30 )
-frame = 1
+animation = "null"
+frame = -1
 playing = true
 centered = false
 
@@ -1140,6 +1176,7 @@ frame = 7
 visible = false
 frames = SubResource( 74 )
 animation = "close"
+offset = Vector2( 0.5, 0.5 )
 
 [node name="Label" type="Label" parent="Control/PhoneUI/AppScreen"]
 margin_left = -25.0
@@ -1239,7 +1276,8 @@ __meta__ = {
 visible = false
 position = Vector2( 0, -5 )
 frames = SubResource( 96 )
-animation = "decrypt"
+animation = "attack"
+frame = 1
 
 [node name="battleMoves" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
 visible = false
@@ -1252,6 +1290,7 @@ visible = false
 position = Vector2( -8, -41 )
 frames = SubResource( 119 )
 animation = "null"
+
 [connection signal="focus_entered" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_entered"]
@@ -1293,3 +1332,4 @@ animation = "null"
 [connection signal="focus_entered" from="Control/PhoneUI/AppScreen/Button2" to="Control" method="_on_Button2_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/AppScreen/Button2" to="Control" method="_on_Button2_focus_exited"]
 [connection signal="pressed" from="Control/PhoneUI/AppScreen/Button2" to="Control" method="_on_Button2_pressed"]
+[connection signal="pressed" from="Control/PhoneUI/AppScreen/Uninstall" to="Control" method="_on_Uninstall_pressed"]

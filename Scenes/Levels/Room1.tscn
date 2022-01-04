@@ -33,4 +33,5 @@ polygon = PoolVector2Array( -17, 3, 63, -2, 63, 0, -17, 4 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 visible = false
 polygon = PoolVector2Array( -78, 49, -57, 3, 63, -4, 39, 59 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

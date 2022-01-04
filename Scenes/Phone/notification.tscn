@@ -8,6 +8,11 @@ region = Rect2( 0, 0, 2, 10 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
 "frames": [ null, SubResource( 1 ), null, SubResource( 1 ), null, SubResource( 1 ), null, SubResource( 1 ), null, SubResource( 1 ) ],
 "loop": false,
 "name": "notify",

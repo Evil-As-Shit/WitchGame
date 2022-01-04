@@ -297,8 +297,8 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -12 )
 texture = ExtResource( 2 )
-vframes = 5
 hframes = 4
+vframes = 5
 frame = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -335,7 +335,6 @@ position = Vector2( -5.72205e-05, -0.06369 )
 shape = SubResource( 34 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, 0.75 )
 enabled = true
 cast_to = Vector2( 0, 5 )

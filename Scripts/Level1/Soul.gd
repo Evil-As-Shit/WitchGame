@@ -15,18 +15,18 @@ func action(_inventory):
 func _on_icon_animation_finished():
 	if ($icon.animation == "Collected"):
 		get_node("../../DialogueParser").choices["level1Soul"] = true
-		soulNotification.hide()
+		soulNotification.play("null")
 		nearSoul = false
 		queue_free()
 
 
 func _on_Area2D_body_entered(body):
 	if(body.name == "Player"):
-		soulNotification.show()
+		soulNotification.play("default")
 		nearSoul = true
 
 func _on_Area2D_body_exited(body):
 	if(body.name == "Player"):
-		soulNotification.hide()
+		soulNotification.play("null")
 		nearSoul = false
 

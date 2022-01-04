@@ -186,39 +186,39 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 160, 80, 80 )
+region = Rect2( 0, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 6 )
-region = Rect2( 80, 160, 80, 80 )
+region = Rect2( 80, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 6 )
-region = Rect2( 0, 80, 80, 80 )
+region = Rect2( 160, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 6 )
-region = Rect2( 80, 80, 80, 80 )
+region = Rect2( 240, 80, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 6 )
-region = Rect2( 160, 80, 80, 80 )
+region = Rect2( 0, 160, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 6 )
-region = Rect2( 240, 80, 80, 80 )
+region = Rect2( 80, 160, 80, 80 )
 
 [sub_resource type="SpriteFrames" id=50]
 animations = [ {
-"frames": [ SubResource( 44 ), SubResource( 45 ) ],
-"loop": true,
-"name": "sitting",
-"speed": 1.0
-}, {
-"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ) ],
+"frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "sitting",
+"speed": 1.0
 } ]
 
 [node name="MainMenu" type="Node2D"]
@@ -235,7 +235,7 @@ __meta__ = {
 position = Vector2( 540, 360 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 13
+frame = 14
 playing = true
 
 [node name="TitleBox" type="NinePatchRect" parent="Control"]
@@ -281,8 +281,8 @@ margin_right = 124.0
 margin_bottom = 26.0
 focus_neighbour_bottom = NodePath("../Options")
 mouse_filter = 2
-custom_fonts/font = SubResource( 40 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 40 )
 button_mask = 0
 text = "Start Game"
 __meta__ = {
@@ -296,8 +296,8 @@ margin_bottom = 56.0
 focus_neighbour_top = NodePath("../Start")
 focus_neighbour_bottom = NodePath("../Exit")
 mouse_filter = 2
-custom_fonts/font = SubResource( 41 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 41 )
 button_mask = 0
 text = "Options"
 
@@ -307,8 +307,8 @@ margin_right = 124.0
 margin_bottom = 86.0
 focus_neighbour_top = NodePath("../Options")
 mouse_filter = 2
-custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 42 )
 button_mask = 0
 text = "Exit"
 
@@ -334,8 +334,8 @@ margin_right = 212.0
 margin_bottom = 149.0
 focus_neighbour_top = NodePath("../CheckBox")
 mouse_filter = 2
-custom_fonts/font = SubResource( 42 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 42 )
 button_mask = 0
 text = "Back"
 __meta__ = {
@@ -367,6 +367,7 @@ playing = true
 stream = ExtResource( 2 )
 volume_db = -18.648
 autoplay = true
+
 [connection signal="pressed" from="Control/TitleBox/VBoxContainer/Start" to="Control" method="_on_Start_pressed"]
 [connection signal="pressed" from="Control/TitleBox/VBoxContainer/Options" to="Control" method="_on_Options_pressed"]
 [connection signal="pressed" from="Control/TitleBox/VBoxContainer/Exit" to="Control" method="_on_Exit_pressed"]

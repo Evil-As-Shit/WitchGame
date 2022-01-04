@@ -43,16 +43,12 @@ position = Vector2( -69, -155 )
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( -10, 44 )
 
-[node name="QRCode_Room1" parent="YSort" groups=[
-"Interactable",
-] instance=ExtResource( 20 )]
+[node name="QRCode_Room1" parent="YSort" groups=["Interactable"] instance=ExtResource( 20 )]
 
 [node name="QRCode_Hallway1" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( -79, -153 )
 
-[node name="Object_Bookstack" parent="YSort" groups=[
-"Interactable",
-] instance=ExtResource( 6 )]
+[node name="Object_Bookstack" parent="YSort" groups=["Interactable"] instance=ExtResource( 6 )]
 position = Vector2( -68, 45 )
 script = ExtResource( 2 )
 
