@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=2]
+[gd_scene load_steps=161 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -61,9 +61,9 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 23 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "witch_smug",
+"name": "witch_openhappy",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -71,39 +71,14 @@ animations = [ {
 "name": "null",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "witch_stare",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "witch_surprised",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "witch_angry",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "witch_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "witch_tiltopenhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "npc1_happy",
+"name": "witch_smug",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -111,20 +86,45 @@ animations = [ {
 "name": "npc2_netrual",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "witch_opensmug",
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": true,
+"name": "witch_surprised",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "witch_upset",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "witch_tiltopenhappy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "witch_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "witch_stare",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "witch_opensmug",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=6]
-size = 24
-font_data = ExtResource( 4 )
+size = 20
+font_data = ExtResource( 16 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 9 )
@@ -154,6 +154,10 @@ region = Rect2( 63, 0, 63, 105 )
 atlas = ExtResource( 9 )
 region = Rect2( 126, 0, 63, 105 )
 
+[sub_resource type="AtlasTexture" id=127]
+atlas = ExtResource( 9 )
+region = Rect2( 189, 0, 63, 105 )
+
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
 "frames": [ SubResource( 7 ) ],
@@ -170,6 +174,11 @@ animations = [ {
 "loop": false,
 "name": "battleIN",
 "speed": 20.0
+}, {
+"frames": [ SubResource( 127 ) ],
+"loop": true,
+"name": "ded",
+"speed": 5.0
 } ]
 
 [sub_resource type="StyleBoxEmpty" id=15]
@@ -417,32 +426,32 @@ atlas = ExtResource( 26 )
 region = Rect2( 378, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=120]
-atlas = ExtResource( 26 )
-region = Rect2( 0, 0, 63, 105 )
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 59, 75 )
 
 [sub_resource type="AtlasTexture" id=121]
-atlas = ExtResource( 26 )
-region = Rect2( 63, 0, 63, 105 )
+atlas = ExtResource( 17 )
+region = Rect2( 59, 0, 59, 75 )
 
 [sub_resource type="AtlasTexture" id=122]
-atlas = ExtResource( 26 )
-region = Rect2( 126, 0, 63, 105 )
+atlas = ExtResource( 17 )
+region = Rect2( 118, 0, 59, 75 )
 
 [sub_resource type="AtlasTexture" id=123]
-atlas = ExtResource( 26 )
-region = Rect2( 189, 0, 63, 105 )
+atlas = ExtResource( 17 )
+region = Rect2( 177, 0, 59, 75 )
 
 [sub_resource type="AtlasTexture" id=124]
-atlas = ExtResource( 26 )
-region = Rect2( 252, 0, 63, 105 )
+atlas = ExtResource( 17 )
+region = Rect2( 236, 0, 59, 75 )
 
 [sub_resource type="AtlasTexture" id=125]
-atlas = ExtResource( 26 )
-region = Rect2( 315, 0, 63, 105 )
+atlas = ExtResource( 17 )
+region = Rect2( 295, 0, 59, 75 )
 
 [sub_resource type="AtlasTexture" id=126]
-atlas = ExtResource( 26 )
-region = Rect2( 378, 0, 63, 105 )
+atlas = ExtResource( 17 )
+region = Rect2( 354, 0, 59, 75 )
 
 [sub_resource type="SpriteFrames" id=74]
 animations = [ {
@@ -461,7 +470,7 @@ animations = [ {
 "name": "null",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ), ExtResource( 17 ) ],
+"frames": [ SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ) ],
 "loop": false,
 "name": "otb",
 "speed": 20.0
@@ -565,14 +574,14 @@ animations = [ {
 "name": "null",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
-"loop": true,
-"name": "attack",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 87 ) ],
 "loop": false,
 "name": "intro",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
+"loop": true,
+"name": "attack",
 "speed": 10.0
 } ]
 
@@ -717,9 +726,9 @@ position = Vector2( -13.0147, 0 )
 position = Vector2( 13.0011, 0 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control"]
-margin_left = 385.0
+margin_left = 350.0
 margin_top = 500.0
-margin_right = 848.0
+margin_right = 830.0
 margin_bottom = 628.0
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 160, 61 )
@@ -729,9 +738,6 @@ patch_margin_right = 5
 patch_margin_bottom = 5
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/NinePatchRect"]
 stream = ExtResource( 14 )
@@ -739,42 +745,37 @@ volume_db = -21.174
 pitch_scale = 1.29
 
 [node name="nextIcon" type="AnimatedSprite" parent="Control/NinePatchRect"]
-position = Vector2( 438, 103 )
+position = Vector2( 454, 103 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 4 )
 animation = "Rest"
 centered = false
 
 [node name="expressions" type="AnimatedSprite" parent="Control/NinePatchRect"]
-position = Vector2( 39, 71 )
-scale = Vector2( 2, 2 )
+position = Vector2( 58, 59 )
+scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 5 )
 animation = "null"
 
 [node name="Label" type="Label" parent="Control/NinePatchRect"]
-margin_left = 122.0
-margin_top = 19.0
-margin_right = 392.0
-margin_bottom = 94.0
+margin_left = 145.0
+margin_top = 12.0
+margin_right = 447.0
+margin_bottom = 124.0
 custom_fonts/font = SubResource( 6 )
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="nullLabel" type="Label" parent="Control/NinePatchRect"]
-margin_left = 45.0
-margin_top = 23.0
-margin_right = 430.0
-margin_bottom = 91.0
+margin_left = 20.0
+margin_top = 15.0
+margin_right = 453.0
+margin_bottom = 116.0
 custom_fonts/font = SubResource( 6 )
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+percent_visible = 0.0
 
 [node name="PhoneUI" type="AnimatedSprite" parent="Control"]
-position = Vector2( 200, 900 )
+position = Vector2( 180, 900 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 14 )
 playing = true
@@ -793,9 +794,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 15 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/Options" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
@@ -813,9 +811,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 16 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/App1" instance=ExtResource( 28 )]
 offset = Vector2( 0, 0 )
@@ -991,9 +986,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 24 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/QRApp" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
@@ -1050,9 +1042,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 27 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/SoulApp" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
@@ -1068,9 +1057,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 24 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
@@ -1108,9 +1094,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 24 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="battleapps" parent="Control/PhoneUI/BattleApp3" instance=ExtResource( 27 )]
 
@@ -1180,9 +1163,6 @@ margin_right = 67.4
 margin_bottom = -19.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = SubResource( 45 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Memory" type="Label" parent="Control/PhoneUI"]
 margin_left = 15.2
@@ -1199,11 +1179,12 @@ __meta__ = {
 [node name="Battery" type="AnimatedSprite" parent="Control/PhoneUI"]
 position = Vector2( 23, -46 )
 frames = SubResource( 59 )
-frame = 7
+frame = 3
 
 [node name="AppScreen" type="AnimatedSprite" parent="Control/PhoneUI"]
 frames = SubResource( 74 )
-animation = "open"
+animation = "null"
+frame = -1
 offset = Vector2( 0.5, 2.5 )
 
 [node name="Label" type="Label" parent="Control/PhoneUI/AppScreen"]
@@ -1214,9 +1195,7 @@ margin_bottom = 213.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = SubResource( 75 )
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+percent_visible = 0.0
 
 [node name="Button" type="Button" parent="Control/PhoneUI/AppScreen"]
 visible = false
@@ -1231,9 +1210,6 @@ custom_styles/focus = SubResource( 76 )
 shortcut_in_tooltip = false
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="Control/PhoneUI/AppScreen/Button"]
 margin_left = 1.60001
@@ -1243,9 +1219,6 @@ margin_bottom = 19.2
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = SubResource( 77 )
 text = "YES"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/AppScreen/Button" instance=ExtResource( 28 )]
 position = Vector2( -3.2, 0.800026 )
@@ -1302,14 +1275,13 @@ __meta__ = {
 
 [node name="corruptGhost" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
 visible = false
-position = Vector2( 0, -5 )
+position = Vector2( 0, -2.99988 )
 frames = SubResource( 96 )
 animation = "attack"
-frame = 1
 
 [node name="battleMoves" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
 visible = false
-position = Vector2( 3.8147e-06, -8 )
+position = Vector2( 0.400005, -5.59985 )
 frames = SubResource( 107 )
 animation = "decrypt"
 

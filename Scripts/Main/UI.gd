@@ -15,6 +15,7 @@ var focused = null
 var notEnoughMem = false
 var home = false
 var focusedName = null
+var texttween = Tween.new()
 signal text_finished
 onready var player = get_node("../../YSort/Player")
 onready var soul = null
@@ -53,16 +54,19 @@ onready var battleApps = []
 onready var soulMoves = {}
 onready var corruptSouls = []
 onready var phoneLabel = get_node("PhoneUI/AppScreen/Label")
-
+onready var dialogue = get_node("../../DialogueParser")
 
 func _ready():
+	texttween.connect("tween_step",self,"On_Tween_Step")
+	texttween.connect("tween_completed",self,"Tween_Completed")
+	appscreen.get_node("Label").add_child(texttween)
 	pass
 
 func _physics_process(delta):
 	if (inUI):
-		phone.position = phone.position.linear_interpolate(Vector2(200,430), delta*10) 
+		phone.position = phone.position.linear_interpolate(Vector2(180,430), delta*10) 
 	if (!inUI):
-		phone.position = phone.position.linear_interpolate(Vector2(200,900), delta*10) 
+		phone.position = phone.position.linear_interpolate(Vector2(180,900), delta*10) 
 	var osTime = OS.get_time()
 	var hour = String(osTime.hour)
 	var minute = String(osTime.minute)
@@ -277,14 +281,15 @@ func _input(_event):
 						elif(text1seen and !choosing):
 							appscreen.play("close")
 							yieldToAni()
-							print(get_focus_owner().get_node("battleapps").get_animation())
-							battleApps.erase(get_focus_owner().get_node("battleapps").get_animation())
-							var QRCode = get_node("../../YSort/QRCode_"+player.location)
-							ghostCount += QRCode.memCost
-							updateApps()
-							choosing = false
-							text1seen = false
-							exitApp()
+							if(get_focus_owner().get_node_or_null("battleapps") != null):
+								get_focus_owner().get_node("battleapps").get_animation()
+								battleApps.erase(get_focus_owner().get_node("battleapps").get_animation())
+								var QRCode = get_node("../../YSort/QRCode_"+player.location)
+								ghostCount += QRCode.memCost
+								updateApps()
+								exitApp()
+							else:
+								exitApp()
 						else:
 							show_text("Which App Would You Like To Uninstall???",0.025)
 							yield(self,"text_finished")
@@ -403,10 +408,10 @@ func ghostDecrypt():
 	corruptGhost.play("null")
 	player.interacting = false
 	exitApp()
-	
 	pass
 
 func chargeBattery():
+	var tempaudio = get_node("NinePatchRect/AudioStreamPlayer")
 	get_tree().get_root().set_disable_input(true)
 	var t = Timer.new()
 	t.set_wait_time(0.5)
@@ -415,16 +420,19 @@ func chargeBattery():
 	for i in (10-battery.frame):
 		battery.frame += 1
 		t.start()
+		tempaudio.play()
 		yield(t,"timeout")
 	battery.frame = 11
 	t.set_wait_time(0.1)
 	t.start()
+	tempaudio.play()
 	yield(t,"timeout")
 	battery.frame = 10
 	t.start()
 	yield(t,"timeout")
 	battery.frame = 11
 	t.start()
+	tempaudio.play()
 	yield(t,"timeout")
 	battery.frame = 10
 	t.start()
@@ -439,17 +447,25 @@ func chargeBattery():
 	t.start()
 	yield(t,"timeout")
 	battery.frame = 10
+	dialogue.texting = false
 	get_tree().get_root().set_disable_input(false)
 #	get_node("../../DialogueParser").choices["phoneCharged"] = true
-	pressKey()
+#	pressKey()
 
 func batteryUse(amount):
 	var life = battery.frame
 #	print(life)
 	life -= amount
 	battery.frame = life
-
+	if(battery.frame == 0):
+		phoneDed()
 #hide/show apps
+
+func phoneDed():
+	phone.animation = "ded"
+	#todo: disable the things
+	pass
+
 func hideApps():
 	app1.hide()
 	app2.hide()
@@ -492,34 +508,68 @@ func yieldToAni():
 	yield(appscreen,"animation_finished")
 	get_tree().get_root().set_disable_input(false)
 
-#show text routine
-func show_text(text,speed):
-	if(inApp):
-		var t = Timer.new()
-		t.set_wait_time(speed)
-		t.set_one_shot(true)
-		self.add_child(t)
-		var i = 0
-		var textaudio = get_node("NinePatchRect/AudioStreamPlayer")
-		var label = appscreen.get_node("Label")
-		label.set_text("")
-		texting = true
-		for letter in text:
-			if (!interupt):
-				i = i+1
-				var newText = text.substr(0,i)
-				t.start()
-				label.set_text("")
-				label.set_text(newText)
-				textaudio.play()
-				yield(t,"timeout")
-			else:
-				label.set_text(text)
-				textaudio.play()
-				interupt = false
-				break
-		texting =false
+func On_Tween_Step(_object,_key,_elapsed,_value):
+	if(!interupt):
+		if(texting):
+			var tempaudio = get_node("NinePatchRect/AudioStreamPlayer")
+			tempaudio.play()
+	else:
+		texting = false
+		texttween.remove_all()
+		texttween.emit_signal("tween_completed")
 		emit_signal("text_finished")
+#		texttween.reset_all()
+		print("tweens_stopped")
+		interupt = false
+		appscreen.get_node("Label").set_percent_visible(1)
+
+func Tween_Completed(_object,_key):
+	print("tween completed")
+	emit_signal("text_finished")
+	texttween.remove_all()
+	texting = false
+#show text routine
+
+func show_text(text, _target):
+	if(inApp):
+		var length = text.length()
+		var t = 0.025
+		var temptime = length * t
+		appscreen.get_node("Label").set_text(text)
+		texting = true
+		appscreen.get_node("Label").set_percent_visible(0)
+		if(!interupt):
+			texttween.interpolate_property(appscreen.get_node("Label"),"percent_visible",0,1,temptime,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+			texttween.start()
+
+
+#func show_text(text,speed):
+#	if(inApp):
+#		var t = Timer.new()
+#		t.set_wait_time(speed)
+#		t.set_one_shot(true)
+#		self.add_child(t)
+#		var i = 0
+#		var textaudio = get_node("NinePatchRect/AudioStreamPlayer")
+#		var label = appscreen.get_node("Label")
+#		label.set_text("")
+#		texting = true
+#		for letter in text:
+#			if (!interupt):
+#				i = i+1
+#				var newText = text.substr(0,i)
+#				t.start()
+#				label.set_text("")
+#				label.set_text(newText)
+#				textaudio.play()
+#				yield(t,"timeout")
+#			else:
+#				label.set_text(text)
+#				textaudio.play()
+#				interupt = false
+#				break
+#		texting =false
+#		emit_signal("text_finished")
 
 #updates the app icons using the battleApps array
 func updateApps():
@@ -549,6 +599,8 @@ func updateApps():
 		notification.play("default")
 
 func enterApp(appName):
+	audio.stream = load("res://Assets/sfx/phone open v4.wav")
+	audio.play()
 	get_tree().get_root().set_disable_input(true)
 	inApp = true
 	appscreen.show()
@@ -562,13 +614,18 @@ func enterApp(appName):
 	get_tree().get_root().set_disable_input(false)
 
 func exitApp():
+	audio.stream = load("res://Assets/sfx/menu back v2.wav")
+	audio.play()
 	get_tree().get_root().set_disable_input(true)
+	texttween.remove_all()
 	player.interacting = true
 	if($PhoneUI/AppScreen/Button.is_visible()):
 		$PhoneUI/AppScreen/Button.hide()
 		$PhoneUI/AppScreen/Button2.hide()
 	if(focusedName == "Options"):
 		appscreen.get_node("Uninstall").hide()
+		choosing = false
+		text1seen = false
 	if(focusedName == "QRApp"):
 		text1seen = false
 		choosing = false

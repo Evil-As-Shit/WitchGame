@@ -13,6 +13,7 @@ var events = {}
 var choices = {}
 var texting = false
 var endOfLine = false
+var texttween = Tween.new()
 
 onready var player = get_node("../YSort/Player")
 onready var ui = get_node("../UI/Control")
@@ -26,6 +27,10 @@ func _ready():
 	if(panelNode.is_visible()):
 		panelNode.hide()
 		player.interacting = false
+	texttween.connect("tween_step",self,"On_Tween_Step")
+	texttween.connect("tween_completed",self,"Tween_Completed")
+	panelNode.get_node("Label").add_child(texttween)
+#	panelNode.get_node("nullLabel").add_child(texttween)
 
 #func lock_next_button(isHidden):
 #	if(isHidden):
@@ -94,19 +99,22 @@ func display_choices(_text):
 			var choiceButton = Button.new()
 			choiceButton.set_name("ChoiceButton" + str(i))
 			panelNode.add_child(choiceButton)
-#			choiceButton.flat = true
-			choiceButton.set_position(Vector2(100 + 75*i, 50))
-			choiceButton.set_size(Vector2(100, 40))
+			choiceButton.set_position(Vector2(100 + 75*i, 55))
+			choiceButton.set_size(Vector2(55,35))
 			choiceButton.flat = true
 			choiceButton.connect("pressed", self, "_on_button_pressed", [choiceButton])
-			var choiceLabel = Label.new()
-			choiceLabel.set_name("ChoiceLabel" + str(i))
-			panelNode.get_node("ChoiceButton" + str(i)).add_child(choiceLabel)
-			choiceLabel.set_position(Vector2(15,15))
-			choiceLabel.set_size(Vector2(50, 50))
-			choiceLabel.set_autowrap(true)
-			choiceLabel.set_text(currChoices[i]["option"])
-			choiceLabel.set("custom_fonts/font", new_font)
+			choiceButton.set("custom_colors/font_color_focus",Color(1,1,0,1))
+			choiceButton.text = (currChoices[i]["option"])
+			choiceButton.set("custom_styles/focus",StyleBoxEmpty.new())
+			choiceButton.set("custom_fonts/font", new_font)
+#			var choiceLabel = Label.new()
+#			choiceLabel.set_name("ChoiceLabel" + str(i))
+#			panelNode.get_node("ChoiceButton" + str(i)).add_child(choiceLabel)
+#			choiceLabel.set_position(Vector2(10,10))
+#			choiceLabel.set_size(Vector2(50, 50))
+#			choiceLabel.set_autowrap(true)
+##			choiceLabel.set_text(currChoices[i]["option"])
+#			choiceLabel.set("custom_fonts/font", new_font)
 		for i in range(0, currChoices.size()):
 			var Button = panelNode.get_node("ChoiceButton" + str(i))
 			Button.set_focus_neighbour(MARGIN_BOTTOM, Button.get_path())
@@ -210,45 +218,85 @@ func _on_button_pressed(target):
 		panelNode.get_node("expressions").play(currDialogue[1]["expression"])
 		show_text(textToShow, target)
 
+func On_Tween_Step(object,key,_elapsed,_value):
+	if(!player.interupt):
+		if(texting):
+			var audio = panelNode.get_node("AudioStreamPlayer")
+			audio.play()
+	else:
+#		texttween.remove_all()
+		texttween.emit_signal("tween_completed")
+#		texttween.reset_all()
+		print("tweens_stopped")
+		Tween_Completed(object,key)
+		player.interupt = false
+		if (!currDialogue[1]["expression"] == "null"):
+			panelNode.get_node("Label").set_percent_visible(1)
+		else:
+			panelNode.get_node("nullLabel").set_percent_visible(1)
+
+func Tween_Completed(object,_key):
+	print("tween completed")
+	print(object.get_text())
+	texttween.remove_all()
+	if(object.get_text() == "Charging phone..." and !ui.battery.frame == 10):
+		ui.chargeBattery()
+	else:
+		texting = false
+
 func show_text(text, target):
 	if(panelNode.is_visible()):
 		if(text == "Charging phone..."):
 			if(ui.battery.frame == 10):
-				text = "Phone is fully charged!"
-				pass
-			else:
-				ui.chargeBattery()
-		var t = Timer.new()
-		t.set_wait_time(0.025)
-		t.set_one_shot(true)
-		self.add_child(t)
-		var i = 0
-		var audio = panelNode.get_node("AudioStreamPlayer")
+				text = "Phone is already charged!"
+		var length = text.length()
+		var t = 0.025
+		var time = length * t
+		panelNode.get_node("Label").set_text(text)
+		panelNode.get_node("nullLabel").set_text(text)
 		texting = true
-		for letter in text:
-			if (!player.interupt):
-				i = i+1
-				var newText = text.substr(0,i)
-				t.start()
-				if (!currDialogue[1]["expression"] == "null"):
-					panelNode.get_node("nullLabel").set_text("")
-					panelNode.get_node("Label").set_text(newText)
-				else:
-					panelNode.get_node("Label").set_text("")
-					panelNode.get_node("nullLabel").set_text(newText)
-				audio.play()
-				yield(t,"timeout")
+		panelNode.get_node("Label").set_percent_visible(0)
+		panelNode.get_node("nullLabel").set_percent_visible(0)
+		if(!player.interupt):
+			if (!currDialogue[1]["expression"] == "null"):
+				panelNode.get_node("nullLabel").set_text("")
+				texttween.interpolate_property(panelNode.get_node("Label"),"percent_visible",0,1,time,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+				texttween.start()
 			else:
-				if (!currDialogue[1]["expression"] == "null"):
-					panelNode.get_node("nullLabel").set_text("")
-					panelNode.get_node("Label").set_text(text)
-				else:
-					panelNode.get_node("Label").set_text("")
-					panelNode.get_node("nullLabel").set_text(text)
-				audio.play()
-				player.interupt = false
-				break
-		texting =false
+				panelNode.get_node("Label").set_text("")
+				texttween.interpolate_property(panelNode.get_node("nullLabel"),"percent_visible",0,1,time,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+				texttween.start()
+		yield(texttween,"tween_completed")
+#		var t = Timer.new()
+#		t.set_wait_time(0.025)
+#		t.set_one_shot(true)
+#		self.add_child(t)
+#		var i = 0
+#		var audio = panelNode.get_node("AudioStreamPlayer")
+#		texting = true
+#		for letter in text:
+#			if (!player.interupt):
+#				i += 1
+#				var newText = text.substr(0,i)
+#				t.start()
+#				if (!currDialogue[1]["expression"] == "null"):
+#					panelNode.get_node("nullLabel").set_text("")
+#					panelNode.get_node("Label").set_text(newText)
+#				else:
+#					panelNode.get_node("Label").set_text("")
+#					panelNode.get_node("nullLabel").set_text(newText)
+#				audio.play()
+#				yield(t,"timeout")
+#			else:
+#				if (!currDialogue[1]["expression"] == "null"):
+#					panelNode.get_node("nullLabel").set_text("")
+#					panelNode.get_node("Label").set_text(text)
+#				else:
+#					panelNode.get_node("Label").set_text("")
+#					panelNode.get_node("nullLabel").set_text(text)
+#				audio.play()
+#				player.interupt = false
+#				break
 		if(isChoice and isChoiceDialogue):
 			_on_button_pressed(target)
 

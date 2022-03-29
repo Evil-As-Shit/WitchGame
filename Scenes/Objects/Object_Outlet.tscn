@@ -26,9 +26,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5.29731, 3.71578 )
 
-[node name="Outlet" type="Node2D" groups=[
-"Interactable",
-]]
+[node name="Outlet" type="Node2D" groups=["Interactable"]]
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -5, 1 )

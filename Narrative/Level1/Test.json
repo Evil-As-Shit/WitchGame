@@ -257,9 +257,20 @@
                         "expression": "null"           
 					},                   
                     {
-                        "isEnd": true      
+                        "isEnd": true
 					}
 				]
+			},
+            "1":{
+                "content": [
+                    "Phone is Charged!!!",
+                    {
+                        "expression": "null"          
+					},
+                    {
+                       "isEnd": true             
+					}
+				]     
 			},
             "noAnswer":{
                 "content": [
