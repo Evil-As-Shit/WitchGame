@@ -190,14 +190,6 @@ size = 20
 outline_color = Color( 1, 1, 1, 0 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="AtlasTexture" id=48]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 160, 80, 80 )
-
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 6 )
-region = Rect2( 80, 160, 80, 80 )
-
 [sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 80, 80, 80 )
@@ -214,17 +206,25 @@ region = Rect2( 160, 80, 80, 80 )
 atlas = ExtResource( 6 )
 region = Rect2( 240, 80, 80, 80 )
 
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 160, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 6 )
+region = Rect2( 80, 160, 80, 80 )
+
 [sub_resource type="SpriteFrames" id=50]
 animations = [ {
-"frames": [ SubResource( 48 ), SubResource( 49 ) ],
-"loop": true,
-"name": "sitting",
-"speed": 1.0
-}, {
 "frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 48 ), SubResource( 49 ) ],
+"loop": true,
+"name": "sitting",
+"speed": 1.0
 } ]
 
 [node name="MainMenu" type="Node2D"]
@@ -241,7 +241,7 @@ __meta__ = {
 position = Vector2( 540, 360 )
 frames = SubResource( 38 )
 animation = "New Anim"
-frame = 18
+frame = 36
 playing = true
 
 [node name="TitleBox" type="NinePatchRect" parent="Control"]
@@ -366,7 +366,6 @@ __meta__ = {
 position = Vector2( 1117, 412 )
 frames = SubResource( 50 )
 animation = "walking"
-frame = 1
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
