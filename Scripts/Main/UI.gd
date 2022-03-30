@@ -76,7 +76,7 @@ func _physics_process(delta):
 
 #pressing e when in phone ui
 func _input(_event):
-	if(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false):
+	if(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false and battery.frame != 0):
 		if(!inApp):
 			focused = get_focus_owner()
 			focusedName = focused.name
@@ -94,21 +94,22 @@ func _input(_event):
 			soul = get_node_or_null("../../YSort/Object_Soul_"+player.location)
 			if(soul != null):
 				if(soul.nearSoul):
-					get_tree().get_root().set_disable_input(true)
-					focused.get_node("Sprite").play("selected")
-					yield(focused.get_node("Sprite"),"animation_finished")
-					focused.get_node("Sprite").play("default")
-					get_node("../../YSort/Object_Soul_"+player.location+"/icon").animation = "Collected"
-					soul_collected.play("collected")
-					audio.stream = load("res://Assets/sfx/find ghost v2.wav")
-					audio.play()
-					player.interacting = true
-					yield(soul_collected,"animation_finished")
-					soul_collected.play("idle")
 					batteryUse(1)
-					ghostCount += 1
-					player.interacting = false
-					get_tree().get_root().set_disable_input(false)
+					if(!battery.frame == 0):
+						get_tree().get_root().set_disable_input(true)
+						focused.get_node("Sprite").play("selected")
+						yield(focused.get_node("Sprite"),"animation_finished")
+						focused.get_node("Sprite").play("default")
+						get_node("../../YSort/Object_Soul_"+player.location+"/icon").animation = "Collected"
+						soul_collected.play("collected")
+						audio.stream = load("res://Assets/sfx/find ghost v2.wav")
+						audio.play()
+						player.interacting = true
+						yield(soul_collected,"animation_finished")
+						soul_collected.play("idle")
+						ghostCount += 1
+						player.interacting = false
+						get_tree().get_root().set_disable_input(false)
 			soulCorrupt = get_node_or_null("../../YSort/Object_Soul_Corrupted_"+player.location)
 			if(soulCorrupt != null):
 				if(soulCorrupt.nearSoulCorrupt):
@@ -460,9 +461,22 @@ func batteryUse(amount):
 	if(battery.frame == 0):
 		phoneDed()
 #hide/show apps
+func phoneAlive():
+	var nodes = phone.get_children()
+	for i in nodes:
+		i.show()
+	showApps()
+	phone.animation = "default"
 
 func phoneDed():
 	phone.animation = "ded"
+	var nodes = phone.get_children()
+	if(inApp):
+		exitApp()
+	for i in nodes:
+		i.hide()
+	hideApps()
+	battery.show()
 	#todo: disable the things
 	pass
 
@@ -653,7 +667,8 @@ func exitApp():
 			s.set_name("Object_Soul_"+player.location)
 		else:
 			soulCorrupt.get_node("Sprite").play("default")
-		phone.play("battleOUT")
+		if(battery.frame != 0):
+			phone.play("battleOUT")
 		corruptGhost.play("null")
 		corruptGhost.hide()
 		ghostLife.play("null")
@@ -664,7 +679,8 @@ func exitApp():
 		battApp3.hide()
 		battApp4.hide()
 	player.interacting = false
-	showApps()
+	if(battery.frame != 0):
+		showApps()
 	appscreen.play("close")
 	yieldToAni()
 	focusedApp = null
@@ -676,13 +692,17 @@ func exitApp():
 	get_tree().get_root().set_disable_input(false)
 
 func appendApp(name):
-	if(!battleApps.has(name)):
+	batteryUse(1)
+	if(!battleApps.has(name) and battery.frame != 0):
 		battleApps.append(name)
 		updateApps()
-		batteryUse(1)
+
 
 func enterUI():
-	showApps()
+	if(battery.frame != 0):
+		if(phone.animation == "ded"):
+			phoneAlive()
+		showApps()
 	homeButton.grab_focus()
 	audio.stream = load("res://Assets/sfx/phone open v4.wav")
 	audio.play()
@@ -692,7 +712,8 @@ func enterUI():
 	inUI = true
 
 func exitUI():
-	phone.animation = "default"
+	if(battery.frame != 0):
+		phone.animation = "default"
 	appscreen.animation = "null"
 	appscreen.hide()
 	hideApps()

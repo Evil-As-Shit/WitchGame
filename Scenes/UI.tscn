@@ -61,19 +61,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "null",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "witch_angry",
+"name": "witch_openhappy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ) ],
@@ -81,24 +76,19 @@ animations = [ {
 "name": "witch_smug",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "npc2_netrual",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "npc1_happy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 21 ) ],
 "loop": true,
 "name": "witch_surprised",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "witch_upset",
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "witch_angry",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 24 ) ],
@@ -119,6 +109,16 @@ animations = [ {
 "frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "witch_opensmug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "witch_upset",
 "speed": 5.0
 } ]
 
@@ -632,15 +632,15 @@ animations = [ {
 "name": "decrypt",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ) ],
-"loop": false,
-"name": "shredder",
-"speed": 10.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "null",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ) ],
+"loop": false,
+"name": "shredder",
+"speed": 10.0
 } ]
 
 [sub_resource type="AtlasTexture" id=108]
@@ -1184,7 +1184,6 @@ frame = 3
 [node name="AppScreen" type="AnimatedSprite" parent="Control/PhoneUI"]
 frames = SubResource( 74 )
 animation = "null"
-frame = -1
 offset = Vector2( 0.5, 2.5 )
 
 [node name="Label" type="Label" parent="Control/PhoneUI/AppScreen"]
