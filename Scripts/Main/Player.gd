@@ -43,7 +43,8 @@ func _input(_event):
 #			print("texting rn")
 			interupt = true
 		elif(choosing):
-			print("choose carefully!")
+#			print("choose carefully!")
+			pass
 		elif(interacting and canInteract):
 			print("can interact and interacting")
 			dialogue._on_button_pressed(target)

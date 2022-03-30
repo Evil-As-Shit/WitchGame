@@ -418,6 +418,9 @@ func chargeBattery():
 	t.set_wait_time(0.5)
 	t.set_one_shot(true)
 	self.add_child(t)
+	t.start()
+	yield(t,"timeout")
+	t.set_wait_time(0.2)
 	for i in (10-battery.frame):
 		battery.frame += 1
 		t.start()

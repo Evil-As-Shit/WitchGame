@@ -120,17 +120,17 @@ func display_choices(_text):
 			Button.set_focus_neighbour(MARGIN_BOTTOM, Button.get_path())
 			Button.set_focus_neighbour(MARGIN_TOP, Button.get_path())
 			if(i == 0):
-				print("1")
+#				print("1")
 				Button.grab_focus()
 				Button.set_focus_neighbour(MARGIN_LEFT, Button.get_path())
 				Button.set_focus_neighbour(MARGIN_RIGHT, panelNode.get_node("ChoiceButton" + str(i+1)).get_path())
 			elif(i < currChoices.size() and i != currChoices.size()):
-				print("2", i, currChoices.size())
+#				print("2", i, currChoices.size())
 				Button.set_focus_neighbour(MARGIN_LEFT, panelNode.get_node("ChoiceButton" + str(i-1)).get_path())
 				if(panelNode.has_node("ChoiceButton" + str(i+1))):
 					Button.set_focus_neighbour(MARGIN_RIGHT, panelNode.get_node("ChoiceButton" + str(i+1)).get_path())
 			elif(i == currChoices.size()):
-				print("3")
+#				print("3")
 				Button.set_focus_neighbour(MARGIN_LEFT, panelNode.get_node("ChoiceButton" + str(i-1)).get_path())
 				Button.set_focus_neighbour(MARGIN_RIGHT, Button.get_path())
 
@@ -143,7 +143,7 @@ func clear_choices(shouldClear):
 #		print(button)
 		if(button != null):
 			if(shouldClear):
-				print("clearing button", button.name)
+#				print("clearing button", button.name)
 				button.queue_free()
 			else:
 				button.hide()
@@ -172,7 +172,7 @@ func set_next_dialogue(target):
 		if(linkType == "divert"):
 			currDialogue = initStory[currDialogue[2]["divert"]]["content"]
 		elif(linkType == "linkPath" and isChoiceDialogue):
-			print("getting choices...")
+#			print("getting choices...")
 			get_choices()
 		elif(linkType == "linkPath" and !isChoiceDialogue):
 #			print("here")
@@ -200,13 +200,13 @@ func get_link_type(dialogue):
 	return linkType
 
 func _on_button_pressed(target):
-	print(target)
+#	print(target)
 	if(isEnd):
 		panelNode.hide()
 		player.interacting = false
 	var textToShow = ""
 	panelNode.get_node("expressions").play("null")
-	print("choice clear:", !(isChoice and !isChoiceDialogue))
+#	print("choice clear:", !(isChoice and !isChoiceDialogue))
 	clear_choices(!(isChoice and !isChoiceDialogue))
 	set_next_dialogue(target)
 	if (isChoice and !isChoiceDialogue):
@@ -227,7 +227,7 @@ func On_Tween_Step(object,key,_elapsed,_value):
 #		texttween.remove_all()
 		texttween.emit_signal("tween_completed")
 #		texttween.reset_all()
-		print("tweens_stopped")
+#		print("tweens_stopped")
 		Tween_Completed(object,key)
 		player.interupt = false
 		if (!currDialogue[1]["expression"] == "null"):
@@ -236,8 +236,8 @@ func On_Tween_Step(object,key,_elapsed,_value):
 			panelNode.get_node("nullLabel").set_percent_visible(1)
 
 func Tween_Completed(object,_key):
-	print("tween completed")
-	print(object.get_text())
+#	print("tween completed")
+#	print(object.get_text())
 	texttween.remove_all()
 	if(object.get_text() == "Charging phone..." and !ui.battery.frame == 10):
 		ui.chargeBattery()
