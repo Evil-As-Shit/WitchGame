@@ -16,7 +16,10 @@ var notEnoughMem = false
 var home = false
 var focusedName = null
 var texttween = Tween.new()
+var phoneDed = false
+var batteryLife = 1
 signal text_finished
+onready var blip = load("res://Assets/sfx/blip.wav")
 onready var player = get_node("../../YSort/Player")
 onready var soul = null
 onready var soulCorrupt = null
@@ -60,6 +63,8 @@ func _ready():
 	texttween.connect("tween_step",self,"On_Tween_Step")
 	texttween.connect("tween_completed",self,"Tween_Completed")
 	appscreen.get_node("Label").add_child(texttween)
+	battery.frame = batteryLife
+	batteryUse(0)
 	pass
 
 func _physics_process(delta):
@@ -76,7 +81,7 @@ func _physics_process(delta):
 
 #pressing e when in phone ui
 func _input(_event):
-	if(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false and battery.frame != 0):
+	if(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false and phoneDed == false):
 		if(!inApp):
 			focused = get_focus_owner()
 			focusedName = focused.name
@@ -95,7 +100,7 @@ func _input(_event):
 			if(soul != null):
 				if(soul.nearSoul):
 					batteryUse(1)
-					if(!battery.frame == 0):
+					if(phoneDed == false):
 						get_tree().get_root().set_disable_input(true)
 						focused.get_node("Sprite").play("selected")
 						yield(focused.get_node("Sprite"),"animation_finished")
@@ -140,7 +145,7 @@ func _input(_event):
 									focusedApp.get_node("Sprite").play("selected")
 									yield(focusedApp.get_node("Sprite"),"animation_finished")
 									focusedApp.get_node("Sprite").play("default")
-									get_tree().get_root().set_disable_input(false)
+#									get_tree().get_root().set_disable_input(false)
 									var battleMove = get_focus_owner().get_node("battleapps").animation
 									player.interacting = true
 									get_tree().get_root().set_disable_input(true)
@@ -153,7 +158,7 @@ func _input(_event):
 									focusedApp.get_node("Sprite").play("selected")
 									yield(focusedApp.get_node("Sprite"),"animation_finished")
 									focusedApp.get_node("Sprite").play("default")
-									get_tree().get_root().set_disable_input(false)
+#									get_tree().get_root().set_disable_input(false)
 									var battleMove = get_focus_owner().get_node("battleapps").animation
 									player.interacting = true
 									get_tree().get_root().set_disable_input(true)
@@ -166,7 +171,7 @@ func _input(_event):
 									focusedApp.get_node("Sprite").play("selected")
 									yield(focusedApp.get_node("Sprite"),"animation_finished")
 									focusedApp.get_node("Sprite").play("default")
-									get_tree().get_root().set_disable_input(false)
+#									get_tree().get_root().set_disable_input(false)
 									var battleMove = get_focus_owner().get_node("battleapps").animation
 									player.interacting = true
 									get_tree().get_root().set_disable_input(true)
@@ -219,15 +224,15 @@ func _input(_event):
 					if(home):
 						pass
 					elif(battleApps.has(QRCode.appName)):
-							print("app already installed")
-							qrText = "This app is \nalready \ninstalled!"
+#							print("app already installed")
+							qrText = "This app is already installed!"
 							yield(appscreen,"animation_finished")
 							show_text(qrText,0.025)
 							yield(self, "text_finished")
 							phone.get_node("HomeButton").grab_focus()
 							home = true
 					elif(notEnoughMem):
-							print("not enough mem")
+#							print("not enough mem")
 							qrText = "You don't have enough memory!"
 							show_text(qrText,0.025)
 							yield(self,"text_finished")
@@ -235,7 +240,7 @@ func _input(_event):
 							home = true
 					elif(choosing):
 						if(text1seen):
-							print("second screen")
+#							print("second screen")
 		#					get_tree().get_root().set_input_as_handled()
 							qrText = "Download App? Cost:"+str(QRCode.memCost)+"GB"
 							show_text(qrText,0.025)
@@ -248,13 +253,14 @@ func _input(_event):
 #							print("1")
 #							pass
 					elif(!text1seen):
-						print("first screen")
+#						print("first screen")
 		#				get_tree().get_root().set_input_as_handled()
 						qrText = "A sketchy app is available to download from the undernet!"
 						yield(appscreen,"animation_finished")
+						show_text(qrText,0.025)
 						text1seen = true
 						choosing = true
-						show_text(qrText,0.025)
+						
 					else:
 #						print("2")
 						pass
@@ -338,15 +344,16 @@ func _input(_event):
 				phone.get_node("HomeButton").grab_focus()
 #exiting/entering phone ui
 	if (Input.is_action_just_pressed("UI") and !player.interacting):
+#		print("inApp",inApp)
+#		print("texting",texting)
 		if(!inApp):
 			if (inUI == false):
 				enterUI()
 			else:
 				exitUI()
 		elif(texting):
-#			print("interupted")
 			interupt = true
-			print("interupt")
+#			print("interupted")
 #			get_tree().get_root().set_input_as_handled()
 		elif(inApp):
 			audio.stream = load("res://Assets/sfx/menu back v2.wav")
@@ -367,11 +374,11 @@ func ghostAttack():
 	corruptGhost.play("default")
 	t.set_wait_time(0.1)
 	var phoneUse = 1
-	for i in phoneUse:
-		batteryUse(1)
+	batteryUse(phoneUse)
+	if(batteryLife != 0):
 		t.start()
 		yield(t,"timeout")
-	get_node("PhoneUI/"+focusedApp.name).grab_focus()
+		get_node("PhoneUI/"+focusedApp.name).grab_focus()
 	get_tree().get_root().set_disable_input(false)
 	player.interacting = false
 
@@ -399,7 +406,6 @@ func moveAniPlayer(move):
 		yield(t,"timeout")
 		if(ghostLife.frame == 0):
 			ghostDecrypt()
-			pass
 	if(ghostLife.frame > 0):
 		ghostAttack()
 
@@ -412,8 +418,10 @@ func ghostDecrypt():
 	pass
 
 func chargeBattery():
-	var tempaudio = get_node("NinePatchRect/AudioStreamPlayer")
 	get_tree().get_root().set_disable_input(true)
+	battery.show()
+	battery.stop()
+	battery.animation = "default"
 	var t = Timer.new()
 	t.set_wait_time(0.5)
 	t.set_one_shot(true)
@@ -421,67 +429,63 @@ func chargeBattery():
 	t.start()
 	yield(t,"timeout")
 	t.set_wait_time(0.2)
-	for i in (10-battery.frame):
-		battery.frame += 1
+	for i in (10-batteryLife):
+		audio.stream = blip
+		audio.play()
+		batteryLife += 1
+		battery.frame = batteryLife
 		t.start()
-		tempaudio.play()
 		yield(t,"timeout")
+	battery.animation = "chargin"
+	battery.play()
+	audio.stream = load("res://Assets/sfx/fullycharged.wav")
+	audio.play()
+	yield(battery,"animation_finished")
+	battery.stop()
+	battery.animation = "default"
 	battery.frame = 11
-	t.set_wait_time(0.1)
-	t.start()
-	tempaudio.play()
-	yield(t,"timeout")
-	battery.frame = 10
-	t.start()
-	yield(t,"timeout")
-	battery.frame = 11
-	t.start()
-	tempaudio.play()
-	yield(t,"timeout")
-	battery.frame = 10
-	t.start()
-	yield(t,"timeout")
-	battery.frame = 10
-	t.start()
-	yield(t,"timeout")
-	battery.frame = 10
-	t.start()
-	yield(t,"timeout")
-	battery.frame = 10
-	t.start()
-	yield(t,"timeout")
-	battery.frame = 10
 	dialogue.texting = false
 	get_tree().get_root().set_disable_input(false)
 #	get_node("../../DialogueParser").choices["phoneCharged"] = true
 #	pressKey()
 
 func batteryUse(amount):
-	var life = battery.frame
-#	print(life)
-	life -= amount
-	battery.frame = life
-	if(battery.frame == 0):
-		phoneDed()
-#hide/show apps
+	batteryLife -= amount
+	battery.frame = batteryLife
+	if(batteryLife == 1):
+		battery.animation = "almost_ded"
+		battery.play()
+	if(batteryLife == 0):
+		phone_Ded()
+
 func phoneAlive():
+	phoneDed = false
 	var nodes = phone.get_children()
 	for i in nodes:
-		i.show()
+		if(i.name != "PhoneDed"):
+			i.show()
 	showApps()
 	phone.animation = "default"
 
-func phoneDed():
-	phone.animation = "ded"
-	var nodes = phone.get_children()
+func phone_Ded():
+	phoneDed = true
 	if(inApp):
 		exitApp()
+	var nodes = phone.get_children()
 	for i in nodes:
-		i.hide()
-	hideApps()
+#		print(i)
+		if(i.name != "PhoneDed"):
+			i.hide()
+	phone.get_node("PhoneDed").show()
+	phone.get_node("PhoneDed").play()
+	audio.stream = load("res://Assets/sfx/ded.wav")
+	audio.play()
+
+	yield(phone.get_node("PhoneDed"),"animation_finished")
+	phone.get_node("PhoneDed").hide()
+	phone.animation ="ded"
 	battery.show()
-	#todo: disable the things
-	pass
+	battery.animation = "ded"
 
 func hideApps():
 	app1.hide()
@@ -528,20 +532,19 @@ func yieldToAni():
 func On_Tween_Step(_object,_key,_elapsed,_value):
 	if(!interupt):
 		if(texting):
-			var tempaudio = get_node("NinePatchRect/AudioStreamPlayer")
-			tempaudio.play()
+			audio.stream = blip
+			audio.play()
 	else:
-		texting = false
 		texttween.remove_all()
-		texttween.emit_signal("tween_completed")
+		texttween.emit_signal("tween_completed",_object,_key)
 		emit_signal("text_finished")
-#		texttween.reset_all()
-		print("tweens_stopped")
+#		print("tweens_stopped")
 		interupt = false
 		appscreen.get_node("Label").set_percent_visible(1)
+		texting = false
 
 func Tween_Completed(_object,_key):
-	print("tween completed")
+#	print("tween completed")
 	emit_signal("text_finished")
 	texttween.remove_all()
 	texting = false
@@ -549,11 +552,11 @@ func Tween_Completed(_object,_key):
 
 func show_text(text, _target):
 	if(inApp):
+		texting = true
 		var length = text.length()
 		var t = 0.025
 		var temptime = length * t
 		appscreen.get_node("Label").set_text(text)
-		texting = true
 		appscreen.get_node("Label").set_percent_visible(0)
 		if(!interupt):
 			texttween.interpolate_property(appscreen.get_node("Label"),"percent_visible",0,1,temptime,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
@@ -587,8 +590,8 @@ func show_text(text, _target):
 #				break
 #		texting =false
 #		emit_signal("text_finished")
-
 #updates the app icons using the battleApps array
+
 func updateApps():
 	var i = 0
 	for n in 2:
@@ -597,7 +600,6 @@ func updateApps():
 	for apps in battleApps:
 		i += 1
 		var icon = get_node("PhoneUI/App"+str(i)+"/battleapps")
-		
 #		if(!icon.is_visible()):
 #		print(app)
 		icon.animation = str(apps)
@@ -631,8 +633,9 @@ func enterApp(appName):
 	get_tree().get_root().set_disable_input(false)
 
 func exitApp():
-	audio.stream = load("res://Assets/sfx/menu back v2.wav")
-	audio.play()
+	if(phoneDed != true):
+		audio.stream = load("res://Assets/sfx/menu back v2.wav")
+		audio.play()
 	get_tree().get_root().set_disable_input(true)
 	texttween.remove_all()
 	player.interacting = true
@@ -647,7 +650,7 @@ func exitApp():
 		text1seen = false
 		choosing = false
 		notEnoughMem = false
-		print("resetting qrapp")
+#		print("resetting qrapp")
 		if(choosing == true):
 			$PhoneUI/AppScreen/Button.hide()
 			$PhoneUI/AppScreen/Button2.hide()
@@ -670,7 +673,7 @@ func exitApp():
 			s.set_name("Object_Soul_"+player.location)
 		else:
 			soulCorrupt.get_node("Sprite").play("default")
-		if(battery.frame != 0):
+		if(phoneDed == false):
 			phone.play("battleOUT")
 		corruptGhost.play("null")
 		corruptGhost.hide()
@@ -682,7 +685,7 @@ func exitApp():
 		battApp3.hide()
 		battApp4.hide()
 	player.interacting = false
-	if(battery.frame != 0):
+	if(phoneDed == false):
 		showApps()
 	appscreen.play("close")
 	yieldToAni()
@@ -696,16 +699,21 @@ func exitApp():
 
 func appendApp(name):
 	batteryUse(1)
-	if(!battleApps.has(name) and battery.frame != 0):
+	if(!battleApps.has(name) and phoneDed == false):
 		battleApps.append(name)
 		updateApps()
 
 
 func enterUI():
-	if(battery.frame != 0):
-		if(phone.animation == "ded"):
-			phoneAlive()
+	if(phoneDed == false):
 		showApps()
+		phone.animation = "default"
+	elif(batteryLife == 10 and phoneDed == true):
+		phoneAlive()
+	if(phoneDed == true):
+		battery.frame = 0
+		battery.play()
+		battery.show()
 	homeButton.grab_focus()
 	audio.stream = load("res://Assets/sfx/phone open v4.wav")
 	audio.play()
@@ -715,8 +723,11 @@ func enterUI():
 	inUI = true
 
 func exitUI():
-	if(battery.frame != 0):
+	if(phoneDed == false):
 		phone.animation = "default"
+	else:
+		battery.stop()
+		battery.hide()
 	appscreen.animation = "null"
 	appscreen.hide()
 	hideApps()
@@ -732,9 +743,9 @@ func exitUI():
 func showBattleApps(soulname):
 	var i = 1
 	yield(phone,"animation_finished")
-	print("showingmoves")
+#	print("showingmoves")
 	for app in soulMoves[soulname]:
-		print(app)
+#		print(app)
 		i += 1
 		var icon = get_node("PhoneUI/BattleApp"+str(i)+"/battleapps")
 		icon.animation = str(app)
@@ -742,7 +753,7 @@ func showBattleApps(soulname):
 
 func randomizeMoves(soulname, battapps):
 	if(battleApps.size() < 3):
-		print("populating moves")
+#		print("populating moves")
 		soulMoves[soulname] = battapps.duplicate()
 
 func _on_App1_focus_entered():
@@ -874,14 +885,14 @@ func pressKey():
 	
 	
 func _on_Button_pressed():
-	print("yes pressed")
+#	print("yes pressed")
 	player.interacting = true
 	get_tree().get_root().set_disable_input(true)
 	var QRCode = get_node("../../YSort/QRCode_"+player.location)
-	$PhoneUI/AppScreen/Button/Sprite.play("selected")
-	yield($PhoneUI/AppScreen/Button/Sprite,"animation_finished")
-	$PhoneUI/AppScreen/Button/Sprite.play("default")
-	$PhoneUI/AppScreen/Button2/Sprite.play("default")
+#	$PhoneUI/AppScreen/Button/Sprite.play("selected")
+#	yield($PhoneUI/AppScreen/Button/Sprite,"animation_finished")
+#	$PhoneUI/AppScreen/Button/Sprite.play("default")
+#	$PhoneUI/AppScreen/Button2/Sprite.play("default")
 	$PhoneUI/AppScreen/Button.hide()
 	$PhoneUI/AppScreen/Button2.hide()
 	get_tree().get_root().set_disable_input(false)
@@ -891,7 +902,7 @@ func _on_Button_pressed():
 		exitApp()
 		qr_notification.play("default")
 	if(ghostCount < QRCode.memCost and choosing):
-		print("notenoughmem")
+#		print("notenoughmem")
 		notEnoughMem = true
 		player.interacting = false
 		pressKey()
@@ -899,13 +910,13 @@ func _on_Button_pressed():
 	player.interacting = false
 func _on_Button2_pressed():
 	player.interacting = true
-	print("no pressed")
+#	print("no pressed")
 	get_tree().get_root().set_disable_input(true)
 	choosing = false
-	$PhoneUI/AppScreen/Button2/Sprite.play("selected")
-	yield($PhoneUI/AppScreen/Button2/Sprite,"animation_finished")
-	$PhoneUI/AppScreen/Button/Sprite.play("default")
-	$PhoneUI/AppScreen/Button2/Sprite.play("default")
+#	$PhoneUI/AppScreen/Button2/Sprite.play("selected")
+#	yield($PhoneUI/AppScreen/Button2/Sprite,"animation_finished")
+#	$PhoneUI/AppScreen/Button/Sprite.play("default")
+#	$PhoneUI/AppScreen/Button2/Sprite.play("default")
 	$PhoneUI/AppScreen/Button.hide()
 	$PhoneUI/AppScreen/Button2.hide()
 	exitApp()
@@ -913,21 +924,21 @@ func _on_Button2_pressed():
 	get_tree().get_root().set_disable_input(false)
 	player.interacting = false
 
-func _on_Button_focus_entered():
-	$PhoneUI/AppScreen/Button/Sprite.show()
-#	audio.stream = load("res://Assets/sfx/menu browse.wav")
-#	audio.play()
-
-func _on_Button_focus_exited():
-	$PhoneUI/AppScreen/Button/Sprite.hide()
-
-func _on_Button2_focus_entered():
-	$PhoneUI/AppScreen/Button2/Sprite.show()
-#	audio.stream = load("res://Assets/sfx/menu browse.wav")
-#	audio.play()
-
-func _on_Button2_focus_exited():
-	$PhoneUI/AppScreen/Button2/Sprite.hide()
+#func _on_Button_focus_entered():
+#	$PhoneUI/AppScreen/Button/Sprite.show()
+##	audio.stream = load("res://Assets/sfx/menu browse.wav")
+##	audio.play()
+#
+#func _on_Button_focus_exited():
+#	$PhoneUI/AppScreen/Button/Sprite.hide()
+#
+#func _on_Button2_focus_entered():
+#	$PhoneUI/AppScreen/Button2/Sprite.show()
+##	audio.stream = load("res://Assets/sfx/menu browse.wav")
+##	audio.play()
+#
+#func _on_Button2_focus_exited():
+#	$PhoneUI/AppScreen/Button2/Sprite.hide()
 
 func _on_HomeButton_pressed():
 	focusedApp = get_focus_owner().name
@@ -940,6 +951,16 @@ func _on_HomeButton_pressed():
 #			qr_notification.show()
 	homeButton.grab_focus()
 
-func _on_Uninstall_pressed():
-	
-	pass # Replace with function body.
+#func _on_Uninstall_pressed():
+#
+#	pass # Replace with function body.
+
+
+#func _on_HomeButton_focus_entered():
+#	homeButton.get_node("Sprite").show()
+#	pass # Replace with function body.
+#
+#
+#func _on_HomeButton_focus_exited():
+#	homeButton.get_node("Sprite").hide()
+#	pass # Replace with function body.

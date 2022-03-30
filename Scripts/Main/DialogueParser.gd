@@ -14,7 +14,8 @@ var choices = {}
 var texting = false
 var endOfLine = false
 var texttween = Tween.new()
-
+onready var audio = get_node("../UI/Control/NinePatchRect/AudioStreamPlayer")
+onready var blip = load("res://Assets/sfx/blip.wav")
 onready var player = get_node("../YSort/Player")
 onready var ui = get_node("../UI/Control")
 
@@ -221,11 +222,15 @@ func _on_button_pressed(target):
 func On_Tween_Step(object,key,_elapsed,_value):
 	if(!player.interupt):
 		if(texting):
-			var audio = panelNode.get_node("AudioStreamPlayer")
+			audio.stream = blip
 			audio.play()
+#	elif(object.get_text() == "Charging phone..."):
+#		var audio = panelNode.get_node("AudioStreamPlayer")
+#		audio.stream = load("res://Assets/sfx/blip.wav")
+#		audio.play()
 	else:
 #		texttween.remove_all()
-		texttween.emit_signal("tween_completed")
+		texttween.emit_signal("tween_completed",object,key)
 #		texttween.reset_all()
 #		print("tweens_stopped")
 		Tween_Completed(object,key)
@@ -239,16 +244,20 @@ func Tween_Completed(object,_key):
 #	print("tween completed")
 #	print(object.get_text())
 	texttween.remove_all()
-	if(object.get_text() == "Charging phone..." and !ui.battery.frame == 10):
+	if(object.get_text() == "Charging phone..." and ui.batteryLife != 10):
 		ui.chargeBattery()
 	else:
 		texting = false
 
 func show_text(text, target):
 	if(panelNode.is_visible()):
+		print(text)
+		print(ui.batteryLife)
 		if(text == "Charging phone..."):
-			if(ui.battery.frame == 10):
+			if(ui.batteryLife == 10):
 				text = "Phone is already charged!"
+			else:
+				get_tree().get_root().set_disable_input(true)
 		var length = text.length()
 		var t = 0.025
 		var time = length * t
