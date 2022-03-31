@@ -59,7 +59,7 @@
             "Start": {
                 "Name": "outletRequest",
                 "Flag": false,
-            },
+            }
         },
         "Object_Soul_Corrupted_Hallway1": {
             "Start": {
