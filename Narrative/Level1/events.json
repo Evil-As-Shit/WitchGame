@@ -22,6 +22,10 @@
                 "Name": "npc1_First",
                 "Flag": false
             },
+            "PhoneDed":{
+                "Name": "npc1_PhoneDed",
+                "Flag": "phoneDed"
+			},
             "SoulCollected": {
                 "Name": "npc1_Soul_Collected",
                 "Flag": "level1Soul"
@@ -54,13 +58,8 @@
         "Object_Outlet": {
             "Start": {
                 "Name": "outletRequest",
-                "Flag": false
+                "Flag": false,
             },
-            "phoneCharged":{
-                "Name": "phoneCharged",
-                "Flag": "phoneCharged"
-            }
-            
         },
         "Object_Soul_Corrupted_Hallway1": {
             "Start": {

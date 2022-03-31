@@ -310,10 +310,11 @@ func _input(_event):
 				get_tree().get_root().set_disable_input(true)
 				get_node("PhoneUI/Options/Sprite").play("selected")
 				yield(get_node("PhoneUI/Options/Sprite"),"animation_finished")
+				get_node("PhoneUI/Options/Sprite").play("default")
+				get_node("PhoneUI/Options/Sprite").hide()
 				get_tree().get_root().set_disable_input(false)
 				enterApp(focusedName)
 				yield(appscreen,"animation_finished")
-				get_node("PhoneUI/Options/Sprite").play("default")
 				appscreen.get_node("Uninstall").show()
 				appscreen.get_node("Uninstall").grab_focus()
 		elif(focusedName == "Uninstall"):
@@ -443,10 +444,12 @@ func chargeBattery():
 	yield(battery,"animation_finished")
 	battery.stop()
 	battery.animation = "default"
-	battery.frame = 11
 	dialogue.texting = false
+	if(phoneDed == true):
+		battery.hide()
+	get_node("../../DialogueParser").choices["phoneDed"] = false
+	battery.frame = 11
 	get_tree().get_root().set_disable_input(false)
-#	get_node("../../DialogueParser").choices["phoneCharged"] = true
 #	pressKey()
 
 func batteryUse(amount):
@@ -459,15 +462,19 @@ func batteryUse(amount):
 		phone_Ded()
 
 func phoneAlive():
+	phone.animation = "default"
 	phoneDed = false
 	var nodes = phone.get_children()
 	for i in nodes:
-		if(i.name != "PhoneDed"):
-			i.show()
+		i.show()
 	showApps()
-	phone.animation = "default"
+	phone.get_node("PhoneDed").animation = "on"
+	phone.get_node("PhoneDed").play()
+	yield(phone.get_node("PhoneDed"),"animation_finished")
+	phone.get_node("PhoneDed").hide()
 
 func phone_Ded():
+	get_node("../../DialogueParser").choices["phoneDed"] = true
 	phoneDed = true
 	if(inApp):
 		exitApp()
@@ -477,10 +484,10 @@ func phone_Ded():
 		if(i.name != "PhoneDed"):
 			i.hide()
 	phone.get_node("PhoneDed").show()
+	phone.get_node("PhoneDed").animation = "off"
 	phone.get_node("PhoneDed").play()
 	audio.stream = load("res://Assets/sfx/ded.wav")
 	audio.play()
-
 	yield(phone.get_node("PhoneDed"),"animation_finished")
 	phone.get_node("PhoneDed").hide()
 	phone.animation ="ded"
@@ -956,11 +963,11 @@ func _on_HomeButton_pressed():
 #	pass # Replace with function body.
 
 
-#func _on_HomeButton_focus_entered():
-#	homeButton.get_node("Sprite").show()
-#	pass # Replace with function body.
-#
-#
-#func _on_HomeButton_focus_exited():
-#	homeButton.get_node("Sprite").hide()
-#	pass # Replace with function body.
+func _on_HomeButton_focus_entered():
+	homeButton.get_node("Sprite").show()
+	pass # Replace with function body.
+
+
+func _on_HomeButton_focus_exited():
+	homeButton.get_node("Sprite").hide()
+	pass # Replace with function body.
