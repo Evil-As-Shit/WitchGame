@@ -1,19 +1,53 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/ui/BattleApps/decrypt.png" type="Texture" id=1]
 [ext_resource path="res://Assets/ui/BattleApps/salt.png" type="Texture" id=2]
 [ext_resource path="res://Assets/ui/BattleApps/file shredder.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/attackexpand.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 59, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 118, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 177, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 236, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 295, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 354, 0, 59, 14 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": false,
+"name": "default",
+"speed": 12.0
+}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "decrypt",
 "speed": 5.0
 }, {
-"frames": [ null ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "null",
+"name": "shredder",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -21,9 +55,9 @@ animations = [ {
 "name": "salt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ null ],
 "loop": true,
-"name": "shredder",
+"name": "null",
 "speed": 5.0
 } ]
 

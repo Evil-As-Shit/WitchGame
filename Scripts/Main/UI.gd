@@ -1,6 +1,5 @@
 extends Control
 
-
 var inUI = false
 var ghostCount = 2
 var battlemode = false
@@ -17,7 +16,7 @@ var home = false
 var focusedName = null
 var texttween = Tween.new()
 var phoneDed = false
-var batteryLife = 1
+var batteryLife = 4
 signal text_finished
 onready var blip = load("res://Assets/sfx/blip.wav")
 onready var player = get_node("../../YSort/Player")
@@ -137,7 +136,9 @@ func _input(_event):
 								focusedApp.get_node("Sprite").play("selected")
 								yield(focusedApp.get_node("Sprite"),"animation_finished")
 								focusedApp.get_node("Sprite").play("default")
+#								var battleMove = "default"
 								get_tree().get_root().set_disable_input(false)
+#								moveAniPlayer(battleMove)
 								print("BattleApp1 GOOO!!")
 							if(focusedApp.name == "BattleApp2"):
 								if(get_focus_owner().get_node("battleapps").is_visible()):
@@ -392,24 +393,35 @@ func moveAniPlayer(move):
 #	yield(focusedApp.get_node("Sprite"),"animation_finished")
 #	focusedApp.get_node("Sprite").play("default")
 	get_node("PhoneUI/"+focusedApp.name).release_focus()
-	battleMoves.show()
-	battleMoves.play(move)
-	yield(battleMoves,"animation_finished")
-	battleMoves.hide()
-	battleMoves.play("null")
-	var damage = 2
-	for i in damage:
-		var life = ghostLife.frame
-#		print(life)
-		life -= 1
-		ghostLife.frame = life
-		t.start()
-		yield(t,"timeout")
-		if(ghostLife.frame == 0):
-			ghostDecrypt()
-	if(ghostLife.frame > 0):
-		ghostAttack()
-
+	if(move != "null"):
+		if(move != "default"):
+			battleMoves.show()
+			battleMoves.play(move)
+			yield(battleMoves,"animation_finished")
+			battleMoves.hide()
+			battleMoves.play("null")
+			var damage = 2
+			for i in damage:
+				var life = ghostLife.frame
+				life -= 1
+				ghostLife.frame = life
+				t.start()
+				yield(t,"timeout")
+				if(ghostLife.frame == 0):
+					ghostDecrypt()
+			if(ghostLife.frame > 0):
+				ghostAttack()
+	else:
+		player.interacting = false
+#	else:
+#		hideApps()
+#		var battleAppSprite = get_node("PhoneUI/BattleApp1/battleapps")
+#		battApp1.show()
+#		print("default goo!!")
+#		battleAppSprite.show()
+#		battleAppSprite.animation = "default"
+#		battleAppSprite.play()
+#		yield(self,"text_finished")
 func ghostDecrypt():
 	corruptGhost.play("decrypt")
 	yield(corruptGhost,"animation_finished")
@@ -462,6 +474,9 @@ func batteryUse(amount):
 		phone_Ded()
 
 func phoneAlive():
+	get_tree().get_root().set_disable_input(true)
+	audio.stream = load("res://Assets/sfx/phoneboot.wav")
+	audio.play()
 	phone.animation = "default"
 	phoneDed = false
 	var nodes = phone.get_children()
@@ -472,8 +487,9 @@ func phoneAlive():
 	phone.get_node("PhoneDed").play()
 	yield(phone.get_node("PhoneDed"),"animation_finished")
 	phone.get_node("PhoneDed").hide()
-
+	get_tree().get_root().set_disable_input(false)
 func phone_Ded():
+	get_tree().get_root().set_disable_input(true)
 	get_node("../../DialogueParser").choices["phoneDed"] = true
 	phoneDed = true
 	if(inApp):
@@ -493,6 +509,7 @@ func phone_Ded():
 	phone.animation ="ded"
 	battery.show()
 	battery.animation = "ded"
+	get_tree().get_root().set_disable_input(false)
 
 func hideApps():
 	app1.hide()
@@ -712,22 +729,28 @@ func appendApp(name):
 
 
 func enterUI():
+	inUI = true
+#	yield(phone,"animation_finished")
+	audio.stream = load("res://Assets/sfx/phone open v4.wav")
+	audio.play()
 	if(phoneDed == false):
+		audio.stream = load("res://Assets/sfx/phone open v4.wav")
+		audio.play()
 		showApps()
 		phone.animation = "default"
 	elif(batteryLife == 10 and phoneDed == true):
 		phoneAlive()
 	if(phoneDed == true):
+		audio.stream = load("res://Assets/sfx/phone open v4.wav")
+		audio.play()
 		battery.frame = 0
 		battery.play()
 		battery.show()
 	homeButton.grab_focus()
-	audio.stream = load("res://Assets/sfx/phone open v4.wav")
-	audio.play()
 	player.canMove = false
 	player.canInteract = false
 	player.animationState.travel("Idle")
-	inUI = true
+
 
 func exitUI():
 	if(phoneDed == false):
@@ -905,7 +928,8 @@ func _on_Button_pressed():
 	get_tree().get_root().set_disable_input(false)
 	if(ghostCount >= QRCode.memCost and !battleApps.has(QRCode.appName)):
 		appendApp(QRCode.appName)
-		ghostCount -= QRCode.memCost
+		if(phoneDed == false):
+			ghostCount -= QRCode.memCost
 		exitApp()
 		qr_notification.play("default")
 	if(ghostCount < QRCode.memCost and choosing):

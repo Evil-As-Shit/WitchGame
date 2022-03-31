@@ -955,7 +955,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/NinePatchRect"]
-volume_db = -21.174
+volume_db = -21.412
 
 [node name="nextIcon" type="AnimatedSprite" parent="Control/NinePatchRect"]
 position = Vector2( 454, 103 )
@@ -991,7 +991,6 @@ percent_visible = 0.0
 position = Vector2( 180, 900 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 14 )
-playing = true
 offset = Vector2( 0.5, 0.5 )
 
 [node name="Options" type="Button" parent="Control/PhoneUI"]
@@ -1030,6 +1029,7 @@ offset = Vector2( 0, 0 )
 
 [node name="battleapps" parent="Control/PhoneUI/App1" instance=ExtResource( 27 )]
 position = Vector2( 10, 9 )
+animation = "default"
 
 [node name="notification" parent="Control/PhoneUI/App1" instance=ExtResource( 33 )]
 animation = "default"
@@ -1052,6 +1052,7 @@ __meta__ = {
 }
 
 [node name="battleapps" parent="Control/PhoneUI/App2" instance=ExtResource( 27 )]
+animation = "default"
 
 [node name="notification" parent="Control/PhoneUI/App2" instance=ExtResource( 33 )]
 animation = "default"
@@ -1078,6 +1079,7 @@ __meta__ = {
 }
 
 [node name="battleapps" parent="Control/PhoneUI/App3" instance=ExtResource( 27 )]
+animation = "default"
 
 [node name="notification" parent="Control/PhoneUI/App3" instance=ExtResource( 33 )]
 animation = "default"
@@ -1160,9 +1162,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 22 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/App7" instance=ExtResource( 28 )]
 position = Vector2( 3, 3.00002 )
@@ -1271,6 +1270,11 @@ custom_styles/focus = SubResource( 24 )
 button_mask = 0
 flat = true
 
+[node name="battleapps" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 27 )]
+position = Vector2( 3.00001, 3 )
+scale = Vector2( 1, 1 )
+centered = false
+
 [node name="Sprite" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
 offset = Vector2( 0, 0 )
@@ -1286,9 +1290,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 24 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="battleapps" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 27 )]
 
@@ -1506,10 +1507,9 @@ frames = SubResource( 96 )
 animation = "attack"
 
 [node name="battleMoves" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
-visible = false
 position = Vector2( 0.400005, -5.59985 )
 frames = SubResource( 107 )
-animation = "decrypt"
+animation = "null"
 
 [node name="ghostLife" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
 visible = false
