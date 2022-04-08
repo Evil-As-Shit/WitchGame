@@ -1,4 +1,4 @@
-[gd_scene load_steps=209 format=2]
+[gd_scene load_steps=218 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/ui/soulcollectphone.png" type="Texture" id=8]
 [ext_resource path="res://Assets/ui/phone ui battle smol.png" type="Texture" id=9]
 [ext_resource path="res://Assets/ui/Avatars/npc1/npc1avatar.png" type="Texture" id=10]
-[ext_resource path="res://Assets/ui/such ui very wow.png" type="Texture" id=11]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_openhappy.png" type="Texture" id=12]
 [ext_resource path="res://Assets/ui/Avatars/npc2/npc2avatar.png" type="Texture" id=13]
 [ext_resource path="res://Assets/ui/homecursor.png" type="Texture" id=14]
@@ -24,6 +23,7 @@
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_sad.png" type="Texture" id=22]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_smug.png" type="Texture" id=23]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_tiltopenhappy.png" type="Texture" id=24]
+[ext_resource path="res://Assets/ui/appnotification.png" type="Texture" id=25]
 [ext_resource path="res://Assets/ui/battle screen smol.png" type="Texture" id=26]
 [ext_resource path="res://Scenes/Phone/battleapps.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Phone/PhoneCursor.tscn" type="PackedScene" id=28]
@@ -65,9 +65,24 @@ animations = [ {
 "name": "witch_openhappy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ) ],
+"frames": [  ],
 "loop": true,
-"name": "witch_angry",
+"name": "null",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "witch_smug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "witch_upset",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "witch_stare",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -80,21 +95,6 @@ animations = [ {
 "name": "witch_happy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "witch_surprised",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "witch_stare",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "witch_tiltopenhappy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "npc2_netrual",
@@ -105,19 +105,19 @@ animations = [ {
 "name": "witch_opensmug",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
+"frames": [ ExtResource( 21 ) ],
 "loop": true,
-"name": "witch_upset",
+"name": "witch_surprised",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ) ],
+"frames": [ ExtResource( 20 ) ],
 "loop": true,
-"name": "witch_smug",
+"name": "witch_angry",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "null",
+"name": "witch_tiltopenhappy",
 "speed": 5.0
 } ]
 
@@ -182,6 +182,16 @@ animations = [ {
 
 [sub_resource type="StyleBoxEmpty" id=15]
 
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="DynamicFont" id=189]
+size = 10
+font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=194]
+size = 70
+font_data = ExtResource( 16 )
+
 [sub_resource type="StyleBoxEmpty" id=16]
 
 [sub_resource type="StyleBoxEmpty" id=17]
@@ -198,7 +208,34 @@ animations = [ {
 
 [sub_resource type="StyleBoxEmpty" id=23]
 
-[sub_resource type="StyleBoxEmpty" id=24]
+[sub_resource type="AtlasTexture" id=190]
+atlas = ExtResource( 25 )
+region = Rect2( 0, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=191]
+atlas = ExtResource( 25 )
+region = Rect2( 12, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=192]
+atlas = ExtResource( 25 )
+region = Rect2( 24, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=193]
+atlas = ExtResource( 25 )
+region = Rect2( 36, 0, 12, 12 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 190 ), SubResource( 191 ), SubResource( 192 ), SubResource( 193 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "null",
+"speed": 5.0
+} ]
 
 [sub_resource type="StyleBoxEmpty" id=25]
 
@@ -206,14 +243,28 @@ animations = [ {
 
 [sub_resource type="StyleBoxEmpty" id=27]
 
-[sub_resource type="StyleBoxEmpty" id=161]
+[sub_resource type="AtlasTexture" id=195]
+atlas = ExtResource( 25 )
+region = Rect2( 0, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=196]
+atlas = ExtResource( 25 )
+region = Rect2( 12, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=197]
+atlas = ExtResource( 25 )
+region = Rect2( 24, 0, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=198]
+atlas = ExtResource( 25 )
+region = Rect2( 36, 0, 12, 12 )
 
 [sub_resource type="SpriteFrames" id=28]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 6 ) ],
+"frames": [ SubResource( 195 ), SubResource( 196 ), SubResource( 197 ), SubResource( 198 ) ],
 "loop": true,
 "name": "default",
-"speed": 2.0
+"speed": 10.0
 }, {
 "frames": [  ],
 "loop": true,
@@ -221,22 +272,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 2, 10 )
-
-[sub_resource type="SpriteFrames" id=30]
-animations = [ {
-"frames": [ SubResource( 29 ), null ],
-"loop": true,
-"name": "default",
-"speed": 2.0
-}, {
-"frames": [  ],
-"loop": false,
-"name": "null",
-"speed": 5.0
-} ]
+[sub_resource type="StyleBoxEmpty" id=161]
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
@@ -565,15 +601,15 @@ animations = [ {
 "name": "open",
 "speed": 20.0
 }, {
-"frames": [ SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ) ],
-"loop": false,
-"name": "otb",
-"speed": 20.0
-}, {
 "frames": [  ],
 "loop": false,
 "name": "null",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ) ],
+"loop": false,
+"name": "otb",
+"speed": 20.0
 } ]
 
 [sub_resource type="DynamicFont" id=75]
@@ -679,20 +715,20 @@ animations = [ {
 "name": "decrypt",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 87 ) ],
-"loop": false,
-"name": "intro",
-"speed": 10.0
+"frames": [  ],
+"loop": true,
+"name": "null",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
 "loop": true,
 "name": "attack",
 "speed": 10.0
 }, {
-"frames": [  ],
-"loop": true,
-"name": "null",
-"speed": 5.0
+"frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 87 ) ],
+"loop": false,
+"name": "intro",
+"speed": 10.0
 } ]
 
 [sub_resource type="AtlasTexture" id=97]
@@ -810,38 +846,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=162]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=163]
-atlas = ExtResource( 9 )
-region = Rect2( 63, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=164]
-atlas = ExtResource( 9 )
-region = Rect2( 126, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=165]
-atlas = ExtResource( 9 )
-region = Rect2( 189, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=166]
-atlas = ExtResource( 9 )
-region = Rect2( 252, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=167]
-atlas = ExtResource( 9 )
-region = Rect2( 315, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=168]
-atlas = ExtResource( 9 )
-region = Rect2( 378, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=169]
-atlas = ExtResource( 9 )
-region = Rect2( 441, 105, 63, 105 )
-
 [sub_resource type="AtlasTexture" id=174]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 210, 63, 105 )
@@ -902,16 +906,48 @@ region = Rect2( 819, 210, 63, 105 )
 atlas = ExtResource( 9 )
 region = Rect2( 882, 210, 63, 105 )
 
+[sub_resource type="AtlasTexture" id=162]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=163]
+atlas = ExtResource( 9 )
+region = Rect2( 63, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=164]
+atlas = ExtResource( 9 )
+region = Rect2( 126, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=165]
+atlas = ExtResource( 9 )
+region = Rect2( 189, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=166]
+atlas = ExtResource( 9 )
+region = Rect2( 252, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=167]
+atlas = ExtResource( 9 )
+region = Rect2( 315, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=168]
+atlas = ExtResource( 9 )
+region = Rect2( 378, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=169]
+atlas = ExtResource( 9 )
+region = Rect2( 441, 105, 63, 105 )
+
 [sub_resource type="SpriteFrames" id=170]
 animations = [ {
+"frames": [ SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 174 ), SubResource( 175 ), SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 180 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 183 ), SubResource( 184 ), SubResource( 185 ), SubResource( 186 ), SubResource( 187 ), SubResource( 188 ), null ],
+"loop": false,
+"name": "on",
+"speed": 13.0
+}, {
 "frames": [ SubResource( 162 ), SubResource( 163 ), SubResource( 164 ), SubResource( 165 ), SubResource( 166 ), SubResource( 167 ), SubResource( 168 ), SubResource( 169 ), SubResource( 127 ) ],
 "loop": false,
 "name": "off",
-"speed": 13.0
-}, {
-"frames": [ SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 174 ), SubResource( 175 ), SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 180 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 183 ), SubResource( 184 ), SubResource( 185 ), SubResource( 186 ), SubResource( 187 ), SubResource( 188 ), null ],
-"loop": false,
-"name": "on",
 "speed": 13.0
 } ]
 
@@ -1011,6 +1047,137 @@ flat = true
 position = Vector2( 3, 3 )
 offset = Vector2( 0, 0 )
 
+[node name="BattleApp2" type="Button" parent="Control/PhoneUI"]
+visible = false
+margin_left = -17.0
+margin_top = 24.2
+margin_right = 3.0
+margin_bottom = 44.2
+focus_neighbour_left = NodePath("../BattleApp1")
+focus_neighbour_right = NodePath("../BattleApp3")
+mouse_filter = 2
+custom_styles/focus = SubResource( 24 )
+button_mask = 0
+flat = true
+
+[node name="battleapps" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 27 )]
+visible = true
+
+[node name="Sprite" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 28 )]
+position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
+
+[node name="Label" type="Label" parent="Control/PhoneUI/BattleApp2"]
+visible = false
+margin_left = 7.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 1, 0.0666667, 0.713726, 1 )
+custom_fonts/font = SubResource( 189 )
+text = "S"
+valign = 1
+
+[node name="BattleApp3" type="Button" parent="Control/PhoneUI"]
+visible = false
+margin_left = -2.0
+margin_top = 24.2
+margin_right = 18.0
+margin_bottom = 44.2
+focus_neighbour_left = NodePath("../BattleApp2")
+focus_neighbour_right = NodePath("../BattleApp4")
+mouse_filter = 2
+custom_styles/focus = SubResource( 24 )
+button_mask = 0
+flat = true
+
+[node name="battleapps" parent="Control/PhoneUI/BattleApp3" instance=ExtResource( 27 )]
+visible = true
+
+[node name="Sprite" parent="Control/PhoneUI/BattleApp3" instance=ExtResource( 28 )]
+position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
+
+[node name="BattleApp4" type="Button" parent="Control/PhoneUI"]
+visible = false
+margin_left = 13.0
+margin_top = 24.2
+margin_right = 33.0
+margin_bottom = 44.2
+focus_neighbour_left = NodePath("../BattleApp3")
+mouse_filter = 2
+custom_styles/focus = SubResource( 24 )
+button_mask = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="battleapps" parent="Control/PhoneUI/BattleApp4" instance=ExtResource( 27 )]
+visible = true
+
+[node name="Sprite" parent="Control/PhoneUI/BattleApp4" instance=ExtResource( 28 )]
+position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
+
+[node name="BattleApp1" type="Button" parent="Control/PhoneUI"]
+visible = false
+margin_left = -32.0
+margin_top = 24.2
+margin_right = -12.0
+margin_bottom = 44.2
+focus_neighbour_right = NodePath("../BattleApp2")
+mouse_filter = 2
+custom_styles/focus = SubResource( 24 )
+button_mask = 0
+flat = true
+
+[node name="battleapps" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 27 )]
+visible = true
+position = Vector2( 3.00001, 3 )
+playing = true
+centered = false
+
+[node name="Sprite" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 28 )]
+position = Vector2( 3, 3 )
+offset = Vector2( 0, 0 )
+
+[node name="1" type="Label" parent="Control/PhoneUI/BattleApp1"]
+visible = false
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 75.0
+margin_bottom = 86.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = SubResource( 194 )
+align = 1
+valign = 1
+uppercase = true
+
+[node name="2" type="Label" parent="Control/PhoneUI/BattleApp1"]
+visible = false
+margin_left = 34.0
+margin_top = 1.0
+margin_right = 89.0
+margin_bottom = 86.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = SubResource( 194 )
+align = 1
+valign = 1
+uppercase = true
+
+[node name="3" type="Label" parent="Control/PhoneUI/BattleApp1"]
+visible = false
+margin_left = 50.0
+margin_top = 1.0
+margin_right = 105.0
+margin_bottom = 86.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = SubResource( 194 )
+align = 1
+valign = 1
+uppercase = true
+
 [node name="App1" type="Button" parent="Control/PhoneUI"]
 margin_left = -32.0
 margin_top = -24.4
@@ -1029,7 +1196,7 @@ offset = Vector2( 0, 0 )
 
 [node name="battleapps" parent="Control/PhoneUI/App1" instance=ExtResource( 27 )]
 position = Vector2( 10, 9 )
-animation = "default"
+animation = "default_backwards"
 
 [node name="notification" parent="Control/PhoneUI/App1" instance=ExtResource( 33 )]
 animation = "default"
@@ -1052,7 +1219,7 @@ __meta__ = {
 }
 
 [node name="battleapps" parent="Control/PhoneUI/App2" instance=ExtResource( 27 )]
-animation = "default"
+animation = "default_backwards"
 
 [node name="notification" parent="Control/PhoneUI/App2" instance=ExtResource( 33 )]
 animation = "default"
@@ -1079,7 +1246,7 @@ __meta__ = {
 }
 
 [node name="battleapps" parent="Control/PhoneUI/App3" instance=ExtResource( 27 )]
-animation = "default"
+animation = "default_backwards"
 
 [node name="notification" parent="Control/PhoneUI/App3" instance=ExtResource( 33 )]
 animation = "default"
@@ -1203,6 +1370,12 @@ flat = true
 position = Vector2( 3, 3 )
 offset = Vector2( 0, 0 )
 
+[node name="QR_Notification" type="AnimatedSprite" parent="Control/PhoneUI/QRApp"]
+position = Vector2( 4, 4 )
+frames = SubResource( 30 )
+animation = "null"
+centered = false
+
 [node name="TextApp" type="Button" parent="Control/PhoneUI"]
 margin_left = -17.0
 margin_top = 24.4
@@ -1259,81 +1432,10 @@ flat = true
 position = Vector2( 3, 3 )
 offset = Vector2( 0, 0 )
 
-[node name="BattleApp1" type="Button" parent="Control/PhoneUI"]
-margin_left = -32.0
-margin_top = 24.2
-margin_right = -12.0
-margin_bottom = 44.2
-focus_neighbour_right = NodePath("../BattleApp2")
-mouse_filter = 2
-custom_styles/focus = SubResource( 24 )
-button_mask = 0
-flat = true
-
-[node name="battleapps" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 27 )]
-position = Vector2( 3.00001, 3 )
-scale = Vector2( 1, 1 )
-centered = false
-
-[node name="Sprite" parent="Control/PhoneUI/BattleApp1" instance=ExtResource( 28 )]
-position = Vector2( 3, 3 )
-offset = Vector2( 0, 0 )
-
-[node name="BattleApp2" type="Button" parent="Control/PhoneUI"]
-margin_left = -17.0
-margin_top = 24.2
-margin_right = 3.0
-margin_bottom = 44.2
-focus_neighbour_left = NodePath("../BattleApp1")
-focus_neighbour_right = NodePath("../BattleApp3")
-mouse_filter = 2
-custom_styles/focus = SubResource( 24 )
-button_mask = 0
-flat = true
-
-[node name="battleapps" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 27 )]
-
-[node name="Sprite" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 28 )]
-position = Vector2( 3, 3 )
-offset = Vector2( 0, 0 )
-
-[node name="BattleApp3" type="Button" parent="Control/PhoneUI"]
-margin_left = -2.0
-margin_top = 24.2
-margin_right = 18.0
-margin_bottom = 44.2
-focus_neighbour_left = NodePath("../BattleApp2")
-focus_neighbour_right = NodePath("../BattleApp4")
-mouse_filter = 2
-custom_styles/focus = SubResource( 24 )
-button_mask = 0
-flat = true
-
-[node name="battleapps" parent="Control/PhoneUI/BattleApp3" instance=ExtResource( 27 )]
-
-[node name="Sprite" parent="Control/PhoneUI/BattleApp3" instance=ExtResource( 28 )]
-position = Vector2( 3, 3 )
-offset = Vector2( 0, 0 )
-
-[node name="BattleApp4" type="Button" parent="Control/PhoneUI"]
-margin_left = 13.0
-margin_top = 24.2
-margin_right = 33.0
-margin_bottom = 44.2
-focus_neighbour_left = NodePath("../BattleApp3")
-mouse_filter = 2
-custom_styles/focus = SubResource( 24 )
-button_mask = 0
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="battleapps" parent="Control/PhoneUI/BattleApp4" instance=ExtResource( 27 )]
-
-[node name="Sprite" parent="Control/PhoneUI/BattleApp4" instance=ExtResource( 28 )]
-position = Vector2( 3, 3 )
-offset = Vector2( 0, 0 )
+[node name="Soul_Notification" type="AnimatedSprite" parent="Control/PhoneUI/SoulApp"]
+position = Vector2( 10, 10 )
+frames = SubResource( 28 )
+animation = "null"
 
 [node name="HomeButton" type="Button" parent="Control/PhoneUI"]
 margin_left = -3.0
@@ -1346,23 +1448,6 @@ flat = true
 [node name="Sprite" type="Sprite" parent="Control/PhoneUI/HomeButton"]
 visible = false
 texture = ExtResource( 14 )
-centered = false
-
-[node name="Soul_Notification" type="AnimatedSprite" parent="Control/PhoneUI"]
-position = Vector2( 25, 22 )
-scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 28 )
-animation = "null"
-playing = true
-centered = false
-
-[node name="QR_Notification" type="AnimatedSprite" parent="Control/PhoneUI"]
-position = Vector2( -20, 22 )
-scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 30 )
-animation = "null"
-frame = -1
-playing = true
 centered = false
 
 [node name="Soul_Collected" type="AnimatedSprite" parent="Control/PhoneUI"]
@@ -1507,6 +1592,7 @@ frames = SubResource( 96 )
 animation = "attack"
 
 [node name="battleMoves" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
+visible = false
 position = Vector2( 0.400005, -5.59985 )
 frames = SubResource( 107 )
 animation = "null"
@@ -1518,15 +1604,22 @@ frames = SubResource( 119 )
 animation = "null"
 
 [node name="PhoneDed" type="AnimatedSprite" parent="Control/PhoneUI"]
-scale = Vector2( 1, 1 )
 frames = SubResource( 170 )
 animation = "on"
-frame = 26
+frame = 23
 playing = true
 offset = Vector2( 0.5, 0.5 )
 
 [connection signal="focus_entered" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/Options" to="Control" method="_on_Options_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/BattleApp2" to="Control" method="_on_BattleApp2_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/BattleApp2" to="Control" method="_on_BattleApp2_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/BattleApp3" to="Control" method="_on_BattleApp3_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/BattleApp3" to="Control" method="_on_BattleApp3_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/BattleApp4" to="Control" method="_on_BattleApp4_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/BattleApp4" to="Control" method="_on_BattleApp4_focus_exited"]
+[connection signal="focus_entered" from="Control/PhoneUI/BattleApp1" to="Control" method="_on_BattleApp1_focus_entered"]
+[connection signal="focus_exited" from="Control/PhoneUI/BattleApp1" to="Control" method="_on_BattleApp1_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/App2" to="Control" method="_on_App2_focus_entered"]
@@ -1551,14 +1644,6 @@ offset = Vector2( 0.5, 0.5 )
 [connection signal="focus_exited" from="Control/PhoneUI/PixApp" to="Control" method="_on_PixApp_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/SoulApp" to="Control" method="_on_Soul_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/SoulApp" to="Control" method="_on_Soul_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/BattleApp1" to="Control" method="_on_BattleApp1_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/BattleApp1" to="Control" method="_on_BattleApp1_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/BattleApp2" to="Control" method="_on_BattleApp2_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/BattleApp2" to="Control" method="_on_BattleApp2_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/BattleApp3" to="Control" method="_on_BattleApp3_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/BattleApp3" to="Control" method="_on_BattleApp3_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/BattleApp4" to="Control" method="_on_BattleApp4_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/BattleApp4" to="Control" method="_on_BattleApp4_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/HomeButton" to="Control" method="_on_HomeButton_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/HomeButton" to="Control" method="_on_HomeButton_focus_exited"]
 [connection signal="pressed" from="Control/PhoneUI/HomeButton" to="Control" method="_on_HomeButton_pressed"]

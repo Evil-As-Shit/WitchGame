@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/ui/BattleApps/decrypt.png" type="Texture" id=1]
 [ext_resource path="res://Assets/ui/BattleApps/salt.png" type="Texture" id=2]
@@ -15,27 +15,15 @@ region = Rect2( 59, 0, 59, 14 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
-region = Rect2( 118, 0, 59, 14 )
+region = Rect2( 59, 0, 59, 14 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
-region = Rect2( 177, 0, 59, 14 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 4 )
-region = Rect2( 236, 0, 59, 14 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 4 )
-region = Rect2( 295, 0, 59, 14 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 4 )
-region = Rect2( 354, 0, 59, 14 )
+region = Rect2( 0, 0, 59, 14 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": false,
 "name": "default",
 "speed": 12.0
@@ -59,6 +47,11 @@ animations = [ {
 "loop": true,
 "name": "null",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default_backwards",
+"speed": 12.0
 } ]
 
 [node name="battleapps" type="AnimatedSprite"]

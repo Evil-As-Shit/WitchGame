@@ -41,7 +41,7 @@ position = Vector2( -69, -155 )
 [node name="Room1" parent="YSort" instance=ExtResource( 7 )]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -10, 44 )
+position = Vector2( 2, 39 )
 
 [node name="QRCode_Room1" parent="YSort" groups=["Interactable"] instance=ExtResource( 20 )]
 

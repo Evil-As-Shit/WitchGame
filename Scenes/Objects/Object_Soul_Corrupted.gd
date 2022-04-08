@@ -1,6 +1,6 @@
 extends "res://Scripts/Main/Item.gd"
 
-onready var soulNotification = get_node("../../UI/Control/PhoneUI/Soul_Notification")
+onready var soulNotification = get_node("../../UI/Control/PhoneUI/SoulApp/Soul_Notification")
 onready var nearSoulCorrupt = false
 onready var inBattle = get_node("../../UI/Control").battlemode
 

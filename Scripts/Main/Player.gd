@@ -38,36 +38,39 @@ func _physics_process(delta):
 		ui.get_node("NinePatchRect/nextIcon").hide()
 
 func _input(_event):
-	if(Input.is_action_just_pressed("e")):
-		if(dialogue.texting):
-#			print("texting rn")
-			interupt = true
-		elif(choosing):
-#			print("choose carefully!")
-			pass
-		elif(interacting and canInteract):
-			print("can interact and interacting")
-			dialogue._on_button_pressed(target)
-		elif(!canInteract and dialogue.panelNode.is_visible() and !dialogue.texting):
-			print("cant interact but in dialogue 'bug'")
-			dialogue._on_button_pressed(target)
-		elif(!canInteract and !interacting or ui.inUI):
-			pass
-#			print("cant interact, not interacting")
-#			interacting = false
-#			canMove = true
-		elif(target == null):
-			pass
-#			print("no target")
-		else:
-			canMove = false
-			interacting = true
-			print("Interacting with " + target.get_name())
-			get_node("../../DialogueParser").init_dialogue(target.get_name())
-			target.action(inventory)
-			if (target.is_in_group("Item") and inventory.find(target.get_name()) < 0):
-				inventory.append(target.get_name())
-#				print(inventory)
+	if(ui.inputNormal == true):
+		if(Input.is_action_just_pressed("e")):
+			if(dialogue.texting):
+				print("texting rn")
+				interupt = true
+			elif(choosing):
+				print("choose carefully!")
+				pass
+			elif(interacting and canInteract):
+				print("can interact and interacting")
+				dialogue._on_button_pressed(target)
+			elif(!canInteract and dialogue.panelNode.is_visible() and !dialogue.texting):
+				print("cant interact but in dialogue 'bug'")
+				dialogue._on_button_pressed(target)
+			elif(!canInteract and !interacting or ui.inUI):
+				print("in ui?")
+				pass
+	#			print("cant interact, not interacting")
+	#			interacting = false
+	#			canMove = true
+			elif(target == null):
+				pass
+				print("no target")
+			else:
+				print("here")
+				canMove = false
+				interacting = true
+				print("Interacting with " + target.get_name())
+				get_node("../../DialogueParser").init_dialogue(target.get_name())
+				target.action(inventory)
+				if (target.is_in_group("Item") and inventory.find(target.get_name()) < 0):
+					inventory.append(target.get_name())
+	#				print(inventory)
 
 func _on_Area2D_body_enter(body, obj):
 	if(body.get_name() == "Player"):

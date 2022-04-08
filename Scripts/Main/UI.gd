@@ -16,7 +16,8 @@ var home = false
 var focusedName = null
 var texttween = Tween.new()
 var phoneDed = false
-var batteryLife = 4
+var batteryLife = 2
+var inputNormal = true
 signal text_finished
 onready var blip = load("res://Assets/sfx/blip.wav")
 onready var player = get_node("../../YSort/Player")
@@ -24,8 +25,8 @@ onready var soul = null
 onready var soulCorrupt = null
 onready var phone = get_node("PhoneUI")
 onready var appscreen = get_node("PhoneUI/AppScreen")
-onready var soul_notification = get_node("PhoneUI/Soul_Notification")
-onready var qr_notification = get_node("PhoneUI/QR_Notification")
+onready var soul_notification = get_node("PhoneUI/SoulApp/Soul_Notification")
+onready var qr_notification = get_node("PhoneUI/QRApp/QR_Notification")
 onready var soul_collected = get_node("PhoneUI/Soul_Collected")
 onready var audio = get_node("../../AudioStreamPlayer")
 onready var time = get_node("PhoneUI/Time")
@@ -80,14 +81,19 @@ func _physics_process(delta):
 
 #pressing e when in phone ui
 func _input(_event):
-	if(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false and phoneDed == false):
+	if(inputNormal == false):
+		var just_pressed = _event.is_pressed() and not _event.is_echo()
+		if _event is InputEventKey and just_pressed:
+			print(_event.as_text())
+			defaultAttack(_event.as_text())
+	elif(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false and phoneDed == false):
 		if(!inApp):
 			focused = get_focus_owner()
 			focusedName = focused.name
 			if(focused.get_node_or_null ("battleapps") != null):
 				if(focused.get_node("battleapps").is_visible()):
 					focusedName = focused.get_node("battleapps").animation
-#			print(focusedName)
+			print(focusedName)
 #			print(player.location)
 		if(texting):
 #			print("interupted")
@@ -136,9 +142,9 @@ func _input(_event):
 								focusedApp.get_node("Sprite").play("selected")
 								yield(focusedApp.get_node("Sprite"),"animation_finished")
 								focusedApp.get_node("Sprite").play("default")
-#								var battleMove = "default"
+								var battleMove = "default"
 								get_tree().get_root().set_disable_input(false)
-#								moveAniPlayer(battleMove)
+								moveAniPlayer(battleMove)
 								print("BattleApp1 GOOO!!")
 							if(focusedApp.name == "BattleApp2"):
 								if(get_focus_owner().get_node("battleapps").is_visible()):
@@ -318,7 +324,6 @@ func _input(_event):
 				yield(appscreen,"animation_finished")
 				appscreen.get_node("Uninstall").show()
 				appscreen.get_node("Uninstall").grab_focus()
-		elif(focusedName == "Uninstall"):
 #			appscreen.hide()
 #			print("uninstall")
 			pass
@@ -345,24 +350,25 @@ func _input(_event):
 				enterApp(focusedName)
 				phone.get_node("HomeButton").grab_focus()
 #exiting/entering phone ui
-	if (Input.is_action_just_pressed("UI") and !player.interacting):
-#		print("inApp",inApp)
-#		print("texting",texting)
-		if(!inApp):
-			if (inUI == false):
-				enterUI()
+	if(inputNormal == true):
+		if (Input.is_action_just_pressed("UI") and !player.interacting):
+	#		print("inApp",inApp)
+	#		print("texting",texting)
+			if(!inApp):
+				if (inUI == false):
+					enterUI()
+				else:
+					exitUI()
+			elif(texting):
+				interupt = true
+	#			print("interupted")
+	#			get_tree().get_root().set_input_as_handled()
+			elif(inApp):
+				audio.stream = load("res://Assets/sfx/menu back v2.wav")
+				audio.play()
+				exitApp()
 			else:
-				exitUI()
-		elif(texting):
-			interupt = true
-#			print("interupted")
-#			get_tree().get_root().set_input_as_handled()
-		elif(inApp):
-			audio.stream = load("res://Assets/sfx/menu back v2.wav")
-			audio.play()
-			exitApp()
-		else:
-			pass
+				pass
 
 func ghostAttack():
 	var t = Timer.new()
@@ -372,6 +378,8 @@ func ghostAttack():
 	t.start()
 	yield(t,"timeout")
 	corruptGhost.play("attack")
+	audio.stream = load("res://Assets/sfx/ghost_attack.wav")
+	audio.play()
 	yield(corruptGhost,"animation_finished")
 	corruptGhost.play("default")
 	t.set_wait_time(0.1)
@@ -397,6 +405,8 @@ func moveAniPlayer(move):
 		if(move != "default"):
 			battleMoves.show()
 			battleMoves.play(move)
+			audio.stream = load("res://Assets/sfx/"+ move +".wav")
+			audio.play()
 			yield(battleMoves,"animation_finished")
 			battleMoves.hide()
 			battleMoves.play("null")
@@ -411,24 +421,127 @@ func moveAniPlayer(move):
 					ghostDecrypt()
 			if(ghostLife.frame > 0):
 				ghostAttack()
+		else:
+			var battleAppSprite = get_node("PhoneUI/BattleApp1/battleapps")
+			print("default goo!!")
+			battleAppSprite.show()
+			battleAppSprite.animation = "default"
+			battleAppSprite.frame = 0
+			battleAppSprite.play()
+			yield(battleAppSprite,"animation_finished")
+			change_input()
 	else:
 		player.interacting = false
-#	else:
-#		hideApps()
-#		var battleAppSprite = get_node("PhoneUI/BattleApp1/battleapps")
-#		battApp1.show()
-#		print("default goo!!")
-#		battleAppSprite.show()
-#		battleAppSprite.animation = "default"
-#		battleAppSprite.play()
-#		yield(self,"text_finished")
+
+func defaultAttack(key):
+	var label1 = battApp1.get_node("1")
+	var label2 = battApp1.get_node("2")
+	var label3 = battApp1.get_node("3")
+	
+	var t = Timer.new()
+	t.set_wait_time(0.1)
+	t.set_one_shot(true)
+	self.add_child(t)
+	
+	if !label1.is_visible():
+		label1.show()
+		label1.set_text(key)
+	else:
+		if !label2.is_visible():
+			label2.show()
+			label2.set_text(key)
+		else:
+			if !label3.is_visible():
+				label3.show()
+				label3.set_text(key)
+			get_tree().get_root().set_disable_input(true)
+			change_input()
+			battleMoves.show()
+			battleMoves.frame = 0
+			battleMoves.play("decrypt")
+			audio.stream = load("res://Assets/sfx/decrypt.wav")
+			audio.play()
+			yield(battleMoves,"animation_finished")
+			battleMoves.hide()
+			battleMoves.play("null")
+			var damage = 2
+			for i in damage:
+				var life = ghostLife.frame
+				life -= 1
+				ghostLife.frame = life
+				t.start()
+				yield(t,"timeout")
+				if(ghostLife.frame == 0):
+					ghostDecrypt()
+			var battleAppSprite = get_node("PhoneUI/BattleApp1/battleapps")
+			battleAppSprite.animation = "default_backwards"
+			battleAppSprite.play()
+			yield(battleAppSprite,"animation_finished")
+			battleAppSprite.hide()
+			label1.set_text("")
+			label1.hide()
+			label2.set_text("")
+			label2.hide()
+			label3.set_text("")
+			label3.hide()
+			if(ghostLife.frame > 0):
+				ghostAttack()
+			get_tree().get_root().set_disable_input(false)
+
+func change_input():
+	var input_normal = {
+		'right': KEY_D,
+		'left': KEY_A,
+		'down': KEY_S,
+		'up': KEY_W,
+		'q': KEY_Q,
+		'UI': KEY_Q,
+		'e': KEY_E
+	}
+	var input_attack = {
+		'd': KEY_D,
+		'a': KEY_A,
+		's': KEY_S,
+		'w': KEY_W,
+		'qq': KEY_Q,
+		'ee':KEY_E
+	}
+	if(inputNormal == true):
+		for action in input_normal:
+			var new_event = InputEventKey.new()
+			new_event.set_scancode(input_normal[action])
+			print(action,input_normal[action])
+			InputMap.action_erase_event(action,new_event)
+			InputMap.erase_action(action)
+		for action in input_attack:
+			InputMap.add_action(action)
+			var new_event = InputEventKey.new()
+			new_event.set_scancode(input_attack[action])
+			print(action,input_attack[action])
+			InputMap.action_add_event(action,new_event)
+		inputNormal = false
+	else:
+		for action in input_attack:
+			var new_event = InputEventKey.new()
+			new_event.set_scancode(input_attack[action])
+			print(action,input_attack[action])
+			InputMap.action_erase_event(action,new_event)
+			InputMap.erase_action(action)
+		for action in input_normal:
+			if !InputMap.get_actions().has(action):
+				InputMap.add_action(action)
+			var new_event = InputEventKey.new()
+			new_event.set_scancode(input_normal[action])
+			print(action,input_normal[action])
+			InputMap.action_add_event(action,new_event)
+			inputNormal = true
+
 func ghostDecrypt():
 	corruptGhost.play("decrypt")
 	yield(corruptGhost,"animation_finished")
 	corruptGhost.play("null")
 	player.interacting = false
 	exitApp()
-	pass
 
 func chargeBattery():
 	get_tree().get_root().set_disable_input(true)
@@ -441,7 +554,7 @@ func chargeBattery():
 	self.add_child(t)
 	t.start()
 	yield(t,"timeout")
-	t.set_wait_time(0.2)
+	t.set_wait_time(0.12)
 	for i in (10-batteryLife):
 		audio.stream = blip
 		audio.play()
@@ -483,11 +596,17 @@ func phoneAlive():
 	for i in nodes:
 		i.show()
 	showApps()
+	battApp1.hide()
+	battApp2.hide()
+	battApp3.hide()
+	battApp4.hide()
 	phone.get_node("PhoneDed").animation = "on"
 	phone.get_node("PhoneDed").play()
-	yield(phone.get_node("PhoneDed"),"animation_finished")
+#	yield(phone.get_node("PhoneDed"),"animation_finished")
+	yield(audio,"finished")
 	phone.get_node("PhoneDed").hide()
 	get_tree().get_root().set_disable_input(false)
+
 func phone_Ded():
 	get_tree().get_root().set_disable_input(true)
 	get_node("../../DialogueParser").choices["phoneDed"] = true
@@ -695,7 +814,7 @@ func exitApp():
 			get_node("../../YSort").add_child(s)
 			s.position = pos
 			s.set_name("Object_Soul_"+player.location)
-		else:
+		else: 
 			soulCorrupt.get_node("Sprite").play("default")
 		if(phoneDed == false):
 			phone.play("battleOUT")
