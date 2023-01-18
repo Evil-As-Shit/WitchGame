@@ -33,7 +33,7 @@ script = ExtResource( 12 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Object_Door" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( -26, 1 )
+position = Vector2( -26, 0.001 )
 
 [node name="Hallway1" parent="YSort" instance=ExtResource( 17 )]
 position = Vector2( -69, -155 )

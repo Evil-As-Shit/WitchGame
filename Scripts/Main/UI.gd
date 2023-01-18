@@ -18,6 +18,7 @@ var texttween = Tween.new()
 var phoneDed = false
 var batteryLife = 2
 var inputNormal = true
+var attack_combos = {}
 signal text_finished
 onready var blip = load("res://Assets/sfx/blip.wav")
 onready var player = get_node("../../YSort/Player")
@@ -65,7 +66,16 @@ func _ready():
 	appscreen.get_node("Label").add_child(texttween)
 	battery.frame = batteryLife
 	batteryUse(0)
-	pass
+	attack_combos = load_file_as_JSON("res://Narrative/Level1/attack_combos.json")
+	print(attack_combos["attack_combos"][0])
+
+func load_file_as_JSON(path):
+	var file = File.new()
+	file.open(path, file.READ)
+	var content = file.get_as_text()
+	var target = parse_json(content)
+	file.close()
+	return target
 
 func _physics_process(delta):
 	if (inUI):
@@ -147,6 +157,7 @@ func _input(_event):
 								moveAniPlayer(battleMove)
 								print("BattleApp1 GOOO!!")
 							if(focusedApp.name == "BattleApp2"):
+								print(get_focus_owner().get_node("battleapps").animation)
 								if(get_focus_owner().get_node("battleapps").is_visible()):
 									get_tree().get_root().set_disable_input(true)
 									focusedApp.get_node("Sprite").play("selected")
@@ -154,9 +165,11 @@ func _input(_event):
 									focusedApp.get_node("Sprite").play("default")
 #									get_tree().get_root().set_disable_input(false)
 									var battleMove = get_focus_owner().get_node("battleapps").animation
+									print(battleMove)
 									player.interacting = true
 									get_tree().get_root().set_disable_input(true)
-									moveAniPlayer(battleMove)
+									if(battleMove != null):
+										moveAniPlayer(battleMove)
 								else:
 									print("BattleApp2 GOOO!!")
 							if(focusedApp.name == "BattleApp3"):
@@ -431,6 +444,8 @@ func moveAniPlayer(move):
 			yield(battleAppSprite,"animation_finished")
 			change_input()
 	else:
+		get_node("PhoneUI/"+focusedApp.name).grab_focus()
+		get_tree().get_root().set_disable_input(false)
 		player.interacting = false
 
 func defaultAttack(key):
@@ -705,7 +720,6 @@ func show_text(text, _target):
 			texttween.interpolate_property(appscreen.get_node("Label"),"percent_visible",0,1,temptime,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 			texttween.start()
 
-
 #func show_text(text,speed):
 #	if(inApp):
 #		var t = Timer.new()
@@ -890,6 +904,7 @@ func exitUI():
 		focused.release_focus()
 
 func showBattleApps(soulname):
+#	get_node("PhoneUI/BattleApp1/battleapps").show()
 	var i = 1
 	yield(phone,"animation_finished")
 #	print("showingmoves")

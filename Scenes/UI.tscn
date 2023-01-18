@@ -33,6 +33,10 @@
 [ext_resource path="res://Assets/ui/soulbattery.png" type="Texture" id=32]
 [ext_resource path="res://Scenes/Phone/notification.tscn" type="PackedScene" id=33]
 
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 5, 5 )
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 5, 5 )
@@ -41,68 +45,39 @@ region = Rect2( 0, 0, 5, 5 )
 atlas = ExtResource( 15 )
 region = Rect2( 5, 0, 5, 5 )
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 5, 5 )
-
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "Next",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
 "name": "Rest",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "Next",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "null",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "witch_smug",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "witch_upset",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "witch_stare",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "npc1_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ) ],
-"loop": true,
-"name": "witch_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "npc2_netrual",
+"name": "witch_openhappy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "witch_opensmug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ) ],
@@ -113,6 +88,31 @@ animations = [ {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "witch_angry",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "witch_upset",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "witch_stare",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "witch_smug",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "witch_happy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 24 ) ],
@@ -394,10 +394,6 @@ region = Rect2( 120, 0, 12, 4 )
 atlas = ExtResource( 31 )
 region = Rect2( 132, 0, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=139]
-atlas = ExtResource( 31 )
-region = Rect2( 0, 0, 12, 4 )
-
 [sub_resource type="AtlasTexture" id=142]
 atlas = ExtResource( 31 )
 region = Rect2( 0, 4, 12, 4 )
@@ -474,6 +470,10 @@ region = Rect2( 204, 4, 12, 4 )
 atlas = ExtResource( 31 )
 region = Rect2( 216, 4, 12, 4 )
 
+[sub_resource type="AtlasTexture" id=139]
+atlas = ExtResource( 31 )
+region = Rect2( 0, 0, 12, 4 )
+
 [sub_resource type="AtlasTexture" id=141]
 atlas = ExtResource( 31 )
 region = Rect2( 24, 0, 12, 4 )
@@ -489,15 +489,15 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 139 ), null ],
-"loop": true,
-"name": "ded",
-"speed": 1.2
-}, {
 "frames": [ SubResource( 142 ), SubResource( 143 ), SubResource( 144 ), SubResource( 145 ), SubResource( 146 ), SubResource( 147 ), SubResource( 148 ), SubResource( 149 ), SubResource( 150 ), SubResource( 151 ), SubResource( 152 ), SubResource( 153 ), SubResource( 154 ), SubResource( 155 ), SubResource( 156 ), SubResource( 157 ), SubResource( 158 ), SubResource( 159 ), SubResource( 160 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ) ],
 "loop": false,
 "name": "chargin",
 "speed": 60.0
+}, {
+"frames": [ SubResource( 139 ), null ],
+"loop": true,
+"name": "ded",
+"speed": 1.2
 }, {
 "frames": [ SubResource( 141 ), SubResource( 140 ) ],
 "loop": true,

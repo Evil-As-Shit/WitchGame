@@ -62,9 +62,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Door" type="Node2D" groups=[
-"Interactable",
-]]
+[node name="Door" type="Node2D" groups=["Interactable"]]
+position = Vector2( 0, -0.999693 )
 script = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -88,7 +87,7 @@ position = Vector2( 0, 14.702 )
 shape = SubResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( -9, -29 )
+position = Vector2( -9, -28 )
 frames = SubResource( 7 )
 animation = "closed"
 centered = false

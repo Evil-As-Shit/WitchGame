@@ -277,7 +277,7 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id=32]
 states/Idle/node = SubResource( 17 )
-states/Idle/position = Vector2( 508, 226 )
+states/Idle/position = Vector2( 509, 226 )
 states/Phone/node = SubResource( 22 )
 states/Phone/position = Vector2( 306, 226 )
 states/Run/node = SubResource( 27 )
@@ -299,7 +299,7 @@ position = Vector2( 0, -12 )
 texture = ExtResource( 2 )
 hframes = 4
 vframes = 5
-frame = 10
+frame = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -335,6 +335,7 @@ position = Vector2( -5.72205e-05, -0.06369 )
 shape = SubResource( 34 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 0.75 )
 enabled = true
 cast_to = Vector2( 0, 5 )

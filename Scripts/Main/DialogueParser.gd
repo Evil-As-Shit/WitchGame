@@ -32,7 +32,6 @@ func _ready():
 	texttween.connect("tween_completed",self,"Tween_Completed")
 	panelNode.get_node("Label").add_child(texttween)
 #	panelNode.get_node("nullLabel").add_child(texttween)
-
 #func lock_next_button(isHidden):
 #	if(isHidden):
 #		panelNode.get_node("Button").hide()
