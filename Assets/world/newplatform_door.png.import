@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/exit.png-0059c45cae4ba5ab779c25e1570a7353.stex"
+path="res://.import/newplatform_door.png-4fabe7b7d51fac92ec29282b8c2cc596.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/objects/exit.png"
-dest_files=[ "res://.import/exit.png-0059c45cae4ba5ab779c25e1570a7353.stex" ]
+source_file="res://Assets/world/newplatform_door.png"
+dest_files=[ "res://.import/newplatform_door.png-4fabe7b7d51fac92ec29282b8c2cc596.stex" ]
 
 [params]
 

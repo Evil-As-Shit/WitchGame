@@ -26,10 +26,10 @@
 [ext_resource path="res://Scenes/Objects/QRCode.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scripts/Main/DialogueParser.gd" type="Script" id=25]
 [ext_resource path="res://Scripts/Main/ChoiceProcessor.gd" type="Script" id=26]
-[ext_resource path="res://Scripts/Level1/BookStack.gd" type="Script" id=27]
+[ext_resource path="res://Scripts/TestLevel/BookStack.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/Main/Context_Bubble.gd" type="Script" id=28]
 [ext_resource path="res://Scenes/Objects/Outlet.gd" type="Script" id=29]
-[ext_resource path="res://Scripts/Level1/NPC1.gd" type="Script" id=30]
+[ext_resource path="res://Scripts/TestLevel/NPC1.gd" type="Script" id=30]
 [ext_resource path="res://Scripts/Main/GameInit.gd" type="Script" id=31]
 
 [sub_resource type="CapsuleShape2D" id=1]

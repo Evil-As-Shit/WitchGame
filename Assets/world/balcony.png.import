@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/exit.png-0059c45cae4ba5ab779c25e1570a7353.stex"
+path="res://.import/balcony.png-d73e88e6e40a17da5061762dd5784a21.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/objects/exit.png"
-dest_files=[ "res://.import/exit.png-0059c45cae4ba5ab779c25e1570a7353.stex" ]
+source_file="res://Assets/world/balcony.png"
+dest_files=[ "res://.import/balcony.png-d73e88e6e40a17da5061762dd5784a21.stex" ]
 
 [params]
 
