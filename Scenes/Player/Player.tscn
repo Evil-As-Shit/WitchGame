@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scripts/Main/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/player/sWitch2.png" type="Texture" id=2]
@@ -282,13 +282,18 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "Sitting"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
 
 [sub_resource type="AnimationNodeStateMachine" id=32]
 states/Idle/node = SubResource( 17 )
@@ -296,10 +301,12 @@ states/Idle/position = Vector2( 509, 226 )
 states/Phone/node = SubResource( 22 )
 states/Phone/position = Vector2( 306, 226 )
 states/Run/node = SubResource( 27 )
-states/Run/position = Vector2( 696, 226 )
-transitions = [ "Idle", "Run", SubResource( 28 ), "Run", "Idle", SubResource( 29 ), "Idle", "Phone", SubResource( 30 ), "Phone", "Idle", SubResource( 31 ) ]
+states/Run/position = Vector2( 711, 226 )
+states/Sitting/node = SubResource( 36 )
+states/Sitting/position = Vector2( 509, 335 )
+transitions = [ "Idle", "Run", SubResource( 28 ), "Idle", "Phone", SubResource( 30 ), "Phone", "Idle", SubResource( 31 ), "Idle", "Sitting", SubResource( 37 ), "Run", "Idle", SubResource( 38 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 28, 77 )
+graph_offset = Vector2( -94, 105 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 

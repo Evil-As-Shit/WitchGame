@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/witch_openhappy.png-c26a4b99c58251f890e385c3a52eb198.stex"
+path="res://.import/arrowbutton.png-b9dd3b84d65692ff1150b5d0c191a1b9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ui/Avatars/witch/witch_openhappy.png"
-dest_files=[ "res://.import/witch_openhappy.png-c26a4b99c58251f890e385c3a52eb198.stex" ]
+source_file="res://Assets/ui/BattleApps/remoteapp/arrowbutton.png"
+dest_files=[ "res://.import/arrowbutton.png-b9dd3b84d65692ff1150b5d0c191a1b9.stex" ]
 
 [params]
 

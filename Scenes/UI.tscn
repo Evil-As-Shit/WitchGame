@@ -1,4 +1,4 @@
-[gd_scene load_steps=218 format=2]
+[gd_scene load_steps=219 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -10,19 +10,20 @@
 [ext_resource path="res://Assets/ui/soulcollectphone.png" type="Texture" id=8]
 [ext_resource path="res://Assets/ui/phone ui battle smol.png" type="Texture" id=9]
 [ext_resource path="res://Assets/ui/Avatars/npc1/npc1avatar.png" type="Texture" id=10]
-[ext_resource path="res://Assets/ui/Avatars/witch/witch_openhappy.png" type="Texture" id=12]
+[ext_resource path="res://Assets/ui/Avatars/witch/witch_happy.png" type="Texture" id=11]
+[ext_resource path="res://Assets/ui/BattleApps/remoteapp/remoteapp.png" type="Texture" id=12]
 [ext_resource path="res://Assets/ui/Avatars/npc2/npc2avatar.png" type="Texture" id=13]
 [ext_resource path="res://Assets/ui/homecursor.png" type="Texture" id=14]
 [ext_resource path="res://Assets/ui/nextindicator.png" type="Texture" id=15]
 [ext_resource path="res://Assets/ui/Fonts/Boo City.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://Assets/ui/OTB background.png" type="Texture" id=17]
-[ext_resource path="res://Assets/ui/Avatars/witch/witch_opensmug.png" type="Texture" id=18]
-[ext_resource path="res://Assets/ui/Avatars/witch/witch_happy.png" type="Texture" id=19]
+[ext_resource path="res://Assets/ui/BattleApps/remoteapp/arrowbutton.png" type="Texture" id=18]
+[ext_resource path="res://Assets/ui/Avatars/witch/witch_openhappy.png" type="Texture" id=19]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_angry.png" type="Texture" id=20]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_surprised.png" type="Texture" id=21]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_sad.png" type="Texture" id=22]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_smug.png" type="Texture" id=23]
-[ext_resource path="res://Assets/ui/Avatars/witch/witch_tiltopenhappy.png" type="Texture" id=24]
+[ext_resource path="res://Assets/ui/BattleApps/remoteapp/powerbutton.png" type="Texture" id=24]
 [ext_resource path="res://Assets/ui/appnotification.png" type="Texture" id=25]
 [ext_resource path="res://Assets/ui/battle screen smol.png" type="Texture" id=26]
 [ext_resource path="res://Scenes/Phone/battleapps.tscn" type="PackedScene" id=27]
@@ -60,14 +61,19 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "npc1_happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "npc2_netrual",
+"speed": 5.0
+}, {
 "frames": [  ],
 "loop": true,
 "name": "null",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "witch_openhappy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 20 ) ],
@@ -75,24 +81,19 @@ animations = [ {
 "name": "witch_angry",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "witch_happy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "witch_opensmug",
+"name": "witch_openhappy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": true,
-"name": "npc1_happy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "witch_upset",
+"name": "witch_smug",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -105,45 +106,15 @@ animations = [ {
 "name": "witch_surprised",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
-"name": "witch_smug",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "witch_tiltopenhappy",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "npc2_netrual",
+"name": "witch_upset",
 "speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 16 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=127]
-atlas = ExtResource( 9 )
-region = Rect2( 189, 0, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 9 )
-region = Rect2( 126, 0, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 9 )
-region = Rect2( 63, 0, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 63, 105 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 9 )
@@ -157,27 +128,47 @@ region = Rect2( 63, 0, 63, 105 )
 atlas = ExtResource( 9 )
 region = Rect2( 126, 0, 63, 105 )
 
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 126, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 9 )
+region = Rect2( 63, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=127]
+atlas = ExtResource( 9 )
+region = Rect2( 189, 0, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 63, 105 )
+
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
-"frames": [ SubResource( 7 ) ],
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": false,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 127 ) ],
-"loop": true,
-"name": "ded",
-"speed": 5.0
+"name": "battleIN",
+"speed": 20.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
 "name": "battleOUT",
 "speed": 20.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 127 ) ],
+"loop": true,
+"name": "ded",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
 "loop": false,
-"name": "battleIN",
-"speed": 20.0
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="StyleBoxEmpty" id=15]
@@ -274,11 +265,6 @@ animations = [ {
 
 [sub_resource type="StyleBoxEmpty" id=161]
 
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 10, 10 )
-
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
 atlas = ExtResource( 6 )
@@ -329,17 +315,22 @@ flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 10, 10 )
 
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 10, 10 )
+
 [sub_resource type="SpriteFrames" id=44]
 animations = [ {
-"frames": [ SubResource( 31 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 42 ), SubResource( 43 ) ],
 "loop": false,
 "name": "collected",
 "speed": 6.0
+}, {
+"frames": [ SubResource( 31 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=45]
@@ -350,53 +341,13 @@ font_data = ExtResource( 16 )
 size = 50
 font_data = ExtResource( 16 )
 
-[sub_resource type="AtlasTexture" id=128]
-atlas = ExtResource( 31 )
-region = Rect2( 12, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=129]
+[sub_resource type="AtlasTexture" id=141]
 atlas = ExtResource( 31 )
 region = Rect2( 24, 0, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=130]
+[sub_resource type="AtlasTexture" id=140]
 atlas = ExtResource( 31 )
-region = Rect2( 36, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=131]
-atlas = ExtResource( 31 )
-region = Rect2( 48, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=132]
-atlas = ExtResource( 31 )
-region = Rect2( 60, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=133]
-atlas = ExtResource( 31 )
-region = Rect2( 72, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=134]
-atlas = ExtResource( 31 )
-region = Rect2( 84, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=135]
-atlas = ExtResource( 31 )
-region = Rect2( 96, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=136]
-atlas = ExtResource( 31 )
-region = Rect2( 108, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=137]
-atlas = ExtResource( 31 )
-region = Rect2( 120, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=138]
-atlas = ExtResource( 31 )
-region = Rect2( 132, 0, 12, 4 )
-
-[sub_resource type="AtlasTexture" id=139]
-atlas = ExtResource( 31 )
-region = Rect2( 0, 0, 12, 4 )
+region = Rect2( 12, 0, 12, 4 )
 
 [sub_resource type="AtlasTexture" id=142]
 atlas = ExtResource( 31 )
@@ -474,24 +425,59 @@ region = Rect2( 204, 4, 12, 4 )
 atlas = ExtResource( 31 )
 region = Rect2( 216, 4, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=141]
+[sub_resource type="AtlasTexture" id=138]
 atlas = ExtResource( 31 )
-region = Rect2( 24, 0, 12, 4 )
+region = Rect2( 132, 0, 12, 4 )
 
-[sub_resource type="AtlasTexture" id=140]
+[sub_resource type="AtlasTexture" id=139]
+atlas = ExtResource( 31 )
+region = Rect2( 0, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=128]
 atlas = ExtResource( 31 )
 region = Rect2( 12, 0, 12, 4 )
 
+[sub_resource type="AtlasTexture" id=129]
+atlas = ExtResource( 31 )
+region = Rect2( 24, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=130]
+atlas = ExtResource( 31 )
+region = Rect2( 36, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=131]
+atlas = ExtResource( 31 )
+region = Rect2( 48, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=132]
+atlas = ExtResource( 31 )
+region = Rect2( 60, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=133]
+atlas = ExtResource( 31 )
+region = Rect2( 72, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=134]
+atlas = ExtResource( 31 )
+region = Rect2( 84, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=135]
+atlas = ExtResource( 31 )
+region = Rect2( 96, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=136]
+atlas = ExtResource( 31 )
+region = Rect2( 108, 0, 12, 4 )
+
+[sub_resource type="AtlasTexture" id=137]
+atlas = ExtResource( 31 )
+region = Rect2( 120, 0, 12, 4 )
+
 [sub_resource type="SpriteFrames" id=59]
 animations = [ {
-"frames": [ SubResource( 128 ), SubResource( 129 ), SubResource( 130 ), SubResource( 131 ), SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ), SubResource( 136 ), SubResource( 137 ), SubResource( 138 ) ],
+"frames": [ SubResource( 141 ), SubResource( 140 ) ],
 "loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 139 ), null ],
-"loop": true,
-"name": "ded",
+"name": "almost_ded",
 "speed": 1.2
 }, {
 "frames": [ SubResource( 142 ), SubResource( 143 ), SubResource( 144 ), SubResource( 145 ), SubResource( 146 ), SubResource( 147 ), SubResource( 148 ), SubResource( 149 ), SubResource( 150 ), SubResource( 151 ), SubResource( 152 ), SubResource( 153 ), SubResource( 154 ), SubResource( 155 ), SubResource( 156 ), SubResource( 157 ), SubResource( 158 ), SubResource( 159 ), SubResource( 160 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ), SubResource( 138 ) ],
@@ -499,10 +485,15 @@ animations = [ {
 "name": "chargin",
 "speed": 60.0
 }, {
-"frames": [ SubResource( 141 ), SubResource( 140 ) ],
+"frames": [ SubResource( 139 ), null ],
 "loop": true,
-"name": "almost_ded",
+"name": "ded",
 "speed": 1.2
+}, {
+"frames": [ SubResource( 128 ), SubResource( 129 ), SubResource( 130 ), SubResource( 131 ), SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ), SubResource( 136 ), SubResource( 137 ), SubResource( 138 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=60]
@@ -596,20 +587,25 @@ animations = [ {
 "name": "close",
 "speed": 20.0
 }, {
-"frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ) ],
-"loop": false,
-"name": "open",
-"speed": 20.0
-}, {
 "frames": [  ],
 "loop": false,
 "name": "null",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ) ],
+"loop": false,
+"name": "open",
+"speed": 20.0
+}, {
 "frames": [ SubResource( 120 ), SubResource( 121 ), SubResource( 122 ), SubResource( 123 ), SubResource( 124 ), SubResource( 125 ), SubResource( 126 ) ],
 "loop": false,
 "name": "otb",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "remote",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=75]
@@ -643,42 +639,6 @@ font_data = ExtResource( 16 )
 
 [sub_resource type="StyleBoxEmpty" id=173]
 
-[sub_resource type="AtlasTexture" id=81]
-atlas = ExtResource( 29 )
-region = Rect2( 280, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=82]
-atlas = ExtResource( 29 )
-region = Rect2( 210, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=83]
-atlas = ExtResource( 29 )
-region = Rect2( 560, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=84]
-atlas = ExtResource( 29 )
-region = Rect2( 350, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=85]
-atlas = ExtResource( 29 )
-region = Rect2( 420, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=86]
-atlas = ExtResource( 29 )
-region = Rect2( 490, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=87]
-atlas = ExtResource( 29 )
-region = Rect2( 140, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=88]
-atlas = ExtResource( 29 )
-region = Rect2( 0, 0, 70, 70 )
-
-[sub_resource type="AtlasTexture" id=89]
-atlas = ExtResource( 29 )
-region = Rect2( 70, 0, 70, 70 )
-
 [sub_resource type="AtlasTexture" id=90]
 atlas = ExtResource( 29 )
 region = Rect2( 0, 70, 70, 70 )
@@ -703,32 +663,68 @@ region = Rect2( 280, 70, 70, 70 )
 atlas = ExtResource( 29 )
 region = Rect2( 350, 70, 70, 70 )
 
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 29 )
+region = Rect2( 140, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 29 )
+region = Rect2( 0, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 29 )
+region = Rect2( 70, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 29 )
+region = Rect2( 280, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 29 )
+region = Rect2( 210, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 29 )
+region = Rect2( 560, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 29 )
+region = Rect2( 350, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 29 )
+region = Rect2( 420, 0, 70, 70 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 29 )
+region = Rect2( 490, 0, 70, 70 )
+
 [sub_resource type="SpriteFrames" id=96]
 animations = [ {
-"frames": [ SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ) ],
+"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
 "loop": true,
-"name": "default",
-"speed": 2.0
+"name": "attack",
+"speed": 10.0
 }, {
 "frames": [ SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), null ],
 "loop": true,
 "name": "decrypt",
 "speed": 10.0
 }, {
-"frames": [  ],
+"frames": [ SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ) ],
 "loop": true,
-"name": "null",
-"speed": 5.0
+"name": "default",
+"speed": 2.0
 }, {
 "frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 87 ) ],
 "loop": false,
 "name": "intro",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
+"frames": [  ],
 "loop": true,
-"name": "attack",
-"speed": 10.0
+"name": "null",
+"speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=97]
@@ -846,6 +842,38 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=162]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=163]
+atlas = ExtResource( 9 )
+region = Rect2( 63, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=164]
+atlas = ExtResource( 9 )
+region = Rect2( 126, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=165]
+atlas = ExtResource( 9 )
+region = Rect2( 189, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=166]
+atlas = ExtResource( 9 )
+region = Rect2( 252, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=167]
+atlas = ExtResource( 9 )
+region = Rect2( 315, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=168]
+atlas = ExtResource( 9 )
+region = Rect2( 378, 105, 63, 105 )
+
+[sub_resource type="AtlasTexture" id=169]
+atlas = ExtResource( 9 )
+region = Rect2( 441, 105, 63, 105 )
+
 [sub_resource type="AtlasTexture" id=174]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 210, 63, 105 )
@@ -906,48 +934,16 @@ region = Rect2( 819, 210, 63, 105 )
 atlas = ExtResource( 9 )
 region = Rect2( 882, 210, 63, 105 )
 
-[sub_resource type="AtlasTexture" id=162]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=163]
-atlas = ExtResource( 9 )
-region = Rect2( 63, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=164]
-atlas = ExtResource( 9 )
-region = Rect2( 126, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=165]
-atlas = ExtResource( 9 )
-region = Rect2( 189, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=166]
-atlas = ExtResource( 9 )
-region = Rect2( 252, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=167]
-atlas = ExtResource( 9 )
-region = Rect2( 315, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=168]
-atlas = ExtResource( 9 )
-region = Rect2( 378, 105, 63, 105 )
-
-[sub_resource type="AtlasTexture" id=169]
-atlas = ExtResource( 9 )
-region = Rect2( 441, 105, 63, 105 )
-
 [sub_resource type="SpriteFrames" id=170]
 animations = [ {
-"frames": [ SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 174 ), SubResource( 175 ), SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 180 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 183 ), SubResource( 184 ), SubResource( 185 ), SubResource( 186 ), SubResource( 187 ), SubResource( 188 ), null ],
-"loop": false,
-"name": "on",
-"speed": 13.0
-}, {
 "frames": [ SubResource( 162 ), SubResource( 163 ), SubResource( 164 ), SubResource( 165 ), SubResource( 166 ), SubResource( 167 ), SubResource( 168 ), SubResource( 169 ), SubResource( 127 ) ],
 "loop": false,
 "name": "off",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 127 ), SubResource( 174 ), SubResource( 175 ), SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 180 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 182 ), SubResource( 181 ), SubResource( 183 ), SubResource( 184 ), SubResource( 185 ), SubResource( 186 ), SubResource( 187 ), SubResource( 188 ), null ],
+"loop": false,
+"name": "on",
 "speed": 13.0
 } ]
 
@@ -1030,6 +1026,7 @@ frames = SubResource( 14 )
 offset = Vector2( 0.5, 0.5 )
 
 [node name="Options" type="Button" parent="Control/PhoneUI"]
+visible = false
 margin_left = -31.0
 margin_top = -51.0
 margin_right = -11.0
@@ -1048,7 +1045,6 @@ position = Vector2( 3, 3 )
 offset = Vector2( 0, 0 )
 
 [node name="BattleApp2" type="Button" parent="Control/PhoneUI"]
-visible = false
 margin_left = -17.0
 margin_top = 24.2
 margin_right = 3.0
@@ -1061,7 +1057,6 @@ button_mask = 0
 flat = true
 
 [node name="battleapps" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 27 )]
-visible = true
 
 [node name="Sprite" parent="Control/PhoneUI/BattleApp2" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
@@ -1196,7 +1191,6 @@ offset = Vector2( 0, 0 )
 
 [node name="battleapps" parent="Control/PhoneUI/App1" instance=ExtResource( 27 )]
 position = Vector2( 10, 9 )
-animation = "default_backwards"
 
 [node name="notification" parent="Control/PhoneUI/App1" instance=ExtResource( 33 )]
 animation = "default"
@@ -1346,9 +1340,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 23 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/App8" instance=ExtResource( 28 )]
 position = Vector2( 3, 3.00002 )
@@ -1388,9 +1379,6 @@ mouse_filter = 2
 custom_styles/focus = SubResource( 25 )
 button_mask = 0
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Control/PhoneUI/TextApp" instance=ExtResource( 28 )]
 position = Vector2( 3, 3 )
@@ -1479,8 +1467,11 @@ position = Vector2( 23, -46 )
 frames = SubResource( 59 )
 
 [node name="AppScreen" type="AnimatedSprite" parent="Control/PhoneUI"]
+visible = false
 frames = SubResource( 74 )
 animation = "null"
+frame = -1
+playing = true
 offset = Vector2( 0.5, 2.5 )
 
 [node name="Label" type="Label" parent="Control/PhoneUI/AppScreen"]
@@ -1573,7 +1564,7 @@ margin_top = -33.6
 margin_right = 186.8
 margin_bottom = -7.60001
 rect_scale = Vector2( 0.25, 0.25 )
-focus_neighbour_bottom = NodePath("../../HomeButton")
+focus_neighbour_bottom = NodePath("../Wifi Settings")
 custom_colors/font_color_focus = Color( 1, 0.027451, 0.713726, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.635294, 0.384314, 1, 1 )
@@ -1581,9 +1572,23 @@ custom_fonts/font = SubResource( 80 )
 custom_styles/focus = SubResource( 173 )
 text = "Uninstall Apps"
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Wifi Settings" type="Button" parent="Control/PhoneUI/AppScreen"]
+visible = false
+margin_left = -26.2
+margin_top = -27.5999
+margin_right = 186.8
+margin_bottom = -1.59991
+rect_scale = Vector2( 0.25, 0.25 )
+focus_neighbour_top = NodePath("../Uninstall")
+focus_neighbour_bottom = NodePath("../../HomeButton")
+custom_colors/font_color_focus = Color( 1, 0.027451, 0.713726, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.635294, 0.384314, 1, 1 )
+custom_fonts/font = SubResource( 80 )
+custom_styles/focus = SubResource( 173 )
+text = "Wifi Settings"
+flat = true
 
 [node name="corruptGhost" type="AnimatedSprite" parent="Control/PhoneUI/AppScreen"]
 visible = false
@@ -1602,6 +1607,47 @@ visible = false
 position = Vector2( -8, -41 )
 frames = SubResource( 119 )
 animation = "null"
+
+[node name="RemoteButtons" type="Node2D" parent="Control/PhoneUI/AppScreen"]
+visible = false
+
+[node name="left" type="TextureButton" parent="Control/PhoneUI/AppScreen/RemoteButtons"]
+margin_left = -15.0
+margin_top = 13.0
+margin_right = -9.0
+margin_bottom = 23.0
+texture_normal = ExtResource( 18 )
+
+[node name="right" type="TextureButton" parent="Control/PhoneUI/AppScreen/RemoteButtons"]
+margin_left = 15.0
+margin_top = 23.0
+margin_right = 21.0
+margin_bottom = 33.0
+rect_rotation = 180.0
+texture_normal = ExtResource( 18 )
+
+[node name="up" type="TextureButton" parent="Control/PhoneUI/AppScreen/RemoteButtons"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 11.0
+margin_bottom = 15.0
+rect_rotation = 89.9999
+texture_normal = ExtResource( 18 )
+
+[node name="down" type="TextureButton" parent="Control/PhoneUI/AppScreen/RemoteButtons"]
+margin_left = -5.0
+margin_top = 31.0
+margin_right = 1.0
+margin_bottom = 41.0
+rect_rotation = -89.9999
+texture_normal = ExtResource( 18 )
+
+[node name="TextureButton" type="TextureButton" parent="Control/PhoneUI/AppScreen/RemoteButtons"]
+margin_left = -9.0
+margin_top = -19.0
+margin_right = 9.0
+margin_bottom = -2.0
+texture_normal = ExtResource( 24 )
 
 [node name="PhoneDed" type="AnimatedSprite" parent="Control/PhoneUI"]
 frames = SubResource( 170 )
@@ -1654,3 +1700,4 @@ offset = Vector2( 0.5, 0.5 )
 [connection signal="focus_exited" from="Control/PhoneUI/AppScreen/Button2" to="Control" method="_on_Button2_focus_exited"]
 [connection signal="pressed" from="Control/PhoneUI/AppScreen/Button2" to="Control" method="_on_Button2_pressed"]
 [connection signal="pressed" from="Control/PhoneUI/AppScreen/Uninstall" to="Control" method="_on_Uninstall_pressed"]
+[connection signal="pressed" from="Control/PhoneUI/AppScreen/Wifi Settings" to="Control" method="_on_Uninstall_pressed"]

@@ -105,6 +105,7 @@ position = Vector2( 3, -4 )
 
 [node name="Sprite" parent="YSort/NPC2/Area2D" index="1"]
 position = Vector2( -3, -29 )
+frame = 0
 
 [node name="specialhat" type="Sprite" parent="YSort/NPC2"]
 position = Vector2( 0, -27 )
@@ -125,6 +126,7 @@ position = Vector2( -2, -5 )
 
 [node name="Sprite" parent="YSort/NPC3/Area2D" index="1"]
 position = Vector2( -3, -23 )
+frame = 0
 
 [node name="specialhat" type="Sprite" parent="YSort/NPC3"]
 position = Vector2( 0, -23 )
@@ -139,6 +141,7 @@ texture = ExtResource( 4 )
 
 [node name="Sprite" parent="YSort/NPC4/Area2D" index="1"]
 position = Vector2( 4.47035e-07, -33 )
+frame = 0
 
 [node name="specialhat" type="Sprite" parent="YSort/NPC4"]
 position = Vector2( 0, -28 )
@@ -156,6 +159,7 @@ position = Vector2( -4, -5 )
 
 [node name="Sprite" parent="YSort/NPC5/Area2D" index="1"]
 position = Vector2( 4, -26 )
+frame = 0
 
 [node name="specialhat" type="Sprite" parent="YSort/NPC5"]
 position = Vector2( 0.513, -25.967 )
@@ -191,7 +195,6 @@ shape = SubResource( 2 )
 visible = false
 position = Vector2( 4, -24 )
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [node name="specialhat" type="Sprite" parent="YSort/NPC6"]

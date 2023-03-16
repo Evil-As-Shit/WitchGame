@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Levels/The Apartments/Scripts/TA_Room1.gd" type="Script" id=1]
 [ext_resource path="res://Levels/The Apartments/Scripts/TA_Balcony.gd" type="Script" id=2]
@@ -14,6 +14,97 @@
 [ext_resource path="res://Scenes/Objects/Object_Chair.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Levels/The Apartments/NewplatformDoor.gd" type="Script" id=13]
 [ext_resource path="res://Assets/world/newplatform_door2.png" type="Texture" id=14]
+[ext_resource path="res://Levels/The Apartments/Assests/haunted tv.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/NPCs/NPC1.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Objects/QRCode.tscn" type="PackedScene" id=17]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 15 )
+region = Rect2( 36, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 15 )
+region = Rect2( 72, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 15 )
+region = Rect2( 108, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 15 )
+region = Rect2( 144, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 15 )
+region = Rect2( 180, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 15 )
+region = Rect2( 216, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 252, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 15 )
+region = Rect2( 288, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 15 )
+region = Rect2( 324, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 15 )
+region = Rect2( 360, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 15 )
+region = Rect2( 396, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 15 )
+region = Rect2( 432, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 15 )
+region = Rect2( 468, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 15 )
+region = Rect2( 504, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 15 )
+region = Rect2( 540, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 15 )
+region = Rect2( 576, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 15 )
+region = Rect2( 612, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 15 )
+region = Rect2( 648, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 15 )
+region = Rect2( 684, 0, 36, 36 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
 
 [node name="The Apartments" type="Node2D"]
 
@@ -66,7 +157,8 @@ centered = false
 offset = Vector2( -7.5, -50.5 )
 
 [node name="Object_Chair" parent="YSort" instance=ExtResource( 12 )]
-position = Vector2( -114, 14 )
+position = Vector2( -114, 12 )
+script = null
 
 [node name="Room1" type="StaticBody2D" parent="YSort"]
 script = ExtResource( 1 )
@@ -86,6 +178,18 @@ position = Vector2( 45.5, 76.2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/Room1/Area2D"]
 polygon = PoolVector2Array( -165.5, -68.2, -46, -76, -70, -14, -189.5, -22.2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="YSort"]
+frames = SubResource( 21 )
+frame = 18
+playing = true
+offset = Vector2( -34, -12 )
+
+[node name="NPC1" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( -31, 41 )
+
+[node name="QRCode_Room1" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( -77, 5 )
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
 

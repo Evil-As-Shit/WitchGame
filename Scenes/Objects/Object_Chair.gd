@@ -1,16 +1,16 @@
 extends StaticBody2D
 
-onready var player=get_node("../Player")
-
-func sit():
-	
-	pass
-
+onready var player = get_node("../Player")
+onready var animationState = player.animationTree.get("parameters/playback")
 
 func _ready():
-	pass # Replace with function body.
+	set_process(true)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(_delta):
+	if Input.is_action_pressed("e"):
+		# Check if the player is within a certain distance of this StaticBody2D
+		if player.position.distance_to(position) < 5:
+			# Change the player's animation to "sit"
+			animationState.travel("Sitting")
+			# Move the player to the StaticBody2D's position
+			player.position = position

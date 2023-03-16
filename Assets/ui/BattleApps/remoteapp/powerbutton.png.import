@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/witch_openhappy.png-c26a4b99c58251f890e385c3a52eb198.stex"
+path="res://.import/powerbutton.png-2ee57971a21782fda09286b4b6a30775.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ui/Avatars/witch/witch_openhappy.png"
-dest_files=[ "res://.import/witch_openhappy.png-c26a4b99c58251f890e385c3a52eb198.stex" ]
+source_file="res://Assets/ui/BattleApps/remoteapp/powerbutton.png"
+dest_files=[ "res://.import/powerbutton.png-2ee57971a21782fda09286b4b6a30775.stex" ]
 
 [params]
 

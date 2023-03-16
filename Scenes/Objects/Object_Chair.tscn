@@ -12,10 +12,11 @@ collision_layer = 9
 script = ExtResource( 2 )
 
 [node name="icon" type="Sprite" parent="."]
-position = Vector2( 0.5, -7 )
+position = Vector2( 0, -1 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -3.26411 )
+position = Vector2( 0, -3 )
 rotation = 1.57079
 shape = SubResource( 1 )

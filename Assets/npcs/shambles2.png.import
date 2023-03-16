@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/witch_openhappy.png-c26a4b99c58251f890e385c3a52eb198.stex"
+path="res://.import/shambles2.png-9b5ecce2ef23d4e883166e71d27f7cf2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ui/Avatars/witch/witch_openhappy.png"
-dest_files=[ "res://.import/witch_openhappy.png-c26a4b99c58251f890e385c3a52eb198.stex" ]
+source_file="res://Assets/npcs/shambles2.png"
+dest_files=[ "res://.import/shambles2.png-9b5ecce2ef23d4e883166e71d27f7cf2.stex" ]
 
 [params]
 

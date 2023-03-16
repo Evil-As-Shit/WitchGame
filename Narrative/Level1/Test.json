@@ -216,7 +216,7 @@
                 "content": [
                     "Oh thanks, no biggie...",
                     {
-                        "expression": "witch_opensmug"          
+                        "expression": "witch_smug"          
 					},
                     {
                        "isEnd": true             

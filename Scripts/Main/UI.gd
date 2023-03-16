@@ -293,8 +293,9 @@ func _input(_event):
 				if(!text1seen):
 					focusedApp = get_focus_owner().name
 				appscreen.get_node("Uninstall").hide()
+				appscreen.get_node("Wifi Settings").hide()
 				print(focusedApp)
-				if(focusedApp != "HomeButton"):
+				if(focusedApp == "Uninstall"):
 					if(battleApps.size() != 0):
 						if(choosing):
 							appscreen.play("close")
@@ -326,6 +327,9 @@ func _input(_event):
 						show_text("You don't have any apps to uninstall :p",0.025)
 						yield(self,"text_finished")
 						homeButton.grab_focus()
+				if(focusedApp == "Wifi Settings"):
+
+					pass
 			elif(!inApp):
 				get_tree().get_root().set_disable_input(true)
 				get_node("PhoneUI/Options/Sprite").play("selected")
@@ -336,6 +340,7 @@ func _input(_event):
 				enterApp(focusedName)
 				yield(appscreen,"animation_finished")
 				appscreen.get_node("Uninstall").show()
+				appscreen.get_node("Wifi Settings").show()
 				appscreen.get_node("Uninstall").grab_focus()
 #			appscreen.hide()
 #			print("uninstall")
@@ -362,6 +367,16 @@ func _input(_event):
 				get_tree().get_root().set_disable_input(false)
 				enterApp(focusedName)
 				phone.get_node("HomeButton").grab_focus()
+#pressing e on RemoteApp
+		elif(focusedName == "RemoteApp"):
+			focusedApp = get_focus_owner()
+			get_tree().get_root().set_disable_input(true)
+			focusedApp.get_node("Sprite").play("selected")
+			yield(focusedApp.get_node("Sprite"),"animation_finished")
+			focusedApp.get_node("Sprite").play("default")
+			get_tree().get_root().set_disable_input(false)
+			enterApp(focusedName)
+			phone.get_node("HomeButton").grab_focus()
 #exiting/entering phone ui
 	if(inputNormal == true):
 		if (Input.is_action_just_pressed("UI") and !player.interacting):
@@ -382,6 +397,10 @@ func _input(_event):
 				exitApp()
 			else:
 				pass
+
+
+
+
 
 func ghostAttack():
 	var t = Timer.new()
@@ -784,6 +803,9 @@ func enterApp(appName):
 	yieldToAni()
 	if(appName == "TextApp"):
 		appscreen.play("otb")
+	if(appName == "RemoteApp"):
+		appscreen.play("remote")
+		appscreen.get_node("RemoteButtons").show()
 	phoneLabel.set_text("")
 	yield(appscreen,"animation_finished")
 	hideApps()
@@ -801,8 +823,12 @@ func exitApp():
 		$PhoneUI/AppScreen/Button2.hide()
 	if(focusedName == "Options"):
 		appscreen.get_node("Uninstall").hide()
+		appscreen.get_node("Wifi Settings").hide()
 		choosing = false
 		text1seen = false
+	if(focusedName == "RemoteApp"):
+		appscreen.play("null")
+		appscreen.get_node("RemoteButtons").hide()
 	if(focusedName == "QRApp"):
 		text1seen = false
 		choosing = false
@@ -1044,8 +1070,8 @@ func pressKey():
 	a.action = "e"
 	a.pressed = true
 	Input.parse_input_event(a)
-	a.pressed = false
-	Input.parse_input_event(a)
+#	a.pressed = false
+#	Input.parse_input_event(a)
 	
 	
 func _on_Button_pressed():
