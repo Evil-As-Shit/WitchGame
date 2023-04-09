@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/ui/phone select.png" type="Texture" id=1]
+[ext_resource path="res://Assets/ui/BattleApps/remote.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/such ui very wow.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/BattleApps/decrypt.png" type="Texture" id=4]
+[ext_resource path="res://Assets/ui/BattleApps/salt.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ui/BattleApps/file shredder.png" type="Texture" id=6]
+[ext_resource path="res://Assets/ui/attackexpand.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Main/PhoneApp.gd" type="Script" id=8]
+[ext_resource path="res://Assets/sfx/menu browse.wav" type="AudioStream" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 14, 0, 14, 14 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": false,
+"name": "selected",
+"speed": 7.0
+} ]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 7 )
+region = Rect2( 59, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 7 )
+region = Rect2( 59, 0, 59, 14 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 59, 14 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "RemoteApp",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "decrypt",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 17 ) ],
+"loop": false,
+"name": "default",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default_backwards",
+"speed": 12.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "null",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "salt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "shredder",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 2, 10 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ null, SubResource( 20 ), null, SubResource( 20 ), null, SubResource( 20 ), null, SubResource( 20 ), null, SubResource( 20 ) ],
+"loop": false,
+"name": "notify",
+"speed": 10.0
+} ]
+
+[node name="PhoneApp" type="Button"]
+margin_right = 20.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../../Options")
+focus_neighbour_right = NodePath("../../App2")
+focus_neighbour_bottom = NodePath("../../App5")
+mouse_filter = 2
+custom_styles/focus = SubResource( 16 )
+button_mask = 0
+flat = true
+script = ExtResource( 8 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 3, 2.4 )
+frames = SubResource( 3 )
+centered = false
+
+[node name="battleapps" type="AnimatedSprite" parent="."]
+position = Vector2( 10, 9 )
+frames = SubResource( 19 )
+animation = "null"
+
+[node name="notification" type="AnimatedSprite" parent="."]
+position = Vector2( 12, -3 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 21 )
+centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -21.174
+pitch_scale = 0.81

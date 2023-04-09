@@ -33,14 +33,6 @@ onready var audio = get_node("../../AudioStreamPlayer")
 onready var time = get_node("PhoneUI/Time")
 onready var memory = get_node("PhoneUI/Memory")
 onready var options = get_node("PhoneUI/Options")
-onready var app1 = get_node("PhoneUI/App1")
-onready var app2 = get_node("PhoneUI/App2")
-onready var app3 = get_node("PhoneUI/App3")
-onready var app4 = get_node("PhoneUI/App4")
-onready var app5 = get_node("PhoneUI/App5")
-onready var app6 = get_node("PhoneUI/App6")
-onready var app7 = get_node("PhoneUI/App7")
-onready var app8 = get_node("PhoneUI/App8")
 onready var QRApp = get_node("PhoneUI/QRApp")
 onready var textapp = get_node("PhoneUI/TextApp")
 onready var pixapp = get_node("PhoneUI/PixApp")
@@ -304,7 +296,7 @@ func _input(_event):
 								get_node("PhoneUI/App"+str(i)).show()
 								i += 1
 							show_text("",0.025)
-							app1.grab_focus()
+							$PhoneAppController.get_child(0).grab_focus()
 							choosing = false
 						elif(text1seen and !choosing):
 							appscreen.play("close")
@@ -665,14 +657,8 @@ func phone_Ded():
 	get_tree().get_root().set_disable_input(false)
 
 func hideApps():
-	app1.hide()
-	app2.hide()
-	app3.hide()
-	app4.hide()
-	app5.hide()
-	app6.hide()
-	app7.hide()
-	app8.hide()
+	for child in get_node("PhoneUI/PhoneAppController").get_children():
+		child.visible = false
 	QRApp.hide()
 	pixapp.hide()
 	textapp.hide()
@@ -686,14 +672,8 @@ func hideApps():
 			battApp4.hide()
 
 func showApps():
-	app1.show()
-	app2.show()
-	app3.show()
-	app4.show()
-	app5.show()
-	app6.show()
-	app7.show()
-	app8.show()
+	for child in get_node("PhoneUI/PhoneAppController").get_children():
+		child.visible = true
 	QRApp.show()
 	pixapp.show()
 	textapp.show()
@@ -946,68 +926,12 @@ func randomizeMoves(soulname, battapps):
 #		print("populating moves")
 		soulMoves[soulname] = battapps.duplicate()
 
-func _on_App1_focus_entered():
-	$PhoneUI/App1/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App1_focus_exited():
-	$PhoneUI/App1/Sprite.hide()
-
-func _on_App2_focus_entered():
-	$PhoneUI/App2/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App2_focus_exited():
-	$PhoneUI/App2/Sprite.hide()
-
 func _on_Options_focus_entered():
 	$PhoneUI/Options/Sprite.show()
 	audio.stream = load("res://Assets/sfx/menu browse.wav")
 	audio.play()
 func _on_Options_focus_exited():
 	$PhoneUI/Options/Sprite.hide()
-
-func _on_App3_focus_entered():
-	$PhoneUI/App3/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App3_focus_exited():
-	$PhoneUI/App3/Sprite.hide()
-
-func _on_App4_focus_entered():
-	$PhoneUI/App4/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App4_focus_exited():
-	$PhoneUI/App4/Sprite.hide()
-
-func _on_App5_focus_entered():
-	$PhoneUI/App5/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App5_focus_exited():
-	$PhoneUI/App5/Sprite.hide()
-
-func _on_App6_focus_entered():
-	$PhoneUI/App6/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App6_focus_exited():
-	$PhoneUI/App6/Sprite.hide()
-
-func _on_App7_focus_entered():
-	$PhoneUI/App7/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App7_focus_exited():
-	$PhoneUI/App7/Sprite.hide()
-
-func _on_App8_focus_entered():
-	$PhoneUI/App8/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_App8_focus_exited():
-	$PhoneUI/App8/Sprite.hide()
 
 func _on_QRApp_focus_entered():
 	$PhoneUI/QRApp/Sprite.show()

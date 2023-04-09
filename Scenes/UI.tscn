@@ -1,4 +1,4 @@
-[gd_scene load_steps=219 format=2]
+[gd_scene load_steps=211 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -32,7 +32,7 @@
 [ext_resource path="res://Assets/ui/BattleApps/animations/fileshredderani.png" type="Texture" id=30]
 [ext_resource path="res://Assets/ui/battery.png" type="Texture" id=31]
 [ext_resource path="res://Assets/ui/soulbattery.png" type="Texture" id=32]
-[ext_resource path="res://Scenes/Phone/notification.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Scenes/Phone/PhoneApp.tscn" type="PackedScene" id=34]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 15 )
@@ -182,22 +182,6 @@ font_data = ExtResource( 16 )
 [sub_resource type="DynamicFont" id=194]
 size = 70
 font_data = ExtResource( 16 )
-
-[sub_resource type="StyleBoxEmpty" id=16]
-
-[sub_resource type="StyleBoxEmpty" id=17]
-
-[sub_resource type="StyleBoxEmpty" id=18]
-
-[sub_resource type="StyleBoxEmpty" id=19]
-
-[sub_resource type="StyleBoxEmpty" id=20]
-
-[sub_resource type="StyleBoxEmpty" id=21]
-
-[sub_resource type="StyleBoxEmpty" id=22]
-
-[sub_resource type="StyleBoxEmpty" id=23]
 
 [sub_resource type="AtlasTexture" id=190]
 atlas = ExtResource( 25 )
@@ -1034,7 +1018,8 @@ margin_bottom = -31.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_scale = Vector2( 0.75, 0.75 )
-focus_neighbour_bottom = NodePath("../App1")
+focus_neighbour_right = NodePath("../PhoneAppController/PhoneApp1")
+focus_neighbour_bottom = NodePath("../PhoneAppController/PhoneApp1")
 mouse_filter = 2
 custom_styles/focus = SubResource( 15 )
 button_mask = 0
@@ -1173,184 +1158,80 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="App1" type="Button" parent="Control/PhoneUI"]
-margin_left = -32.0
-margin_top = -24.4
-margin_right = -12.0
-margin_bottom = -4.4
-focus_neighbour_top = NodePath("../Options")
-focus_neighbour_right = NodePath("../App2")
-focus_neighbour_bottom = NodePath("../App5")
-mouse_filter = 2
-custom_styles/focus = SubResource( 16 )
-button_mask = 0
-flat = true
+[node name="PhoneAppController" type="Node2D" parent="Control/PhoneUI"]
+position = Vector2( -32, -24.4 )
+scale = Vector2( 1, 1 )
 
-[node name="Sprite" parent="Control/PhoneUI/App1" instance=ExtResource( 28 )]
-offset = Vector2( 0, 0 )
+[node name="PhoneApp1" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath("../PhoneApp2")
+focus_neighbour_bottom = NodePath("../PhoneApp5")
 
-[node name="battleapps" parent="Control/PhoneUI/App1" instance=ExtResource( 27 )]
-position = Vector2( 10, 9 )
+[node name="PhoneApp2" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+margin_left = 15.0
+margin_right = 35.0
+focus_neighbour_left = NodePath("../PhoneApp1")
+focus_neighbour_right = NodePath("../PhoneApp3")
+focus_neighbour_bottom = NodePath("../PhoneApp6")
 
-[node name="notification" parent="Control/PhoneUI/App1" instance=ExtResource( 33 )]
-animation = "default"
+[node name="PhoneApp3" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+margin_left = 30.0
+margin_right = 50.0
+focus_neighbour_left = NodePath("../PhoneApp2")
+focus_neighbour_right = NodePath("../PhoneApp4")
+focus_neighbour_bottom = NodePath("../PhoneApp7")
 
-[node name="App2" type="Button" parent="Control/PhoneUI"]
-margin_left = -17.0
-margin_top = -25.2
-margin_right = 3.0
-margin_bottom = -5.2
-focus_neighbour_left = NodePath("../App1")
-focus_neighbour_top = NodePath("../Options")
-focus_neighbour_right = NodePath("../App3")
-focus_neighbour_bottom = NodePath("../App6")
-mouse_filter = 2
-custom_styles/focus = SubResource( 17 )
-button_mask = 0
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PhoneApp4" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+margin_left = 45.0
+margin_right = 65.0
+focus_neighbour_left = NodePath("../PhoneApp3")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../PhoneApp8")
 
-[node name="battleapps" parent="Control/PhoneUI/App2" instance=ExtResource( 27 )]
-animation = "default_backwards"
+[node name="PhoneApp5" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+margin_top = 16.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../PhoneApp1")
+focus_neighbour_right = NodePath("../PhoneApp6")
+focus_neighbour_bottom = NodePath("../../QRApp")
 
-[node name="notification" parent="Control/PhoneUI/App2" instance=ExtResource( 33 )]
-animation = "default"
+[node name="PhoneApp6" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+margin_left = 15.0
+margin_top = 16.0
+margin_right = 35.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../PhoneApp5")
+focus_neighbour_top = NodePath("../PhoneApp2")
+focus_neighbour_right = NodePath("../PhoneApp7")
+focus_neighbour_bottom = NodePath("../../TextApp")
 
-[node name="Sprite" parent="Control/PhoneUI/App2" instance=ExtResource( 28 )]
-position = Vector2( 3, 3 )
-offset = Vector2( 0, 0 )
+[node name="PhoneApp7" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+margin_left = 30.0
+margin_top = 16.0
+margin_right = 50.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../PhoneApp6")
+focus_neighbour_top = NodePath("../PhoneApp3")
+focus_neighbour_right = NodePath("../PhoneApp8")
+focus_neighbour_bottom = NodePath("../../PixApp")
 
-[node name="App3" type="Button" parent="Control/PhoneUI"]
-margin_left = -2.0
-margin_top = -25.0
-margin_right = 18.0
-margin_bottom = -5.00001
-focus_neighbour_left = NodePath("../App2")
-focus_neighbour_top = NodePath("../Options")
-focus_neighbour_right = NodePath("../App4")
-focus_neighbour_bottom = NodePath("../App7")
-mouse_filter = 2
-custom_styles/focus = SubResource( 18 )
-button_mask = 0
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="battleapps" parent="Control/PhoneUI/App3" instance=ExtResource( 27 )]
-animation = "default_backwards"
-
-[node name="notification" parent="Control/PhoneUI/App3" instance=ExtResource( 33 )]
-animation = "default"
-
-[node name="Sprite" parent="Control/PhoneUI/App3" instance=ExtResource( 28 )]
-position = Vector2( 3, 3 )
-offset = Vector2( 0, 0 )
-
-[node name="App4" type="Button" parent="Control/PhoneUI"]
-margin_left = 13.0
-margin_top = -25.0
-margin_right = 33.0
-margin_bottom = -5.00001
-focus_neighbour_left = NodePath("../App3")
-focus_neighbour_top = NodePath("../Options")
-focus_neighbour_bottom = NodePath("../App8")
-mouse_filter = 2
-custom_styles/focus = SubResource( 19 )
-button_mask = 0
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite" parent="Control/PhoneUI/App4" instance=ExtResource( 28 )]
-position = Vector2( 3, 3.00006 )
-offset = Vector2( 0, 0 )
-
-[node name="App5" type="Button" parent="Control/PhoneUI"]
-margin_left = -32.0
-margin_top = -9.00001
-margin_right = -12.0
-margin_bottom = 11.0
-focus_neighbour_top = NodePath("../App1")
-focus_neighbour_right = NodePath("../App6")
-focus_neighbour_bottom = NodePath("../QRApp")
-mouse_filter = 2
-custom_styles/focus = SubResource( 20 )
-button_mask = 0
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite" parent="Control/PhoneUI/App5" instance=ExtResource( 28 )]
-position = Vector2( 3, 3.00002 )
-offset = Vector2( 0, 0 )
-
-[node name="App6" type="Button" parent="Control/PhoneUI"]
-margin_left = -17.0
-margin_top = -9.0
-margin_right = 3.0
-margin_bottom = 11.0
-focus_neighbour_left = NodePath("../App5")
-focus_neighbour_top = NodePath("../App2")
-focus_neighbour_right = NodePath("../App7")
-focus_neighbour_bottom = NodePath("../TextApp")
-mouse_filter = 2
-custom_styles/focus = SubResource( 21 )
-button_mask = 0
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite" parent="Control/PhoneUI/App6" instance=ExtResource( 28 )]
-position = Vector2( 3, 3.00006 )
-offset = Vector2( 0, 0 )
-
-[node name="App7" type="Button" parent="Control/PhoneUI"]
-margin_left = -2.0
-margin_top = -9.00001
-margin_right = 18.0
-margin_bottom = 11.0
-focus_neighbour_left = NodePath("../App6")
-focus_neighbour_top = NodePath("../App3")
-focus_neighbour_right = NodePath("../App8")
-focus_neighbour_bottom = NodePath("../PixApp")
-mouse_filter = 2
-custom_styles/focus = SubResource( 22 )
-button_mask = 0
-flat = true
-
-[node name="Sprite" parent="Control/PhoneUI/App7" instance=ExtResource( 28 )]
-position = Vector2( 3, 3.00002 )
-offset = Vector2( 0, 0 )
-
-[node name="App8" type="Button" parent="Control/PhoneUI"]
-margin_left = 13.0
-margin_top = -9.00001
-margin_right = 33.0
-margin_bottom = 11.0
-focus_neighbour_left = NodePath("../App7")
-focus_neighbour_top = NodePath("../App4")
-focus_neighbour_bottom = NodePath("../SoulApp")
-mouse_filter = 2
-custom_styles/focus = SubResource( 23 )
-button_mask = 0
-flat = true
-
-[node name="Sprite" parent="Control/PhoneUI/App8" instance=ExtResource( 28 )]
-position = Vector2( 3, 3.00002 )
-offset = Vector2( 0, 0 )
+[node name="PhoneApp8" parent="Control/PhoneUI/PhoneAppController" instance=ExtResource( 34 )]
+margin_left = 45.0
+margin_top = 16.0
+margin_right = 65.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../PhoneApp7")
+focus_neighbour_top = NodePath("../PhoneApp4")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../../SoulApp")
 
 [node name="QRApp" type="Button" parent="Control/PhoneUI"]
 margin_left = -32.0
 margin_top = 24.2
 margin_right = -12.0
 margin_bottom = 44.2
-focus_neighbour_top = NodePath("../App5")
+focus_neighbour_top = NodePath("../PhoneAppController/PhoneApp5")
 focus_neighbour_right = NodePath("../TextApp")
 mouse_filter = 2
 custom_styles/focus = SubResource( 24 )
@@ -1373,7 +1254,7 @@ margin_top = 24.4
 margin_right = 3.0
 margin_bottom = 44.4
 focus_neighbour_left = NodePath("../QRApp")
-focus_neighbour_top = NodePath("../App6")
+focus_neighbour_top = NodePath("../PhoneAppController/PhoneApp6")
 focus_neighbour_right = NodePath("../PixApp")
 mouse_filter = 2
 custom_styles/focus = SubResource( 25 )
@@ -1390,7 +1271,7 @@ margin_top = 24.4
 margin_right = 18.0
 margin_bottom = 44.4
 focus_neighbour_left = NodePath("../TextApp")
-focus_neighbour_top = NodePath("../App7")
+focus_neighbour_top = NodePath("../PhoneAppController/PhoneApp7")
 focus_neighbour_right = NodePath("../SoulApp")
 mouse_filter = 2
 custom_styles/focus = SubResource( 26 )
@@ -1410,7 +1291,7 @@ margin_top = 24.2
 margin_right = 33.0
 margin_bottom = 44.2
 focus_neighbour_left = NodePath("../PixApp")
-focus_neighbour_top = NodePath("../App8")
+focus_neighbour_top = NodePath("../PhoneAppController/PhoneApp8")
 mouse_filter = 2
 custom_styles/focus = SubResource( 27 )
 button_mask = 0
@@ -1666,22 +1547,6 @@ offset = Vector2( 0.5, 0.5 )
 [connection signal="focus_exited" from="Control/PhoneUI/BattleApp4" to="Control" method="_on_BattleApp4_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/BattleApp1" to="Control" method="_on_BattleApp1_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/BattleApp1" to="Control" method="_on_BattleApp1_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App1" to="Control" method="_on_App1_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App2" to="Control" method="_on_App2_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App2" to="Control" method="_on_App2_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App3" to="Control" method="_on_App3_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App3" to="Control" method="_on_App3_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App4" to="Control" method="_on_App4_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App4" to="Control" method="_on_App4_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App5" to="Control" method="_on_App5_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App5" to="Control" method="_on_App5_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App6" to="Control" method="_on_App6_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App6" to="Control" method="_on_App6_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App7" to="Control" method="_on_App7_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App7" to="Control" method="_on_App7_focus_exited"]
-[connection signal="focus_entered" from="Control/PhoneUI/App8" to="Control" method="_on_App8_focus_entered"]
-[connection signal="focus_exited" from="Control/PhoneUI/App8" to="Control" method="_on_App8_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/QRApp" to="Control" method="_on_QRApp_focus_entered"]
 [connection signal="focus_exited" from="Control/PhoneUI/QRApp" to="Control" method="_on_QRApp_focus_exited"]
 [connection signal="focus_entered" from="Control/PhoneUI/TextApp" to="Control" method="_on_TextApp_focus_entered"]
