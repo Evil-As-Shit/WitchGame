@@ -1,6 +1,5 @@
 extends "res://Scripts/Main/Item.gd"
 
-onready var soulNotification = get_node("../../UI/Control/PhoneUI/SoulApp/Soul_Notification")
 onready var nearSoulCorrupt = false
 onready var inBattle = get_node("../../UI/Control").battlemode
 
@@ -19,10 +18,10 @@ func action(_inventory):
 func _on_Area2D_body_entered(body):
 	if(body.name == "Player"):
 		nearSoulCorrupt = true
-		soulNotification.play("default")
+		SignalController.emit_signal("entered_soul", true)
 
 func _on_Area2D_body_exited(body):
 	if(body.name == "Player"):
 		nearSoulCorrupt = false
-		soulNotification.play("null")
+		SignalController.emit_signal("entered_soul", false)
 

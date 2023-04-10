@@ -26,17 +26,11 @@ onready var soul = null
 onready var soulCorrupt = null
 onready var phone = get_node("PhoneUI")
 onready var appscreen = get_node("PhoneUI/AppScreen")
-onready var soul_notification = get_node("PhoneUI/SoulApp/Soul_Notification")
-onready var qr_notification = get_node("PhoneUI/QRApp/QR_Notification")
 onready var soul_collected = get_node("PhoneUI/Soul_Collected")
 onready var audio = get_node("../../AudioStreamPlayer")
 onready var time = get_node("PhoneUI/Time")
 onready var memory = get_node("PhoneUI/Memory")
 onready var options = get_node("PhoneUI/Options")
-onready var QRApp = get_node("PhoneUI/QRApp")
-onready var textapp = get_node("PhoneUI/TextApp")
-onready var pixapp = get_node("PhoneUI/PixApp")
-onready var soulapp = get_node("PhoneUI/SoulApp")
 onready var battApp1 = get_node("PhoneUI/BattleApp1")
 onready var battApp2 = get_node("PhoneUI/BattleApp2")
 onready var battApp3 = get_node("PhoneUI/BattleApp3")
@@ -88,279 +82,286 @@ func _input(_event):
 		if _event is InputEventKey and just_pressed:
 			print(_event.as_text())
 			defaultAttack(_event.as_text())
-	elif(Input.is_action_just_pressed("e") and inUI and !player.interacting and home == false and phoneDed == false):
+		return
+	
+	#exiting/entering phone ui
+	if(Input.is_action_just_pressed("UI") && !player.interacting):
+#		print("inApp",inApp)
+#		print("texting",texting)
 		if(!inApp):
-			focused = get_focus_owner()
-			focusedName = focused.name
-			if(focused.get_node_or_null ("battleapps") != null):
-				if(focused.get_node("battleapps").is_visible()):
-					focusedName = focused.get_node("battleapps").animation
-			print(focusedName)
-#			print(player.location)
-		if(texting):
-#			print("interupted")
+			if (inUI == false):
+				enterUI()
+			else:
+				exitUI()
+		elif(texting):
 			interupt = true
+#			print("interupted")
+#			get_tree().get_root().set_input_as_handled()
+		elif(inApp):
+			audio.stream = load("res://Assets/sfx/menu back v2.wav")
+			audio.play()
+			exitApp()
+		else:
+			pass
+	
+	if(Input.is_action_just_pressed("e") == false || !inUI || player.interacting || home == true || phoneDed == true):
+		return
+	print("inApp=" + str(inApp))
+	if(!inApp):
+		focused = get_focus_owner()
+		focusedName = focused.name
+		if(focused.get_node_or_null ("battleapps") != null):
+			if(focused.get_node("battleapps").is_visible()):
+				focusedName = focused.get_node("battleapps").animation
+		print(focusedName)
+#			print(player.location)
+
+	print("appSelected=" + GameData.appSelected)
+
+	if(texting):
+#			print("interupted")
+		interupt = true
 #			get_tree().get_root().set_input_as_handled()
 #pressing e on soul app
-		elif(focusedName == "SoulApp"):
-			soul = get_node_or_null("../../YSort/Object_Soul_"+player.location)
-			if(soul != null):
-				if(soul.nearSoul):
-					batteryUse(1)
-					if(phoneDed == false):
-						get_tree().get_root().set_disable_input(true)
-						focused.get_node("Sprite").play("selected")
-						yield(focused.get_node("Sprite"),"animation_finished")
-						focused.get_node("Sprite").play("default")
-						get_node("../../YSort/Object_Soul_"+player.location+"/icon").animation = "Collected"
-						soul_collected.play("collected")
-						audio.stream = load("res://Assets/sfx/find ghost v2.wav")
-						audio.play()
-						player.interacting = true
-						yield(soul_collected,"animation_finished")
-						soul_collected.play("idle")
-						ghostCount += 1
-						player.interacting = false
-						get_tree().get_root().set_disable_input(false)
-			soulCorrupt = get_node_or_null("../../YSort/Object_Soul_Corrupted_"+player.location)
-			if(soulCorrupt != null):
-				if(soulCorrupt.nearSoulCorrupt):
-					if(!battlemode):
-						get_tree().get_root().set_disable_input(true)
-						focused.get_node("Sprite").play("selected")
-						yield(focused.get_node("Sprite"),"animation_finished")
-						focused.get_node("Sprite").play("default")
-						get_tree().get_root().set_disable_input(false)
+	elif(GameData.appSelected == "PhoneAppSoul"):
+		print("Player pushed the Soul App")
+		soul = get_node_or_null("../../YSort/Object_Soul_"+player.location)
+		if(soul != null):
+			if(soul.nearSoul):
+				batteryUse(1)
+				if(phoneDed == false):
+					get_tree().get_root().set_disable_input(true)
+					focused.get_node("Sprite").play("selected")
+					yield(focused.get_node("Sprite"),"animation_finished")
+					focused.get_node("Sprite").play("default")
+					get_node("../../YSort/Object_Soul_"+player.location+"/icon").animation = "Collected"
+					soul_collected.play("collected")
+					audio.stream = load("res://Assets/sfx/find ghost v2.wav")
+					audio.play()
+					player.interacting = true
+					yield(soul_collected,"animation_finished")
+					soul_collected.play("idle")
+					ghostCount += 1
+					player.interacting = false
+					get_tree().get_root().set_disable_input(false)
+		soulCorrupt = get_node_or_null("../../YSort/Object_Soul_Corrupted_"+player.location)
+		if(soulCorrupt != null):
+			if(soulCorrupt.nearSoulCorrupt):
+				if(!battlemode):
+					get_tree().get_root().set_disable_input(true)
+					focused.get_node("Sprite").play("selected")
+					yield(focused.get_node("Sprite"),"animation_finished")
+					focused.get_node("Sprite").play("default")
+					get_tree().get_root().set_disable_input(false)
 #						if(!corruptSouls.has(soulCorrupt.name)):
-						corruptSouls.append(soulCorrupt.name)
-						randomizeMoves(soulCorrupt.name,battleApps)
+					corruptSouls.append(soulCorrupt.name)
+					randomizeMoves(soulCorrupt.name,battleApps)
 #						print("first time ghost")
-						showBattleApps(soulCorrupt.name)
-					if(battlemode):
-						if(get_focus_owner() != null):
-							focusedApp = get_focus_owner()
-							if(focusedApp.name == "BattleApp1"):
+					showBattleApps(soulCorrupt.name)
+				if(battlemode):
+					if(get_focus_owner() != null):
+						focusedApp = get_focus_owner()
+						if(focusedApp.name == "BattleApp1"):
+							get_tree().get_root().set_disable_input(true)
+							focusedApp.get_node("Sprite").play("selected")
+							yield(focusedApp.get_node("Sprite"),"animation_finished")
+							focusedApp.get_node("Sprite").play("default")
+							var battleMove = "default"
+							get_tree().get_root().set_disable_input(false)
+							moveAniPlayer(battleMove)
+							print("BattleApp1 GOOO!!")
+						if(focusedApp.name == "BattleApp2"):
+							print(get_focus_owner().get_node("battleapps").animation)
+							if(get_focus_owner().get_node("battleapps").is_visible()):
 								get_tree().get_root().set_disable_input(true)
 								focusedApp.get_node("Sprite").play("selected")
 								yield(focusedApp.get_node("Sprite"),"animation_finished")
 								focusedApp.get_node("Sprite").play("default")
-								var battleMove = "default"
-								get_tree().get_root().set_disable_input(false)
+#									get_tree().get_root().set_disable_input(false)
+								var battleMove = get_focus_owner().get_node("battleapps").animation
+								print(battleMove)
+								player.interacting = true
+								get_tree().get_root().set_disable_input(true)
+								if(battleMove != null):
+									moveAniPlayer(battleMove)
+							else:
+								print("BattleApp2 GOOO!!")
+						if(focusedApp.name == "BattleApp3"):
+							if(get_focus_owner().get_node("battleapps").is_visible()):
+								get_tree().get_root().set_disable_input(true)
+								focusedApp.get_node("Sprite").play("selected")
+								yield(focusedApp.get_node("Sprite"),"animation_finished")
+								focusedApp.get_node("Sprite").play("default")
+#									get_tree().get_root().set_disable_input(false)
+								var battleMove = get_focus_owner().get_node("battleapps").animation
+								player.interacting = true
+								get_tree().get_root().set_disable_input(true)
 								moveAniPlayer(battleMove)
-								print("BattleApp1 GOOO!!")
-							if(focusedApp.name == "BattleApp2"):
-								print(get_focus_owner().get_node("battleapps").animation)
-								if(get_focus_owner().get_node("battleapps").is_visible()):
-									get_tree().get_root().set_disable_input(true)
-									focusedApp.get_node("Sprite").play("selected")
-									yield(focusedApp.get_node("Sprite"),"animation_finished")
-									focusedApp.get_node("Sprite").play("default")
+							else:
+								print("BattleApp3 GOOO!!")
+						if(focusedApp.name == "BattleApp4"):
+							if(get_focus_owner().get_node("battleapps").is_visible()):
+								get_tree().get_root().set_disable_input(true)
+								focusedApp.get_node("Sprite").play("selected")
+								yield(focusedApp.get_node("Sprite"),"animation_finished")
+								focusedApp.get_node("Sprite").play("default")
 #									get_tree().get_root().set_disable_input(false)
-									var battleMove = get_focus_owner().get_node("battleapps").animation
-									print(battleMove)
-									player.interacting = true
-									get_tree().get_root().set_disable_input(true)
-									if(battleMove != null):
-										moveAniPlayer(battleMove)
-								else:
-									print("BattleApp2 GOOO!!")
-							if(focusedApp.name == "BattleApp3"):
-								if(get_focus_owner().get_node("battleapps").is_visible()):
-									get_tree().get_root().set_disable_input(true)
-									focusedApp.get_node("Sprite").play("selected")
-									yield(focusedApp.get_node("Sprite"),"animation_finished")
-									focusedApp.get_node("Sprite").play("default")
-#									get_tree().get_root().set_disable_input(false)
-									var battleMove = get_focus_owner().get_node("battleapps").animation
-									player.interacting = true
-									get_tree().get_root().set_disable_input(true)
-									moveAniPlayer(battleMove)
-								else:
-									print("BattleApp3 GOOO!!")
-							if(focusedApp.name == "BattleApp4"):
-								if(get_focus_owner().get_node("battleapps").is_visible()):
-									get_tree().get_root().set_disable_input(true)
-									focusedApp.get_node("Sprite").play("selected")
-									yield(focusedApp.get_node("Sprite"),"animation_finished")
-									focusedApp.get_node("Sprite").play("default")
-#									get_tree().get_root().set_disable_input(false)
-									var battleMove = get_focus_owner().get_node("battleapps").animation
-									player.interacting = true
-									get_tree().get_root().set_disable_input(true)
-									moveAniPlayer(battleMove)
-								else:
-									print("BattleApp4 GOOO!!")
-						else:
-							pass
-					if(!inApp):
-						get_tree().get_root().set_disable_input(true)
-						player.interacting = true
-						focusedApp = get_focus_owner()
-						focusedApp.release_focus()
-						enterApp(focusedName)
-						soul_notification.play("null")
-						phone.play("battleIN")
-						yield(appscreen,"animation_finished")
-						corruptGhost.show()
-						ghostLife.show()
-						ghostLife.play("default")
-						corruptGhost.play("intro")
-						soulCorrupt.get_node("Sprite").play("fight")
-						yield(corruptGhost,"animation_finished")
-						corruptGhost.play("default")
-						yield(ghostLife,"animation_finished")
-						battApp1.show()
-						battApp2.show()
-						battApp3.show()
-						battApp4.show()
-						battlemode = true
-						battApp1.grab_focus()
-						ghostLife.stop()
-						player.interacting = false
-						get_tree().get_root().set_disable_input(false)
-#pressing e on QRApp
-		elif(focusedName == "QRApp"):
-			focusedApp = get_focus_owner()
-			var QRCode = get_node("../../YSort/QRCode_"+player.location)
-#			print(QRCode.appName)
-			if(QRCode != null):
-				if(QRCode.nearQR):
-					if(!inApp):
-						qr_notification.play("null")
-						get_tree().get_root().set_disable_input(true)
-						focusedApp.get_node("Sprite").play("selected")
-						yield(focusedApp.get_node("Sprite"),"animation_finished")
-						focusedApp.get_node("Sprite").play("default")
-						get_tree().get_root().set_disable_input(false)
-						enterApp(focusedName)
-					if(home):
+								var battleMove = get_focus_owner().get_node("battleapps").animation
+								player.interacting = true
+								get_tree().get_root().set_disable_input(true)
+								moveAniPlayer(battleMove)
+							else:
+								print("BattleApp4 GOOO!!")
+					else:
 						pass
-					elif(battleApps.has(QRCode.appName)):
+				if(!inApp):
+					get_tree().get_root().set_disable_input(true)
+					player.interacting = true
+					focusedApp = get_focus_owner()
+					focusedApp.release_focus()
+					enterApp(focusedName)
+					$PhoneUI/PhoneAppSoul._set_highlight(false)
+					phone.play("battleIN")
+					yield(appscreen,"animation_finished")
+					corruptGhost.show()
+					ghostLife.show()
+					ghostLife.play("default")
+					corruptGhost.play("intro")
+					soulCorrupt.get_node("Sprite").play("fight")
+					yield(corruptGhost,"animation_finished")
+					corruptGhost.play("default")
+					yield(ghostLife,"animation_finished")
+					battApp1.show()
+					battApp2.show()
+					battApp3.show()
+					battApp4.show()
+					battlemode = true
+					battApp1.grab_focus()
+					ghostLife.stop()
+					player.interacting = false
+					get_tree().get_root().set_disable_input(false)
+#pressing e on QRApp
+	elif(focusedName == "PhoneAppQR"):
+		focusedApp = get_focus_owner()
+		var QRCode = get_node("../../YSort/QRCode_"+player.location)
+#			print(QRCode.appName)
+		if(QRCode != null):
+			if(QRCode.nearQR):
+				if(!inApp):
+					$PhoneUI/PhoneAppQR._set_highlight(false)
+					get_tree().get_root().set_disable_input(true)
+					focusedApp.get_node("Sprite").play("selected")
+					yield(focusedApp.get_node("Sprite"),"animation_finished")
+					focusedApp.get_node("Sprite").play("default")
+					get_tree().get_root().set_disable_input(false)
+					enterApp(focusedName)
+				if(home):
+					pass
+				elif(battleApps.has(QRCode.appName)):
 #							print("app already installed")
-							qrText = "This app is already installed!"
-							yield(appscreen,"animation_finished")
-							show_text(qrText,0.025)
-							yield(self, "text_finished")
-							phone.get_node("HomeButton").grab_focus()
-							home = true
-					elif(notEnoughMem):
+						qrText = "This app is already installed!"
+						yield(appscreen,"animation_finished")
+						show_text(qrText,0.025)
+						yield(self, "text_finished")
+						phone.get_node("HomeButton").grab_focus()
+						home = true
+				elif(notEnoughMem):
 #							print("not enough mem")
-							qrText = "You don't have enough memory!"
-							show_text(qrText,0.025)
-							yield(self,"text_finished")
-							phone.get_node("HomeButton").grab_focus()
-							home = true
-					elif(choosing):
-						if(text1seen):
+						qrText = "You don't have enough memory!"
+						show_text(qrText,0.025)
+						yield(self,"text_finished")
+						phone.get_node("HomeButton").grab_focus()
+						home = true
+				elif(choosing):
+					if(text1seen):
 #							print("second screen")
-		#					get_tree().get_root().set_input_as_handled()
-							qrText = "Download App? Cost:"+str(QRCode.memCost)+"GB"
-							show_text(qrText,0.025)
-							yield(self, "text_finished")
-							appscreen.get_node("Button").show()
-							appscreen.get_node("Button2").show()
-							appscreen.get_node("Button").grab_focus()
-							text1seen = false
+	#					get_tree().get_root().set_input_as_handled()
+						qrText = "Download App? Cost:"+str(QRCode.memCost)+"GB"
+						show_text(qrText,0.025)
+						yield(self, "text_finished")
+						appscreen.get_node("Button").show()
+						appscreen.get_node("Button2").show()
+						appscreen.get_node("Button").grab_focus()
+						text1seen = false
 #						else:
 #							print("1")
 #							pass
-					elif(!text1seen):
+				elif(!text1seen):
 #						print("first screen")
-		#				get_tree().get_root().set_input_as_handled()
-						qrText = "A sketchy app is available to download from the undernet!"
-						yield(appscreen,"animation_finished")
-						show_text(qrText,0.025)
-						text1seen = true
-						choosing = true
-						
-					else:
-#						print("2")
-						pass
+	#				get_tree().get_root().set_input_as_handled()
+					qrText = "A sketchy app is available to download from the undernet!"
+					yield(appscreen,"animation_finished")
+					show_text(qrText,0.025)
+					text1seen = true
+					choosing = true
+					
 				else:
+#						print("2")
+					pass
+			else:
 #					print("3")
-					pass
+				pass
 #pressing e on Options
-		elif(focusedName == "Options"):
-			if(inApp):
-				if(!text1seen):
-					focusedApp = get_focus_owner().name
-				appscreen.get_node("Uninstall").hide()
-				appscreen.get_node("Wifi Settings").hide()
-				print(focusedApp)
-				if(focusedApp == "Uninstall"):
-					if(battleApps.size() != 0):
-						if(choosing):
-							appscreen.play("close")
-							var i = 1
-							for app in battleApps:
-								get_node("PhoneUI/App"+str(i)).show()
-								i += 1
-							show_text("",0.025)
-							$PhoneAppController.get_child(0).grab_focus()
-							choosing = false
-						elif(text1seen and !choosing):
-							appscreen.play("close")
-							yieldToAni()
-							if(get_focus_owner().get_node_or_null("battleapps") != null):
-								get_focus_owner().get_node("battleapps").get_animation()
-								battleApps.erase(get_focus_owner().get_node("battleapps").get_animation())
-								var QRCode = get_node("../../YSort/QRCode_"+player.location)
-								ghostCount += QRCode.memCost
-								updateApps()
-								exitApp()
-							else:
-								exitApp()
+	elif(focusedName == "Options"):
+		if(inApp):
+			if(!text1seen):
+				focusedApp = get_focus_owner().name
+			appscreen.get_node("Uninstall").hide()
+			appscreen.get_node("Wifi Settings").hide()
+			print(focusedApp)
+			if(focusedApp == "Uninstall"):
+				if(battleApps.size() != 0):
+					if(choosing):
+						appscreen.play("close")
+						var i = 1
+						for app in battleApps:
+							get_node("PhoneUI/App"+str(i)).show()
+							i += 1
+						show_text("",0.025)
+						$PhoneAppController.get_child(0).grab_focus()
+						choosing = false
+					elif(text1seen and !choosing):
+						appscreen.play("close")
+						yieldToAni()
+						if(get_focus_owner().get_node_or_null("battleapps") != null):
+							get_focus_owner().get_node("battleapps").get_animation()
+							battleApps.erase(get_focus_owner().get_node("battleapps").get_animation())
+							var QRCode = get_node("../../YSort/QRCode_"+player.location)
+							ghostCount += QRCode.memCost
+							updateApps()
+							exitApp()
 						else:
-							show_text("Which App Would You Like To Uninstall???",0.025)
-							yield(self,"text_finished")
-							choosing = true
-							text1seen = true
+							exitApp()
 					else:
-						show_text("You don't have any apps to uninstall :p",0.025)
+						show_text("Which App Would You Like To Uninstall???",0.025)
 						yield(self,"text_finished")
-						homeButton.grab_focus()
-				if(focusedApp == "Wifi Settings"):
+						choosing = true
+						text1seen = true
+				else:
+					show_text("You don't have any apps to uninstall :p",0.025)
+					yield(self,"text_finished")
+					homeButton.grab_focus()
+			if(focusedApp == "Wifi Settings"):
 
-					pass
-			elif(!inApp):
-				get_tree().get_root().set_disable_input(true)
-				get_node("PhoneUI/Options/Sprite").play("selected")
-				yield(get_node("PhoneUI/Options/Sprite"),"animation_finished")
-				get_node("PhoneUI/Options/Sprite").play("default")
-				get_node("PhoneUI/Options/Sprite").hide()
-				get_tree().get_root().set_disable_input(false)
-				enterApp(focusedName)
-				yield(appscreen,"animation_finished")
-				appscreen.get_node("Uninstall").show()
-				appscreen.get_node("Wifi Settings").show()
-				appscreen.get_node("Uninstall").grab_focus()
+				pass
+		elif(!inApp):
+			get_tree().get_root().set_disable_input(true)
+			get_node("PhoneUI/Options/Sprite").play("selected")
+			yield(get_node("PhoneUI/Options/Sprite"),"animation_finished")
+			get_node("PhoneUI/Options/Sprite").play("default")
+			get_node("PhoneUI/Options/Sprite").hide()
+			get_tree().get_root().set_disable_input(false)
+			enterApp(focusedName)
+			yield(appscreen,"animation_finished")
+			appscreen.get_node("Uninstall").show()
+			appscreen.get_node("Wifi Settings").show()
+			appscreen.get_node("Uninstall").grab_focus()
 #			appscreen.hide()
 #			print("uninstall")
-			pass
+		pass
 #pressing e on TextApp
-		elif(focusedName == "TextApp"):
-			if(!inApp):
-				focusedApp = get_focus_owner()
-				get_tree().get_root().set_disable_input(true)
-				focusedApp.get_node("Sprite").play("selected")
-				yield(focusedApp.get_node("Sprite"),"animation_finished")
-				focusedApp.get_node("Sprite").play("default")
-				get_tree().get_root().set_disable_input(false)
-				enterApp(focusedName)
-				phone.get_node("HomeButton").grab_focus()
-#pressing e on PixApp
-		elif(focusedName == "PixApp"):
-			if(!inApp):
-				focusedApp = get_focus_owner()
-				get_tree().get_root().set_disable_input(true)
-				focusedApp.get_node("Sprite").play("selected")
-				yield(focusedApp.get_node("Sprite"),"animation_finished")
-				focusedApp.get_node("Sprite").play("default")
-				get_tree().get_root().set_disable_input(false)
-				enterApp(focusedName)
-				phone.get_node("HomeButton").grab_focus()
-#pressing e on RemoteApp
-		elif(focusedName == "RemoteApp"):
+	elif(focusedName == "PhoneAppText"):
+		if(!inApp):
 			focusedApp = get_focus_owner()
 			get_tree().get_root().set_disable_input(true)
 			focusedApp.get_node("Sprite").play("selected")
@@ -369,26 +370,27 @@ func _input(_event):
 			get_tree().get_root().set_disable_input(false)
 			enterApp(focusedName)
 			phone.get_node("HomeButton").grab_focus()
-#exiting/entering phone ui
-	if(inputNormal == true):
-		if (Input.is_action_just_pressed("UI") and !player.interacting):
-	#		print("inApp",inApp)
-	#		print("texting",texting)
-			if(!inApp):
-				if (inUI == false):
-					enterUI()
-				else:
-					exitUI()
-			elif(texting):
-				interupt = true
-	#			print("interupted")
-	#			get_tree().get_root().set_input_as_handled()
-			elif(inApp):
-				audio.stream = load("res://Assets/sfx/menu back v2.wav")
-				audio.play()
-				exitApp()
-			else:
-				pass
+#pressing e on PixApp
+	elif(focusedName == "PhoneAppPix"):
+		if(!inApp):
+			focusedApp = get_focus_owner()
+			get_tree().get_root().set_disable_input(true)
+			focusedApp.get_node("Sprite").play("selected")
+			yield(focusedApp.get_node("Sprite"),"animation_finished")
+			focusedApp.get_node("Sprite").play("default")
+			get_tree().get_root().set_disable_input(false)
+			enterApp(focusedName)
+			phone.get_node("HomeButton").grab_focus()
+#pressing e on RemoteApp
+	elif(focusedName == "RemoteApp"):
+		focusedApp = get_focus_owner()
+		get_tree().get_root().set_disable_input(true)
+		focusedApp.get_node("Sprite").play("selected")
+		yield(focusedApp.get_node("Sprite"),"animation_finished")
+		focusedApp.get_node("Sprite").play("default")
+		get_tree().get_root().set_disable_input(false)
+		enterApp(focusedName)
+		phone.get_node("HomeButton").grab_focus()
 
 
 
@@ -659,13 +661,13 @@ func phone_Ded():
 func hideApps():
 	for child in get_node("PhoneUI/PhoneAppController").get_children():
 		child.visible = false
-	QRApp.hide()
-	pixapp.hide()
-	textapp.hide()
-	soulapp.hide()
+	$PhoneUI/PhoneAppQR.visible = false
+	$PhoneUI/PhoneAppText.visible = false
+	$PhoneUI/PhoneAppPix.visible = false
+	$PhoneUI/PhoneAppSoul.visible = false
 	options.hide()
 	if(focused != null):
-		if(focused.name != "SoulApp"):
+		if(focused.name != "PhoneAppSoul"):
 			battApp1.hide()
 			battApp2.hide()
 			battApp3.hide()
@@ -674,10 +676,10 @@ func hideApps():
 func showApps():
 	for child in get_node("PhoneUI/PhoneAppController").get_children():
 		child.visible = true
-	QRApp.show()
-	pixapp.show()
-	textapp.show()
-	soulapp.show()
+	$PhoneUI/PhoneAppQR.visible = true
+	$PhoneUI/PhoneAppText.visible = true
+	$PhoneUI/PhoneAppPix.visible = true
+	$PhoneUI/PhoneAppSoul.visible = true
 	options.show()
 
 #yield all input to app screen open/close animation
@@ -750,28 +752,21 @@ func show_text(text, _target):
 
 func updateApps():
 	var i = 0
-	for n in 2:
-		if(get_node("PhoneUI/App"+str(n+1)+"/battleapps").is_visible()):
-			get_node("PhoneUI/App"+str(n+1)+"/battleapps").hide()
-	for apps in battleApps:
+	var lastApp = null
+	for child in get_node("PhoneUI/PhoneAppController").get_children():
+		var toShow = ""
+		if (i < battleApps.size()):
+			toShow = battleApps[i]
+			lastApp = child
+		child._show_battle_app(toShow)
 		i += 1
-		var icon = get_node("PhoneUI/App"+str(i)+"/battleapps")
-#		if(!icon.is_visible()):
-#		print(app)
-		icon.animation = str(apps)
-		icon.show()
-	if(choosing == true):
+	if(choosing == true && lastApp != null):
 		yieldToAni()
-		var notification = get_node("PhoneUI/App"+str(i)+"/notification")
-		notification.show()
-		notification.play("notify")
 		get_tree().get_root().set_disable_input(true)
 		player.interacting = true
-		yield(notification,"animation_finished")
+		lastApp._play_notification()
 		player.interacting = false
 		get_tree().get_root().set_disable_input(false)
-		notification.hide()
-		notification.play("default")
 
 func enterApp(appName):
 	audio.stream = load("res://Assets/sfx/phone open v4.wav")
@@ -781,7 +776,7 @@ func enterApp(appName):
 	appscreen.show()
 	appscreen.play("open")
 	yieldToAni()
-	if(appName == "TextApp"):
+	if(appName == "PhoneAppText"):
 		appscreen.play("otb")
 	if(appName == "RemoteApp"):
 		appscreen.play("remote")
@@ -809,7 +804,7 @@ func exitApp():
 	if(focusedName == "RemoteApp"):
 		appscreen.play("null")
 		appscreen.get_node("RemoteButtons").hide()
-	if(focusedName == "QRApp"):
+	if(focusedName == "PhoneAppQR"):
 		text1seen = false
 		choosing = false
 		notEnoughMem = false
@@ -819,8 +814,8 @@ func exitApp():
 			$PhoneUI/AppScreen/Button2.hide()
 		if(home):
 			home = false
-		qr_notification.play("default")
-	if(focusedName == "SoulApp" and soulCorrupt.nearSoulCorrupt):
+		$PhoneUI/PhoneAppQR._set_highlight(true)
+	if(focusedName == "PhoneAppSoul" and soulCorrupt.nearSoulCorrupt):
 		battlemode = false
 		soulCorrupt.get_node("Sprite").play("unfight")
 		yield(soulCorrupt.get_node("Sprite"),"animation_finished")
@@ -842,7 +837,7 @@ func exitApp():
 		corruptGhost.hide()
 		ghostLife.play("null")
 		ghostLife.hide()
-		soul_notification.play("default")
+		$PhoneUI/PhoneAppSoul._set_highlight(true)
 		battApp1.hide()
 		battApp2.hide()
 		battApp3.hide()
@@ -933,34 +928,6 @@ func _on_Options_focus_entered():
 func _on_Options_focus_exited():
 	$PhoneUI/Options/Sprite.hide()
 
-func _on_QRApp_focus_entered():
-	$PhoneUI/QRApp/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_QRApp_focus_exited():
-	$PhoneUI/QRApp/Sprite.hide()
-
-func _on_TextApp_focus_entered():
-	$PhoneUI/TextApp/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_TextApp_focus_exited():
-	$PhoneUI/TextApp/Sprite.hide()
-
-func _on_PixApp_focus_entered():
-	$PhoneUI/PixApp/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_PixApp_focus_exited():
-	$PhoneUI/PixApp/Sprite.hide()
-
-func _on_Soul_focus_entered():
-	$PhoneUI/SoulApp/Sprite.show()
-	audio.stream = load("res://Assets/sfx/menu browse.wav")
-	audio.play()
-func _on_Soul_focus_exited():
-	$PhoneUI/SoulApp/Sprite.hide()
-
 func _on_BattleApp1_focus_entered():
 	$PhoneUI/BattleApp1/Sprite.show()
 	audio.stream = load("res://Assets/sfx/menu browse.wav")
@@ -1015,7 +982,7 @@ func _on_Button_pressed():
 		if(phoneDed == false):
 			ghostCount -= QRCode.memCost
 		exitApp()
-		qr_notification.play("default")
+		$PhoneUI/PhoneAppQR._set_highlight(true)
 	if(ghostCount < QRCode.memCost and choosing):
 #		print("notenoughmem")
 		notEnoughMem = true
@@ -1035,7 +1002,7 @@ func _on_Button2_pressed():
 	$PhoneUI/AppScreen/Button.hide()
 	$PhoneUI/AppScreen/Button2.hide()
 	exitApp()
-	qr_notification.play("default")
+	$PhoneUI/PhoneAppQR._set_highlight(true)
 	get_tree().get_root().set_disable_input(false)
 	player.interacting = false
 
