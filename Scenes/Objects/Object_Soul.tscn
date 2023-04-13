@@ -13,14 +13,6 @@ height = 8.88107
 radius = 1.51091
 height = 6.37471
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 14, 14 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 14, 0, 14, 14 )
-
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 28, 0, 14, 14 )
@@ -58,13 +50,16 @@ region = Rect2( 98, 0, 14, 14 )
 atlas = ExtResource( 4 )
 region = Rect2( 84, 0, 14, 14 )
 
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 14, 0, 14, 14 )
+
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "idle",
-"speed": 1.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
 "name": "Collected",
@@ -74,6 +69,11 @@ animations = [ {
 "loop": false,
 "name": "decrypted",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
 } ]
 
 [node name="Soul" type="Node2D" groups=["Interactable"]]

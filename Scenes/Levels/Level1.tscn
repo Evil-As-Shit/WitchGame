@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/TestLevel/BookStack.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scenes/Objects/Outlet.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/Objects/Object_Soul_Corrupted.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Objects/QRCode.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/sfx/AudioController.gd" type="Script" id=21]
 
 [node name="Level1" type="Node"]
 script = ExtResource( 11 )
@@ -81,3 +82,4 @@ script = ExtResource( 18 )
 [node name="UI" parent="." instance=ExtResource( 3 )]
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource( 15 )]
+script = ExtResource( 21 )

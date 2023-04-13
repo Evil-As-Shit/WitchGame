@@ -1,4 +1,4 @@
-[gd_scene load_steps=197 format=2]
+[gd_scene load_steps=198 format=2]
 
 [ext_resource path="res://Assets/ui/blankballoon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Inventory.gd" type="Script" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_sad.png" type="Texture" id=22]
 [ext_resource path="res://Assets/ui/Avatars/witch/witch_smug.png" type="Texture" id=23]
 [ext_resource path="res://Assets/ui/BattleApps/remoteapp/powerbutton.png" type="Texture" id=24]
+[ext_resource path="res://Scripts/UI/SoulCollected.gd" type="Script" id=25]
 [ext_resource path="res://Assets/ui/battle screen smol.png" type="Texture" id=26]
 [ext_resource path="res://Scenes/Phone/battleapps.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Phone/PhoneCursor.tscn" type="PackedScene" id=28]
@@ -1216,6 +1217,7 @@ scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 44 )
 animation = "idle"
 playing = true
+script = ExtResource( 25 )
 
 [node name="Time" type="Label" parent="Control/PhoneUI"]
 margin_left = -13.6

@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "AppSoul",
+"language": "GDScript",
+"path": "res://Scripts/Apps/AppSoul.gd"
+}, {
+"base": "Node",
+"class": "Soul",
+"language": "GDScript",
+"path": "res://Scripts/TestLevel/Soul.gd"
+} ]
+_global_script_class_icons={
+"AppSoul": "",
+"Soul": ""
+}
+
 [application]
 
 config/name="HexQuest"

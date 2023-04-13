@@ -20,7 +20,7 @@ func on_focus_entered():
 	if (has_focus == false):
 		$AudioStreamPlayer.play()
 		$Sprite.visible = true
-		GameData.appSelected = name
+		GameData.appSelected = self
 	has_focus = true
 
 func on_focus_exited():
@@ -41,8 +41,13 @@ func _show_battle_app(toShow):
 		var icon = $battleapps
 		icon.animation = str(toShow)
 		icon.visible = true
+		
+func play_selection():
+	$Sprite.play("selected")
+	yield($Sprite, "animation_finished")
+	$Sprite.play("default")
 
-func _play_notification():
+func play_notification():
 	$notification.show()
 	$notification.play("notify")
 	yield($notification,"animation_finished")

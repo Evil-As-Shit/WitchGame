@@ -116,34 +116,25 @@ func _input(_event):
 		print(focusedName)
 #			print(player.location)
 
-	print("appSelected=" + GameData.appSelected)
+	print("appSelected=" + GameData.appSelected.name)
 
 	if(texting):
 #			print("interupted")
 		interupt = true
 #			get_tree().get_root().set_input_as_handled()
 #pressing e on soul app
-	elif(GameData.appSelected == "PhoneAppSoul"):
+	elif(GameData.appSelected.name == "PhoneAppSoul"):
+		if(AppSoul.is_near_soul() == false): return
+		batteryUse(1)
+		if (phoneDed == true): return
 		print("Player pushed the Soul App")
-		soul = get_node_or_null("../../YSort/Object_Soul_"+player.location)
-		if(soul != null):
-			if(soul.nearSoul):
-				batteryUse(1)
-				if(phoneDed == false):
-					get_tree().get_root().set_disable_input(true)
-					focused.get_node("Sprite").play("selected")
-					yield(focused.get_node("Sprite"),"animation_finished")
-					focused.get_node("Sprite").play("default")
-					get_node("../../YSort/Object_Soul_"+player.location+"/icon").animation = "Collected"
-					soul_collected.play("collected")
-					audio.stream = load("res://Assets/sfx/find ghost v2.wav")
-					audio.play()
-					player.interacting = true
-					yield(soul_collected,"animation_finished")
-					soul_collected.play("idle")
-					ghostCount += 1
-					player.interacting = false
-					get_tree().get_root().set_disable_input(false)
+		get_tree().get_root().set_disable_input(true)
+		player.interacting = true
+		AppSoul.run()
+		ghostCount += 1
+		player.interacting = false
+		get_tree().get_root().set_disable_input(false)
+		
 		soulCorrupt = get_node_or_null("../../YSort/Object_Soul_Corrupted_"+player.location)
 		if(soulCorrupt != null):
 			if(soulCorrupt.nearSoulCorrupt):
@@ -764,7 +755,7 @@ func updateApps():
 		yieldToAni()
 		get_tree().get_root().set_disable_input(true)
 		player.interacting = true
-		lastApp._play_notification()
+		lastApp.play_notification()
 		player.interacting = false
 		get_tree().get_root().set_disable_input(false)
 

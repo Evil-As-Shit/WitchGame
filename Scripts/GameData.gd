@@ -2,4 +2,5 @@
 
 extends Node
 
-var appSelected = ""
+var appSelected = null
+var nearestSoul = null
