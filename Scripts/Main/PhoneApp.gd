@@ -1,3 +1,4 @@
+class_name PhoneApp
 extends Button
 
 var has_focus = false;

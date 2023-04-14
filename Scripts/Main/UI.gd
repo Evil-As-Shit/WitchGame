@@ -128,12 +128,12 @@ func _input(_event):
 		batteryUse(1)
 		if (phoneDed == true): return
 		print("Player pushed the Soul App")
-		get_tree().get_root().set_disable_input(true)
+		GameData.commands.append(EnableInputCommand.new(get_tree().get_root(), false))
 		player.interacting = true
 		AppSoul.run()
 		ghostCount += 1
+		GameData.commands.append(EnableInputCommand.new(get_tree().get_root(), true))
 		player.interacting = false
-		get_tree().get_root().set_disable_input(false)
 		
 		soulCorrupt = get_node_or_null("../../YSort/Object_Soul_Corrupted_"+player.location)
 		if(soulCorrupt != null):

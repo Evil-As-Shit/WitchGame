@@ -9,3 +9,14 @@ func _ready():
 		var args = Array([currNode])
 		area2DNode.connect("body_entered", player,"_on_Area2D_body_enter", args)
 		area2DNode.connect("body_exited", player, "_on_Area2D_body_exit", args)
+	
+func _process(delta):
+	while (GameData.commands.size() > 0):
+		var command: Command = GameData.commands[0]
+#		var command: Command = GameData.commands.pop_front()
+		command._update(delta)
+		if (command._is_complete()):
+			#TODO only one command runs at a time
+			GameData.commands.remove(0)
+		else:
+			break;

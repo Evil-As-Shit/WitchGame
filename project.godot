@@ -14,14 +14,44 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Apps/AppSoul.gd"
 }, {
+"base": "Reference",
+"class": "Command",
+"language": "GDScript",
+"path": "res://Scripts/Commands/Command.gd"
+}, {
+"base": "Command",
+"class": "EnableInputCommand",
+"language": "GDScript",
+"path": "res://Scripts/Commands/EnableInputCommand.gd"
+}, {
+"base": "Button",
+"class": "PhoneApp",
+"language": "GDScript",
+"path": "res://Scripts/Main/PhoneApp.gd"
+}, {
+"base": "Command",
+"class": "PlayAnimationCommand",
+"language": "GDScript",
+"path": "res://Scripts/Commands/PlayAnimationCommand.gd"
+}, {
 "base": "Node",
 "class": "Soul",
 "language": "GDScript",
 "path": "res://Scripts/TestLevel/Soul.gd"
+}, {
+"base": "Command",
+"class": "WaitCommand",
+"language": "GDScript",
+"path": "res://Scripts/Commands/WaitCommand.gd"
 } ]
 _global_script_class_icons={
 "AppSoul": "",
-"Soul": ""
+"Command": "",
+"EnableInputCommand": "",
+"PhoneApp": "",
+"PlayAnimationCommand": "",
+"Soul": "",
+"WaitCommand": ""
 }
 
 [application]

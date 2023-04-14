@@ -1,6 +1,5 @@
-extends Node
-
 class_name AppSoul
+extends Node
 
 static func is_near_soul():
 	return GameData.nearestSoul != null

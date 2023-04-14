@@ -37,4 +37,4 @@ func _on_Area2D_body_exited(body):
 
 func _on_collected_soul(soul: Soul):
 	if self == soul:
-		$icon.animation = "Collected"
+		GameData.commands.append(PlayAnimationCommand.new($icon, "Collected", true))

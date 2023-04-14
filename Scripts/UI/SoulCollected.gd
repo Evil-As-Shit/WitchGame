@@ -5,6 +5,5 @@ func _ready():
 			"collected_soul", self, "_on_collected_soul")
 
 func _on_collected_soul(_soul: Soul):
-	play("collected")
-	yield(self, "animation_finished")
-	play("idle")
+	GameData.commands.append(PlayAnimationCommand.new(self, "collected", true))
+	GameData.commands.append(PlayAnimationCommand.new(self, "idle", false))
