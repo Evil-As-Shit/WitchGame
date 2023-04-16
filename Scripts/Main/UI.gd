@@ -80,7 +80,7 @@ func _input(_event):
 	if(inputNormal == false):
 		var just_pressed = _event.is_pressed() and not _event.is_echo()
 		if _event is InputEventKey and just_pressed:
-			print(_event.as_text())
+			print("UI:" + _event.as_text())
 			defaultAttack(_event.as_text())
 		return
 	
@@ -125,8 +125,10 @@ func _input(_event):
 #pressing e on soul app
 	elif(GameData.appSelected.name == "PhoneAppSoul"):
 		if(AppSoul.is_near_soul() == false): return
+		
 		batteryUse(1)
 		if (phoneDed == true): return
+		
 		print("Player pushed the Soul App")
 		GameData.commands.append(EnableInputCommand.new(get_tree().get_root(), false))
 		player.interacting = true

@@ -143,16 +143,16 @@ button_mask = 0
 flat = true
 script = ExtResource( 8 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 3, 2.4 )
-frames = SubResource( 3 )
-playing = true
-centered = false
-
 [node name="SpriteHighlight" type="AnimatedSprite" parent="."]
 position = Vector2( 4, 3.4 )
 frames = SubResource( 3 )
 animation = "none"
+playing = true
+centered = false
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 3, 2.4 )
+frames = SubResource( 3 )
 playing = true
 centered = false
 

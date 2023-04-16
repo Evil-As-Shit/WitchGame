@@ -5,6 +5,6 @@ extends Node
 var appSelected: PhoneApp = null
 var nearestSoul: Soul = null
 
-var lock_count: int = 0
+var dict_soul_is_corrupted = {}
 
 var commands = []

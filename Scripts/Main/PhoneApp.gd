@@ -44,9 +44,9 @@ func _show_battle_app(toShow):
 		icon.visible = true
 		
 func play_selection():
-	$Sprite.play("selected")
-	yield($Sprite, "animation_finished")
-	$Sprite.play("default")
+	GameData.commands.append(PlayAnimationCommand.new($SpriteHighlight, "none", false))
+	GameData.commands.append(PlayAnimationCommand.new($Sprite, "selected", true))
+	GameData.commands.append(PlayAnimationCommand.new($Sprite, "default", false))
 
 func play_notification():
 	$notification.show()

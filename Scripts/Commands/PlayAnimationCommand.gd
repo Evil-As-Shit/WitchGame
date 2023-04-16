@@ -13,8 +13,7 @@ func _init(sprite: AnimatedSprite, anim_name: String, is_wait: bool):
 
 func _activate():
 	_sprite.play(_anim_name)
-#	_sprite.call_deferred("play", _anim_name)
-	print("playing " + _anim_name)
+	print("playing " + _sprite.name + "'s " + _anim_name)
 	_is_anim_finished = not _is_wait
 	if (_is_wait):
 		_sprite.connect("animation_finished", self, "_on_animation_finished")

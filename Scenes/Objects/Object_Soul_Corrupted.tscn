@@ -35,17 +35,17 @@ region = Rect2( 56, 0, 14, 14 )
 atlas = ExtResource( 1 )
 region = Rect2( 70, 0, 14, 14 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
-region = Rect2( 112, 0, 14, 14 )
+region = Rect2( 84, 0, 14, 14 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 98, 0, 14, 14 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
-region = Rect2( 84, 0, 14, 14 )
+region = Rect2( 112, 0, 14, 14 )
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
@@ -54,20 +54,18 @@ animations = [ {
 "name": "default",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": false,
-"name": "unfight",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 11 ), SubResource( 10 ), SubResource( 9 ), null ],
 "loop": false,
 "name": "fight",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "unfight",
+"speed": 10.0
 } ]
 
-[node name="Object_Soul_Corrupted" type="Node2D" groups=[
-"Interactable",
-]]
+[node name="Object_Soul_Corrupted" type="Node2D" groups=["Interactable"]]
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -85,7 +83,8 @@ shape = SubResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -12 )
 frames = SubResource( 12 )
-frame = 5
+frame = 4
 playing = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
